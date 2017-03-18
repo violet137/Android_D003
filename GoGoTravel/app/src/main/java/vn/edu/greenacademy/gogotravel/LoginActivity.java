@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -21,6 +23,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class LoginActivity extends AppCompatActivity {
+    EditText etUser,etPass;
+    Button btnReset,btnLogin,
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("Username",params[0]);
                 jsonObject.put("MatKhau",params[1]);
-                jsonObject.put("KieuTk",params[2]);
+                jsonObject.put("KieuTk",0);
 
                 OutputStream out = connection.getOutputStream();
                 DataOutputStream data = new DataOutputStream(out);

@@ -7,46 +7,70 @@
     tools:context="vn.edu.greenacademy.gogotravel.LoginActivity">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/etUser"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Username"
         android:inputType="textPersonName"
-        android:text="Name"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="109dp" />
+        tools:layout_editor_absoluteY="160dp" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/etPass"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Password"
         android:inputType="textPersonName"
-        android:text="Name"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="152dp" />
+        tools:layout_editor_absoluteY="203dp" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnFacebook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="213dp"
-        tools:layout_editor_absoluteY="292dp" />
+        android:text="Facebook"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="374dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="60dp"
-        tools:layout_editor_absoluteY="292dp" />
+        android:text="Dang nhap"
+        tools:layout_editor_absoluteX="140dp"
+        tools:layout_editor_absoluteY="311dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnReset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Quen mat khau"
         tools:layout_editor_absoluteX="240dp"
-        tools:layout_editor_absoluteY="215dp" />
+        tools:layout_editor_absoluteY="255dp" />
+
+    <Button
+        android:id="@+id/btnSignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chua co tk dang ky ngay"
+        tools:layout_editor_absoluteX="88dp"
+        tools:layout_editor_absoluteY="447dp" />
+
+    <Button
+        android:id="@+id/btnGoogle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Google"
+        tools:layout_editor_absoluteX="244dp"
+        tools:layout_editor_absoluteY="374dp" />
+
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_launcher"
+        tools:layout_editor_absoluteX="175dp"
+        tools:layout_editor_absoluteY="16dp" />
 </android.support.constraint.ConstraintLayout>
