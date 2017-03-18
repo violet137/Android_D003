@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -22,15 +24,54 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     EditText etUser,etPass;
-    Button btnReset,btnLogin,
+    Button btnReset,btnLogin,btnFacebook,btnGoogle,btnSignup;
+    ImageView ivLogo;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        etUser = (EditText) findViewById(R.id.etUser);
+        etPass = (EditText) findViewById(R.id.etPass);
+        btnReset = (Button) findViewById(R.id.btnReset);
+        btnLogin = (Button) findViewById(R.id.btnLogin);
+        btnFacebook = (Button) findViewById(R.id.btnFacebook);
+        btnGoogle = (Button) findViewById(R.id.btnGoogle);
+        btnSignup = (Button) findViewById(R.id.btnSignup);
+
+        ivLogo = (ImageView) findViewById(R.id.ivLogo);
+        ivLogo.setImageResource(R.drawable.icon_login);
+
+        btnReset.setOnClickListener(this);
+        btnLogin.setOnClickListener(this);
+        btnFacebook.setOnClickListener(this);
+        btnGoogle.setOnClickListener(this);
+        btnSignup.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent intent;
+        switch (view.getId()){
+            case R.id.btnReset:
+//                intent = new Intent(LoginActivity.this,ResetActivity.class);
+                break;
+            case R.id.btnLogin:
+                new Dangnhap().execute(etUser.getText().toString(),etPass.getText().toString());
+                break;
+            case R.id.btnFacebook:
+//                intent = new Intent(LoginActivity.this,FacebookActivity.class);
+                break;
+            case R.id.btnGoogle:
+//                intent = new Intent(LoginActivity.this,GoogleActivity.class);
+                break;
+            case R.id.btnSignup:
+//                intent = new Intent(LoginActivity.this,SignupActivity.class);
+                break;
+        }
     }
 
     public class Dangnhap extends AsyncTask<String, String, String> {
