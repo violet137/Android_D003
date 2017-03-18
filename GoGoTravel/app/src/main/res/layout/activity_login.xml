@@ -14,7 +14,7 @@
         android:inputType="textPersonName"
         android:text="Name"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteY="109dp" />
 
     <EditText
         android:id="@+id/editText2"
@@ -24,21 +24,29 @@
         android:inputType="textPersonName"
         android:text="Name"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="59dp" />
+        tools:layout_editor_absoluteY="152dp" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Button"
-        tools:layout_editor_absoluteX="217dp"
-        tools:layout_editor_absoluteY="102dp" />
+        tools:layout_editor_absoluteX="213dp"
+        tools:layout_editor_absoluteY="292dp" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Button"
-        tools:layout_editor_absoluteX="79dp"
-        tools:layout_editor_absoluteY="102dp" />
+        tools:layout_editor_absoluteX="60dp"
+        tools:layout_editor_absoluteY="292dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quen mat khau"
+        tools:layout_editor_absoluteX="240dp"
+        tools:layout_editor_absoluteY="215dp" />
 </android.support.constraint.ConstraintLayout>
