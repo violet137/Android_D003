@@ -25,5 +25,14 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.2.0'
+
+
+    //Đăng ký dịch vụ login google
+    compile 'com.google.android.gms:play-services-auth:9.8.0'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+
     testCompile 'junit:junit:4.12'
 }
+
+//thêm mới
+apply plugin: 'com.google.gms.google-services'
