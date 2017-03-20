@@ -8,12 +8,16 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="vn.edu.greenacademy.gogotravel.DangKyActivity">
+    tools:context="vn.edu.greenacademy.gogotravel.DangKyActivity"
+    android:background="@drawable/nen_login">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/top">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <EditText
             android:layout_width="match_parent"
@@ -21,7 +25,9 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/etTenDangNhap"
-            android:hint="Tên đăng nhập" />
+            android:hint="Tên đăng nhập"
+            android:layout_marginBottom="@dimen/magrin_bottom"
+            android:background="@android:color/background_light" />
 
         <EditText
             android:layout_width="match_parent"
@@ -29,7 +35,9 @@
             android:inputType="textPersonName|textPassword"
             android:ems="10"
             android:id="@+id/etMatKhau"
-            android:hint="Mật khẩu" />
+            android:hint="Mật khẩu"
+            android:layout_marginBottom="@dimen/magrin_bottom"
+            android:background="@android:color/background_light" />
 
         <EditText
             android:layout_width="match_parent"
@@ -37,7 +45,9 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/etTenHienThi"
-            android:hint="Tên hiển thị" />
+            android:hint="Tên hiển thị"
+            android:layout_marginBottom="@dimen/magrin_bottom"
+            android:background="@android:color/background_light" />
 
         <Button
             android:text="@string/dangky"

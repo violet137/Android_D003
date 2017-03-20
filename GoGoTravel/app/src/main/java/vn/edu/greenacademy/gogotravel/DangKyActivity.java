@@ -1,14 +1,12 @@
 package vn.edu.greenacademy.gogotravel;
 
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,9 +45,8 @@ public class DangKyActivity extends AppCompatActivity {
                 String strTenHienThi = etTenHienThi.getText().toString();
                 String strTenDangNhap = etTenDangNhap.getText().toString();
                 String strMatKhau = etMatKhau.getText().toString();
-                if(strTenDangNhap.isEmpty()&& strMatKhau.isEmpty()&& strTenHienThi.isEmpty()){
+                if(strTenDangNhap.isEmpty()|| strMatKhau.isEmpty()|| strTenHienThi.isEmpty()){
                     XuatThongBao("Vui lòng nhập lại thông tin!");
-
                 }else {
                     if(strMatKhau.length() >= 6 && strMatKhau.length() <=12 ){
                         new SignIn().execute(strTenDangNhap,strMatKhau,strTenHienThi);
@@ -95,7 +92,7 @@ public class DangKyActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                //gửi dữ liệu lên server (từ jsonOject chuyển thàng kiểu string trên server)
+                //gửi dữ liệu lên server (từ jsonOject chuyển thành kiểu string trên server)
                 OutputStream outputStream = connection.getOutputStream();
                 DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
                 dataOutputStream.writeBytes(jsonObject.toString());
@@ -130,12 +127,11 @@ public class DangKyActivity extends AppCompatActivity {
             try {
                 response = new JSONObject(responseString);
                 int status = response.getInt("Status");
-                Log.v("Status",status+"");
                 if(status == 1){
                     XuatThongBao("Đăng ký tài khoản thành công!");
                 }
                else {
-                    XuatThongBao("Đăng ký không thành công!");
+                    XuatThongBao("Đăng ký không thành công. Vui lòng xem lại thông tin vừa nhập!");
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
