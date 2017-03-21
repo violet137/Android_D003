@@ -18,7 +18,6 @@ import vn.edu.greenacademy.gogotravel.R;
  */
 public class Hinh1Fragment extends Fragment {
     ImageView ivIma1;
-    Button btnNext1;
 
     private static Hinh1Fragment instance = null;
 
@@ -42,16 +41,12 @@ public class Hinh1Fragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_hinh1, container, false);
 
         ivIma1 = (ImageView) v.findViewById(R.id.ivIma1);
-        btnNext1 = (Button) v.findViewById(R.id.btnNext1);
 
-        btnNext1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ivIma1.setImageResource(R.drawable.tutorial_1);
-            }
-        });
+        ivIma1.setImageResource(R.drawable.tutorial_1);
+
         return v;
     }
+
 
 
 }

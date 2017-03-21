@@ -8,19 +8,9 @@
     <!-- TODO: Update blank fragment layout -->
 
     <ImageView
-        android:layout_width="match_parent"
+        android:layout_width="match_parent" android:scaleType="fitXY"
         android:layout_height="match_parent"
         app:srcCompat="@mipmap/ic_launcher"
         android:id="@+id/ivIma1" />
-
-    <Button
-        android:text="Tiếp>>"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnNext1"
-        android:layout_marginBottom="15dp"
-        android:layout_gravity="bottom|center_horizontal"
-        android:includeFontPadding="false"
-        android:background="@android:color/holo_blue_bright" />
 
 </FrameLayout>

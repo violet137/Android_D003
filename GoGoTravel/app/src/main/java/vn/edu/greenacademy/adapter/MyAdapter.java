@@ -8,6 +8,7 @@ import vn.edu.greenacademy.fragment.Hinh1Fragment;
 import vn.edu.greenacademy.fragment.Hinh2Fragment;
 import vn.edu.greenacademy.fragment.Hinh3Fragment;
 import vn.edu.greenacademy.fragment.Hinh4Fragment;
+import vn.edu.greenacademy.gogotravel.R;
 import vn.edu.greenacademy.utils.Constant;
 
 /**
@@ -39,7 +40,6 @@ public class MyAdapter extends FragmentPagerAdapter {
         }
         return result;
     }
-
     @Override
     public int getCount() {
         return NUM_ITEM;
