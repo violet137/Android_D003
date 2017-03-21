@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,13 +47,13 @@ public class DangKyActivity extends AppCompatActivity {
                 String strTenDangNhap = etTenDangNhap.getText().toString();
                 String strMatKhau = etMatKhau.getText().toString();
                 if(strTenDangNhap.isEmpty()|| strMatKhau.isEmpty()|| strTenHienThi.isEmpty()){
-                    XuatThongBao("Vui lòng nhập lại thông tin!");
+                    XuatThongBao(getString(R.string.khong_nhap_du_thong_tin));
                 }else {
                     if(strMatKhau.length() >= 6 && strMatKhau.length() <=12 ){
                         new SignIn().execute(strTenDangNhap,strMatKhau,strTenHienThi);
                     }
                     else{
-                        XuatThongBao("Mật khẩu phải có từ 6-12 kí tự!");
+                        XuatThongBao(getString(R.string.thong_bao_kiem_tra_mat_khau));
                     }
                 }
             }
@@ -128,10 +129,10 @@ public class DangKyActivity extends AppCompatActivity {
                 response = new JSONObject(responseString);
                 int status = response.getInt("Status");
                 if(status == 1){
-                    XuatThongBao("Đăng ký tài khoản thành công!");
+                    XuatThongBao(getString(R.string.thanh_cong));
                 }
                else {
-                    XuatThongBao("Đăng ký không thành công. Vui lòng xem lại thông tin vừa nhập!");
+                    XuatThongBao(getString(R.string.that_bai));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
