@@ -1,0 +1,8 @@
+﻿Ðạt: check in địa điểm (chụp hình, lấy hình có sẵn, ghi bình luận ...)
+Phước Minh: khách sạn
+Hiếu: check in địa điểm (chụp hình, lấy hình có sẵn, ghi bình luận ...)
+Chiến: quán ăn
+Quang: hành trình chuyến đi (ghi lịch sử hành trình chuyến theo từng ngày, từng giờ...)
+Tuấn Anh: địa điểm du lịch 
+Khổng Minh: google map, có thể định vị được vị trí người dùng
+
