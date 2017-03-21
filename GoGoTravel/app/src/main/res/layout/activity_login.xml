@@ -5,36 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/nen_login"
-    android:gravity="center_horizontal"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context="vn.edu.greenacademy.gogotravel.LoginActivity">
 
     <ImageView
         android:id="@+id/ivLogo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <EditText
         android:id="@+id/etUser"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
 
+        android:background="@android:color/background_light"
         android:drawableLeft="@drawable/user"
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName" />
 
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <EditText
         android:id="@+id/etPass"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:drawableLeft="@drawable/password"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPersonName"
-        android:drawableLeft="@drawable/password"
-        />
+        android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/btnReset"
@@ -42,44 +47,48 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:background="@android:color/transparent"
-        android:text="Quen mat khau"
+        android:text="Quên mật khẩu?"
         android:textColor="@android:color/white" />
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_blue_light"
-        android:text="Dang nhap"
-        android:textColor="@android:color/white"
-         />
+        android:backgroundTint="#3EB8B4"
+        android:text="Đăng nhập"
+        android:textColor="@android:color/white" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="----------Hoac dang nhap bang----------"
+        android:text="---------- Hoặc đăng nhập bằng ----------"
         android:textColor="@android:color/background_light" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal">
 
-        <Button
+
+        <ImageButton
             android:id="@+id/btnFacebook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Facebook" />
+            android:backgroundTint="@android:color/transparent" />
 
-        <Button
+
+        <ImageButton
+
             android:id="@+id/btnGoogle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Google" />
+            android:backgroundTint="@android:color/transparent" />
+
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -92,7 +101,7 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Chua co tai khoan "
+            android:text="Chưa có tài khoản? "
             android:textColor="@android:color/white" />
 
         <Button
@@ -100,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:text="dang ky ngay"
+            android:text="Đăng ký ngay"
             android:textColor="@android:color/white" />
     </LinearLayout>
 

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -26,7 +27,8 @@ import java.net.URL;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     EditText etUser,etPass;
-    Button btnReset,btnLogin,btnFacebook,btnGoogle,btnSignup;
+    Button btnSignup,btnReset,btnLogin;
+    ImageButton btnFacebook,btnGoogle;
     ImageView ivLogo;
 
 
@@ -38,12 +40,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         etPass = (EditText) findViewById(R.id.etPass);
         btnReset = (Button) findViewById(R.id.btnReset);
         btnLogin = (Button) findViewById(R.id.btnLogin);
-        btnFacebook = (Button) findViewById(R.id.btnFacebook);
-        btnGoogle = (Button) findViewById(R.id.btnGoogle);
+        btnFacebook = (ImageButton) findViewById(R.id.btnFacebook);
+        btnGoogle = (ImageButton) findViewById(R.id.btnGoogle);
         btnSignup = (Button) findViewById(R.id.btnSignup);
 
         ivLogo = (ImageView) findViewById(R.id.ivLogo);
         ivLogo.setImageResource(R.drawable.icon_login);
+
+        btnFacebook.setImageResource(R.drawable.fb);
+        btnGoogle.setImageResource(R.drawable.gg);
 
         btnReset.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
