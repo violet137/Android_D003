@@ -1,0 +1,5 @@
+Danh sach dia diem du lich
+
+- 1 man hinh : danh sach khu vuc du lich :  chua girdview ( 1 cot gom hinh, ten khu vuc du lich).
+- 1 man hinh : chi tiet cac khu vuc theo ID.
+- 1 man hinh : tablayout ( khu vuc - quan an - khach san )
