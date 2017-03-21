@@ -47,8 +47,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         ivLogo = (ImageView) findViewById(R.id.ivLogo);
         ivLogo.setImageResource(R.drawable.icon_login);
 
-        btnFacebook.setImageResource(R.drawable.fb);
-        btnGoogle.setImageResource(R.drawable.gg);
+//        btnFacebook.setImageResource(R.drawable.fb);
+//        btnGoogle.setImageResource(R.drawable.gg);
 
         btnReset.setOnClickListener(this);
         btnLogin.setOnClickListener(this);

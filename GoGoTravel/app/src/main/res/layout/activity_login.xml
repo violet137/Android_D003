@@ -7,6 +7,8 @@
     android:background="@drawable/nen_login"
     android:gravity="center"
     android:orientation="vertical"
+    android:paddingRight="50dp"
+    android:paddingLeft="50dp"
     tools:context="vn.edu.greenacademy.gogotravel.LoginActivity">
 
     <ImageView
@@ -17,8 +19,8 @@
 
     <EditText
         android:id="@+id/etUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
 
         android:background="@android:color/background_light"
         android:drawableLeft="@drawable/user"
@@ -33,8 +35,8 @@
 
     <EditText
         android:id="@+id/etPass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
         android:background="@android:color/white"
         android:drawableLeft="@drawable/password"
         android:ems="10"
@@ -53,8 +55,8 @@
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#3EB8B4"
+        android:layout_height="35dp"
+        android:background="#3EB8B4"
         android:text="Đăng nhập"
         android:textColor="@android:color/white" />
 
@@ -64,7 +66,10 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="---------- Hoặc đăng nhập bằng ----------"
-        android:textColor="@android:color/background_light" />
+        android:textColor="@android:color/background_light"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -76,16 +81,22 @@
         <ImageButton
             android:id="@+id/btnFacebook"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/transparent" />
+            android:layout_height="35dp"
+            android:layout_weight="1
+
+"
+            android:backgroundTint="@android:color/transparent"
+            app:srcCompat="@drawable/fb" />
 
 
         <ImageButton
 
             android:id="@+id/btnGoogle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/transparent" />
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            app:srcCompat="@drawable/gg" />
 
 
 
