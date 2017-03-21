@@ -6,5 +6,10 @@ package vn.edu.greenacademy.Unitl;
 
 public class Constrant {
 
-    private static final int SIGN_IN_GG = 007;
+    public static final int SIGN_IN_GG = 007;
+
+    public static final String SCOPES = "https://www.googleapis.com/auth/plus.login "
+            + "https://www.googleapis.com/auth/drive.file";
+    public static final int REQUEST_CODE_TOKEN_AUTH = 001;
+
 }
