@@ -4,22 +4,22 @@ package vn.edu.greenacademy.model;
  * Created by GIT on 3/21/2017.
  */
 
-public class KhachSan {
-    int ID;
-    String Ten;
-    String MoTa;
-    float DanhGia;
-    int SoLuotXem;
-    int YeuThich;
-    int CheckIn;
-    int KhuVucID;
-    String LinkAnh;
-    float Lat;
-    float Lng;
-    String Address;
-    double Gia;
+public class KhachSans {
+    public int ID;
+    public String Ten;
+    public String MoTa;
+    public double DanhGia;
+    public int SoLuotXem;
+    public int YeuThich;
+    public int CheckIn;
+    public int KhuVucID;
+    public String LinkAnh;
+    public double Lat;
+    public double Lng;
+    public String Address;
+    public double Gia;
 
-    public KhachSan() {
+    public KhachSans() {
     }
 
     public int getID() {
@@ -46,7 +46,7 @@ public class KhachSan {
         MoTa = moTa;
     }
 
-    public float getDanhGia() {
+    public double getDanhGia() {
         return DanhGia;
     }
 
@@ -94,7 +94,7 @@ public class KhachSan {
         LinkAnh = linkAnh;
     }
 
-    public float getLat() {
+    public double getLat() {
         return Lat;
     }
 
@@ -102,7 +102,7 @@ public class KhachSan {
         Lat = lat;
     }
 
-    public float getLng() {
+    public double getLng() {
         return Lng;
     }
 
