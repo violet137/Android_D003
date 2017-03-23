@@ -65,7 +65,7 @@ public class KhachSanAdapter extends BaseAdapter{
     public View getView(int i, View view, ViewGroup viewGroup) {
 
         if(view == null){
-            view = mLayoutinlater.inflate(R.layout.fragment_khach_san,null);
+            view = mLayoutinlater.inflate(R.layout.item_khachsan_layout,null);
             imageKhachSan = (ImageView) view.findViewById(R.id.imageKhachSan);
             tvDanhGia = (TextView) view.findViewById(R.id.tvDanhGia);
             tvDiaChi = (TextView) view.findViewById(R.id.tvDiaChi);
@@ -77,13 +77,13 @@ public class KhachSanAdapter extends BaseAdapter{
         }
         KhachSans khachSans = (KhachSans) getItem(i);
 
-        new Image(String.valueOf(khachSans.getLinkAnh()),imageKhachSan).execute();
-        tvGiaTien.setText(String.valueOf(khachSans.getGia()));
+        new Image(khachSans.getLinkAnh(),imageKhachSan).execute();
         tvSoLuotCheckIn.setText(String.valueOf(khachSans.getCheckIn()));
         tvDanhGia.setText(String.valueOf(khachSans.getDanhGia()));
         tvSoLuotXem.setText(String.valueOf(khachSans.getSoLuotXem()));
-        tvDiaChi.setText(khachSans.getMoTa());
+        tvDiaChi.setText(khachSans.getAddress());
         tvSoLuotYeuThich.setText(String.valueOf(khachSans.getYeuThich()));
+        tvGiaTien.setText(String.valueOf(khachSans.getGia()));
         tvTenKhachSan.setText(khachSans.getTen());
         return view;
     }
@@ -102,7 +102,7 @@ public class KhachSanAdapter extends BaseAdapter{
         protected Bitmap doInBackground(String... strings) {
             try {
                 URL url = new URL(strLinkAnh);
-                Bitmap bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                Bitmap bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream()); //chuyển từ link ành sang thành image
                 return bitmap;
             } catch (MalformedURLException e) {
                 e.printStackTrace();

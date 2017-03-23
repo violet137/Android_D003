@@ -24,6 +24,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -40,8 +41,7 @@ public class KhachSanFragment extends Fragment {
     ListView listViewKhachSan;
     KhachSanAdapter adapter;
     List<KhachSans> listHotel = new LinkedList<>();
-    final CharSequence[] choice = {"Không lọc","Điểm","Số comment","Số lượt yêu thích","Mới nhất"};
-    CharSequence myChoice;
+    ArrayList arrChoice;
 
     public KhachSanFragment() {
         // Required empty public constructor
@@ -61,30 +61,29 @@ public class KhachSanFragment extends Fragment {
         btnBoLoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                arrChoice = new ArrayList();
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Bạn muốn lọc theo: ")
-                        .setSingleChoiceItems(choice, -1, new DialogInterface.OnClickListener() {
+                builder.setTitle(R.string.title_dialog)
+                        .setSingleChoiceItems(R.array.danh_sach_bo_loc, 0, new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                switch(i){
-                                    case 0 :
-                                        myChoice = choice[0];
-                                        break;
-                                    case 1 :
-                                        myChoice = choice[1];
-                                        break;
-                                    case 2:
-                                        myChoice = choice[2];
-                                        break;
-                                    case 3:
-                                        myChoice = choice[3];
-                                        break;
-                                    case 4:
-                                        myChoice = choice[4];
-                                        break;
-                                }
+                            public void onClick(DialogInterface dialog, int which) {
+
                             }
-                        }).create();
+                        })
+                        .setPositiveButton(R.string.positive_button, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setNegativeButton(R.string.negative_button, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
         return view;
@@ -140,7 +139,7 @@ public class KhachSanFragment extends Fragment {
                     String ten = node.getString("Ten");
                     String mota = node.getString("MoTa");
                     double danhgia = node.getDouble("DanhGia");
-                    int soluotxem = node.getInt("oLuotXem");
+                    int soluotxem = node.getInt("SoLuotXem");
                     int yeuthich = node.getInt("YeuThich");
                     int checkin = node.getInt("CheckIn");
                     int khuvucid = node.getInt("KhuVucId");

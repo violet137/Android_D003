@@ -6,9 +6,10 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <Button
             android:text="@string/boloc"
@@ -23,6 +24,6 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </FrameLayout>
