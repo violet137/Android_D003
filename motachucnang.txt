@@ -1,0 +1,9 @@
+dung api my travel
+expandlistview (icon like, icon anh) co list view: gio, ten, anh dai dien, like
+them : hien ra khung search (dung api search), danh sach dia diem 
+xoa : 
+sua :
+chi tiet : ten, dia chi, anh, noi dung
+ nut sua, nut chup anh, nut xoa
+
+http://giasutinhoc.vn/android/huong-dan-su-dung-expandable-listview-trong-android/
