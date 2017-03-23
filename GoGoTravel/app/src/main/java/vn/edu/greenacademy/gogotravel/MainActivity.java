@@ -1,13 +1,13 @@
 package vn.edu.greenacademy.gogotravel;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -36,8 +36,6 @@ import java.io.IOException;
 
 import vn.edu.greenacademy.Unitl.Constrant;
 
-import static vn.edu.greenacademy.Unitl.Constrant.SCOPES;
-
 
 public class MainActivity extends AppCompatActivity implements
         View.OnClickListener,
@@ -53,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements
     private LinearLayout llProfileLayout;
     private ImageView imgProfilePic;
     private TextView txtName, txtEmail;
+    public  String accessToken = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,44 +117,10 @@ public class MainActivity extends AppCompatActivity implements
             //id đăng ký account & token season
             String id = acct.getId();
 
+            new RetrieveTokenTask().execute(personName);
 
-            AsyncTask<Void, Void, String> task = new AsyncTask<Void, Void, String>() {
-                @Override
-                protected String doInBackground(Void... params) {
-                    String token = null;
 
-                    try {
-                        token = GoogleAuthUtil.getToken(
-                                MainActivity.this,
-                                mGoogleApiClient.getAccountName(),
-                                "oauth2:" + SCOPES);
-                    } catch (IOException transientEx) {
-                        // Network or server error, try later
-                        Log.e(TAG, transientEx.toString());
-                    } catch (UserRecoverableAuthException e) {
-                        // Recover (with e.getIntent())
-                        Log.e(TAG, e.toString());
-                        Intent recover = e.getIntent();
-                        startActivityForResult(recover, Constrant.REQUEST_CODE_TOKEN_AUTH);
-                    } catch (GoogleAuthException authEx) {
-                        // The call is not ever expected to succeed
-                        // assuming you have already verified that
-                        // Google Play services is installed.
-                        Log.e(TAG, authEx.toString());
-                    }
-
-                    return token;
-                }
-
-                @Override
-                protected void onPostExecute(String token) {
-                    Log.i(TAG, "Access token retrieved:" + token);
-                }
-
-            };
-            task.execute();
-
-            txtName.setText(personName );
+            txtName.setText(personName + "\n" + id + "\n" + accessToken);
             txtEmail.setText(email);
 
             //Nếu link hình ảnh Null thì lấy hình mặc định
@@ -203,12 +168,6 @@ public class MainActivity extends AppCompatActivity implements
             loginGoogle(result);
         }
 
-        //Xử lý lây Token google
-//        if (requestCode == Constrant.REQUEST_CODE_TOKEN_AUTH && resultCode == RESULT_OK) {
-//            // We had to sign in - now we can finish off the token request.
-//            new RetrieveTokenTask().execute(mAccountName);
-//        }
-
     }
 
     @Override
@@ -238,6 +197,36 @@ public class MainActivity extends AppCompatActivity implements
         Toast.makeText(MainActivity.this,"Login Faild", Toast.LENGTH_LONG).show();
     }
 
+    private class RetrieveTokenTask extends AsyncTask<String, Void, String> {
+
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            String accountName = strings[0];
+            String scope = "oauth2:" + Scopes.PROFILE + " " + "email";
+            Context context = getApplicationContext();
+            String accessToken = "";
+
+            try {
+                accessToken = GoogleAuthUtil.getToken (context, accountName, scope);
+            } catch (IOException e) {
+                 e.getMessage();
+            } catch (UserRecoverableAuthException e) {
+//                startActivityForResult (e.getIntent(), Constrant.REQUEST_CODE_TOKEN_AUTH);
+            } catch (GoogleAuthException e) {
+                e.getMessage();
+
+            }
+            return accessToken;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            accessToken = s;
+        }
+    };
 
 
     private void showProgressDialog() {
