@@ -12,54 +12,21 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">
 
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:orientation="horizontal"
-            android:paddingBottom="10dp"
-            android:layout_gravity="bottom|center_horizontal"
-            android:gravity="center"
-            android:id="@+id/radio">
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/rb1"
-                 />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/rb2"
-                 />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/rb3"
-                 />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/rb4"
-                 />
-        </RadioGroup>
-
         <Button
             android:text="Tiếp>>"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
-            android:id="@+id/btnNext" />
+            android:id="@+id/btnNext"
+            android:background="@android:color/holo_blue_bright" />
 
         <android.support.v4.view.ViewPager
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id = "@+id/view">
         </android.support.v4.view.ViewPager>
+
+
     </FrameLayout>
 
 </RelativeLayout>

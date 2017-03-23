@@ -22,7 +22,7 @@ public class ManHinhChoActivity extends AppCompatActivity {
         ivCho = (ImageView) findViewById(R.id.ivCho);
         ivCho.setImageResource(R.drawable.flash_screen);
 
-        handler.postDelayed(updateTime,3000);
+        handler.postDelayed(updateTime,2000);
     }
 
     private Runnable updateTime = new Runnable() {

@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
+
 import vn.edu.greenacademy.adapter.MyAdapter;
 import vn.edu.greenacademy.fragment.Hinh4Fragment;
 
@@ -19,18 +20,13 @@ import static vn.edu.greenacademy.gogotravel.R.layout.activity_main;
 public class GioiThieuActivity extends AppCompatActivity {
 
     ViewPager viewPager;
-    View view;
     private MyAdapter mAdapter;
-    private ImageView[] dots;
     Button btnNext;
-    private int dotsCount;
 
-    private int[] mImageView = {
-            R.drawable.tutorial_1,
-            R.drawable.tutorial_2,
-            R.drawable.tutorial_3,
-            R.drawable.tutorial_4
-    };
+
+
+
+
 
 
     @Override
@@ -50,7 +46,7 @@ public class GioiThieuActivity extends AppCompatActivity {
                     btnNext.setText("Bắt đầu");
                 }
                 if (viewPager.getCurrentItem()==3){
-                    Intent intent = new Intent(GioiThieuActivity.this, ManHinhChoActivity.class);
+                    Intent intent = new Intent(GioiThieuActivity.this, CameraActivity.class);
                     GioiThieuActivity.this.startActivity(intent);
                 }else{
                     viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
