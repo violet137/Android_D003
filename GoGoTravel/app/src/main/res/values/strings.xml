@@ -12,9 +12,10 @@
     <string-array name="danh_sach_bo_loc">
         <item>Không lọc</item>
         <item>Điểm</item>
-        <item>Số comment</item>
+        <item>Số lượt check in</item>
         <item>Số lượt yêu thích</item>
         <item>Mới nhất</item>
+        <item>Gần tôi</item>
     </string-array>
 
     <string name="title_dialog">Bạn muốn lọc theo:</string>

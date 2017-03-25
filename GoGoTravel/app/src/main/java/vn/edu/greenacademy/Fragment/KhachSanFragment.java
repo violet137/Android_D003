@@ -25,6 +25,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -42,6 +44,7 @@ public class KhachSanFragment extends Fragment {
     KhachSanAdapter adapter;
     List<KhachSans> listHotel = new LinkedList<>();
     ArrayList arrChoice;
+    int luaChon=0;
 
     public KhachSanFragment() {
         // Required empty public constructor
@@ -52,52 +55,73 @@ public class KhachSanFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_khach_san, container, false);
+        View view = inflater.inflate(R.layout.fragment_khach_san, container, false);
 
         btnBoLoc = (Button) view.findViewById(R.id.btnBoLoc);
         listViewKhachSan = (ListView) view.findViewById(R.id.listViewKhachSan);
 
-        new AllHotel().execute();
+        new AllKhachSan().execute();
         btnBoLoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 arrChoice = new ArrayList();
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
                 builder.setTitle(R.string.title_dialog)
                         .setSingleChoiceItems(R.array.danh_sach_bo_loc, 0, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                luaChon = which;
+                                switch (which) {
+                                    case 0:
+                                        break;
+                                    case 1:
+                                        Comparator comp = new Comparator<KhachSans>(){
+                                            @Override
+                                            public int compare(KhachSans s1, KhachSans s2)
+                                            {
+                                                if(s1.getDanhGia()>s2.getDanhGia()){
+                                                    return 1;
+                                                }else{
+                                                    return -1;
+                                                }
+                                            }
+                                        };
+                                        Collections.sort(listHotel, comp);
+                                        adapter.ReloadData(listHotel);
+                                        break;
+                                    case 2:
 
-                            }
-                        })
-                        .setPositiveButton(R.string.positive_button, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        })
-                        .setNegativeButton(R.string.negative_button, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                                        break;
+                                    case 3:
+                                     
+                                        break;
+                                    case 4:
+                                        break;
+                                    case 5:
+                                        new KhachSanByNear().execute();
+                                        break;
+                                }
 
                             }
                         });
                 AlertDialog dialog = builder.create();
+
                 dialog.show();
             }
         });
         return view;
     }
 
-    class AllHotel extends AsyncTask<List<KhachSans>, Void, String>{
+    class AllKhachSan extends AsyncTask<List<KhachSans>, Void, String> {
 
         @Override
         protected String doInBackground(List<KhachSans>... lists) {
             try {
                 URL url = new URL("http://103.237.147.137:9045/KhachSan/AllKhachSan");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.addRequestProperty("Accept","text/json");
-                connection.addRequestProperty("Content-Type","application/json");
+                connection.addRequestProperty("Accept", "text/json");
+                connection.addRequestProperty("Content-Type", "application/json");
                 connection.setRequestMethod("GET"); //config giao thức truyền lên server
                 connection.connect();
 
@@ -133,7 +157,7 @@ public class KhachSanFragment extends Fragment {
                 int status = response.getInt("Status");
                 String description = response.getString("Description");
                 JSONArray lstHotel = response.getJSONArray("KhachSans");
-                for(int i = 0; i<lstHotel.length(); i++){
+                for (int i = 0; i < lstHotel.length(); i++) {
                     JSONObject node = lstHotel.getJSONObject(i);
                     int id = node.getInt("Id");
                     String ten = node.getString("Ten");
@@ -168,9 +192,173 @@ public class KhachSanFragment extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            adapter = new KhachSanAdapter(getContext(),R.layout.item_khachsan_layout,listHotel);
+            adapter = new KhachSanAdapter(getContext(), R.layout.item_khachsan_layout, listHotel);
             listViewKhachSan.setAdapter(adapter);
             adapter.notifyDataSetChanged();
         }
     }
+
+    class KhachSanByKhuVuc extends AsyncTask<List<KhachSans>, Void, String> {
+
+        @Override
+        protected String doInBackground(List<KhachSans>... params) {
+            try {
+                URL url = new URL("http://103.237.147.137:9045/KhachSan/KhachSanByKhuVuc?idKhuVuc=1");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.addRequestProperty("Accept", "text/json");
+                connection.addRequestProperty("Content-Type", "application/json");
+                connection.setRequestMethod("GET");
+                connection.connect();
+
+                if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                    InputStream it = new BufferedInputStream(connection.getInputStream());
+                    InputStreamReader read = new InputStreamReader(it);
+                    BufferedReader buff = new BufferedReader(read);
+                    String result = "";
+                    String chunks;
+                    while ((chunks = buff.readLine()) != null) {
+                        result = result + chunks;
+                    }
+                    return result;
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            String responseString = s;
+            JSONObject response = null;
+            try {
+                response = new JSONObject(responseString);
+                int status = response.getInt("Status");
+                String description = response.getString("Description");
+                JSONArray lstHotelByID = response.getJSONArray("KhachSans");
+                for (int i = 0; i < lstHotelByID.length(); i++) {
+                    JSONObject node = lstHotelByID.getJSONObject(i);
+                    int id = node.getInt("Id");
+                    String ten = node.getString("Ten");
+                    String mota = node.getString("MoTa");
+                    double danhgia = node.getDouble("DanhGia");
+                    int soluotxem = node.getInt("SoLuotXem");
+                    int yeuthich = node.getInt("YeuThich");
+                    int checkin = node.getInt("CheckIn");
+                    int khuvucid = node.getInt("KhuVucId");
+                    String linkanh = node.getString("LinkAnh");
+                    double lat = node.getDouble("Lat");
+                    double lng = node.getDouble("Lng");
+                    String address = node.getString("Address");
+                    double gia = node.getDouble("Gia");
+
+                    KhachSans ksanbyid = new KhachSans();
+                    ksanbyid.ID = id;
+                    ksanbyid.Ten = ten;
+                    ksanbyid.MoTa = mota;
+                    ksanbyid.DanhGia = danhgia;
+                    ksanbyid.SoLuotXem = soluotxem;
+                    ksanbyid.YeuThich = yeuthich;
+                    ksanbyid.CheckIn = checkin;
+                    ksanbyid.KhuVucID = khuvucid;
+                    ksanbyid.LinkAnh = linkanh;
+                    ksanbyid.Lat = lat;
+                    ksanbyid.Lng = lng;
+                    ksanbyid.Address = address;
+                    ksanbyid.Gia = gia;
+                    listHotel.add(ksanbyid);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    class KhachSanByNear extends AsyncTask<List<KhachSans>, Void, String> {
+
+        @Override
+        protected String doInBackground(List<KhachSans>... params) {
+            try {
+                URL url = new URL("http://103.237.147.137:9045/KhachSan/KhachSanByNear?lat=1&lng=1");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.addRequestProperty("Accept", "text/json");
+                connection.addRequestProperty("Content-Type", "application/json");
+                connection.setRequestMethod("GET");
+                connection.connect();
+
+                if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                    InputStream it = new BufferedInputStream(connection.getInputStream());
+                    InputStreamReader read = new InputStreamReader(it);
+                    BufferedReader buff = new BufferedReader(read);
+                    String result = "";
+                    String chunks;
+                    while ((chunks = buff.readLine()) != null) {
+                        result = result + chunks;
+                    }
+                    return result;
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            String responseString = s;
+            JSONObject response = null;
+            try {
+                response = new JSONObject(responseString);
+                int status = response.getInt("Status");
+                String description = response.getString("Description");
+                JSONArray lstHotelByID = response.getJSONArray("KhachSans");
+                for (int i = 0; i < lstHotelByID.length(); i++) {
+                    JSONObject node = lstHotelByID.getJSONObject(i);
+                    int id = node.getInt("Id");
+                    String ten = node.getString("Ten");
+                    String mota = node.getString("MoTa");
+                    double danhgia = node.getDouble("DanhGia");
+                    int soluotxem = node.getInt("SoLuotXem");
+                    int yeuthich = node.getInt("YeuThich");
+                    int checkin = node.getInt("CheckIn");
+                    int khuvucid = node.getInt("KhuVucId");
+                    String linkanh = node.getString("LinkAnh");
+                    double lat = node.getDouble("Lat");
+                    double lng = node.getDouble("Lng");
+                    String address = node.getString("Address");
+                    double gia = node.getDouble("Gia");
+
+                    KhachSans ksanbyid = new KhachSans();
+                    ksanbyid.ID = id;
+                    ksanbyid.Ten = ten;
+                    ksanbyid.MoTa = mota;
+                    ksanbyid.DanhGia = danhgia;
+                    ksanbyid.SoLuotXem = soluotxem;
+                    ksanbyid.YeuThich = yeuthich;
+                    ksanbyid.CheckIn = checkin;
+                    ksanbyid.KhuVucID = khuvucid;
+                    ksanbyid.LinkAnh = linkanh;
+                    ksanbyid.Lat = lat;
+                    ksanbyid.Lng = lng;
+                    ksanbyid.Address = address;
+                    ksanbyid.Gia = gia;
+                    listHotel.add(ksanbyid);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            adapter = new KhachSanAdapter(getContext(), R.layout.item_khachsan_layout, listHotel);
+            listViewKhachSan.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+
 }

@@ -5,10 +5,10 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        app:srcCompat="@mipmap/ic_launcher"
-        android:id="@+id/imageKhachSan"
         android:layout_height="@dimen/height_image_listview"
-        android:layout_width="@dimen/width_image_listview" />
+        android:layout_width="@dimen/width_image_listview"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:id="@+id/imageKhachSan" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -41,6 +41,7 @@
 
             <TextView
                 android:text="TextView"
+                android:textColor="#ff669900"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/star"
@@ -56,11 +57,11 @@
             android:layout_weight="1">
 
             <ImageView
+                android:layout_height="@dimen/height_image_icon"
+                android:layout_width="@dimen/width_image_icon"
                 app:srcCompat="@drawable/like"
                 android:id="@+id/imageView2"
-                android:layout_weight="1"
-                android:layout_width="20dp"
-                android:layout_height="20dp" />
+                android:layout_weight="1" />
 
             <TextView
                 android:text="TextView"
@@ -70,11 +71,11 @@
                 android:layout_weight="1"/>
 
             <ImageView
+                android:layout_height="@dimen/height_image_icon"
+                android:layout_width="@dimen/width_image_icon"
                 app:srcCompat="@drawable/comment"
                 android:id="@+id/imageView4"
-                android:layout_weight="1"
-                android:layout_width="20dp"
-                android:layout_height="20dp" />
+                android:layout_weight="1" />
 
             <TextView
                 android:text="TextView"
@@ -84,11 +85,11 @@
                 android:layout_weight="1"/>
 
             <ImageView
-                android:layout_width="20dp"
+                android:layout_height="@dimen/height_image_icon"
+                android:layout_width="@dimen/width_image_icon"
                 app:srcCompat="@drawable/xem"
                 android:id="@+id/imageView5"
-                android:layout_weight="1"
-                android:layout_height="20dp" />
+                android:layout_weight="1" />
 
             <TextView
                 android:text="TextView"

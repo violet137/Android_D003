@@ -39,6 +39,13 @@ public class KhachSanAdapter extends BaseAdapter{
     TextView tvSoLuotXem;
     TextView tvGiaTien;
 
+
+    public void ReloadData(List<KhachSans> arrHotel){
+        this.arrHotel.addAll(arrHotel);
+        notifyDataSetChanged();
+    }
+
+
     public KhachSanAdapter(Context context, int layout, List<KhachSans> arrHotel) {
         this.context = context;
         this.layout = layout;
