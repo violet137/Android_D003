@@ -8,7 +8,7 @@ public class Constrant {
 
     public static final int SIGN_IN_GG = 007;
 
-    public static final int REQUEST_CODE_TOKEN_AUTH = 001;
+    public static final String URL_LOGIN = "http://103.237.147.137:9045/TaiKhoan/DangNhap";
 
 
 }

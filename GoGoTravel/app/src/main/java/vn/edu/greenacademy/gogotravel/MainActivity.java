@@ -2,7 +2,6 @@ package vn.edu.greenacademy.gogotravel;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -13,22 +12,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 
 import java.util.ArrayList;
 
+import vn.edu.greenacademy.Model.userLogin;
 import vn.edu.greenacademy.Unitl.Constrant;
+import vn.edu.greenacademy.Unitl.checkLogin;
+import vn.edu.greenacademy.Unitl.loginGmail;
 
 
 public class MainActivity extends AppCompatActivity implements
@@ -43,9 +40,11 @@ public class MainActivity extends AppCompatActivity implements
     private LinearLayout llProfileLayout;
     private ImageView imgProfilePic;
     private TextView txtName, txtEmail;
-    public  String accessToken = "";
     private static boolean checkID = true;
     private ArrayList<String> arrID;
+
+    loginGmail gmail;
+    checkLogin check;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,90 +63,16 @@ public class MainActivity extends AppCompatActivity implements
         btnSignIn.setOnClickListener(this);
         btnSignOut.setOnClickListener(this);
 
-        //gọi api của google
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
 
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
+        gmail = new loginGmail();
+
+        gmail.callLoginGmail();
 
         // Button google đế mặc định
         btnSignIn.setSize(SignInButton.SIZE_STANDARD);
-        btnSignIn.setScopes(gso.getScopeArray());
     }
 
 
-    private void signIn() {
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent, Constrant.SIGN_IN_GG);
-    }
-
-
-    private void signOut() {
-        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-                new ResultCallback<Status>() {
-                    @Override
-                    public void onResult(Status status) {
-                        Toast.makeText(MainActivity.this,"Log Out", Toast.LENGTH_LONG).show();
-                        updateUI(false);
-                    }
-                });
-    }
-    private void loginGoogle(GoogleSignInResult result) {
-        if (result.isSuccess()) {
-
-            // Login thành công
-            final GoogleSignInAccount acct = result.getSignInAccount();
-
-            String personName = acct.getDisplayName();
-            Uri personPhotoUrl  = acct.getPhotoUrl();
-            String email = acct.getEmail();
-            //id đăng ký account
-            String id = acct.getId();
-
-            if (arrID.size() == 0){
-                checkID = true;
-            }else {
-
-                for (int i = 0; i < arrID.size(); i++) {
-                    if (id.equals(arrID.get(i))){
-                        checkID = false;
-                        break;
-                    }else {
-                        checkID = true;
-                    }
-                }
-            }
-
-            //------
-            if (checkID == false){
-                txtName.setText("Đã đăng nhập rồi");
-                txtEmail.setText("");
-                imgProfilePic.setImageResource(R.drawable.common_full_open_on_phone);
-            }else {
-                arrID.add(id);
-                txtName.setText(personName);
-                txtEmail.setText(email);
-                //Nếu link hình ảnh Null thì lấy hình mặc định
-                if (personPhotoUrl == null){
-                    imgProfilePic.setImageResource(R.drawable.common_google_signin_btn_icon_dark);
-                }else {
-                    Glide.with(getApplicationContext()).load(personPhotoUrl.toString())
-                            .thumbnail(0.5f)
-                            .crossFade()
-                            .diskCacheStrategy(DiskCacheStrategy.ALL)
-                            .into(imgProfilePic);
-                }
-            }
-            updateUI(true);
-        } else {
-            // Signed out
-            updateUI(false);
-        }
-    }
 
     @Override
     public void onClick(View v) {
@@ -155,11 +80,11 @@ public class MainActivity extends AppCompatActivity implements
 
         switch (id) {
             case R.id.btn_sign_in:
-                signIn();
+                gmail.signIn();
                 break;
 
             case R.id.btn_sign_out:
-                signOut();
+                gmail.signOut();
                 break;
 
         }
@@ -171,10 +96,19 @@ public class MainActivity extends AppCompatActivity implements
 
         // Gọi intenr login google
         if (requestCode == Constrant.SIGN_IN_GG) {
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            loginGoogle(result);
+            ArrayList<String> arrUserInfo = gmail.result_login(data);
+            if (arrUserInfo != null){
+                userLogin userGmail = new userLogin(arrUserInfo.get(0), "", 2);
+                login(userGmail);
+            }
         }
 
+    }
+
+    //xử lý dăng ký
+    private void login(userLogin user) {
+        check = new checkLogin(user);
+        check.execute(Constrant.URL_LOGIN);
     }
 
     @Override
@@ -184,8 +118,7 @@ public class MainActivity extends AppCompatActivity implements
         OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
         if (opr.isDone()) {
             // Giũ đăng nhập
-            GoogleSignInResult result = opr.get();
-            loginGoogle(result);
+//            gmail.result_login(MainActivity.this);
         } else {
             // Khi logout
             showProgressDialog();
@@ -193,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements
                 @Override
                 public void onResult(GoogleSignInResult googleSignInResult) {
                     hideProgressDialog();
-                    loginGoogle(googleSignInResult);
+//                    loginGoogle(googleSignInResult);
                 }
             });
         }
