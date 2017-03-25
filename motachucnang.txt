@@ -7,3 +7,6 @@ chi tiet : ten, dia chi, anh, noi dung
  nut sua, nut chup anh, nut xoa
 
 http://giasutinhoc.vn/android/huong-dan-su-dung-expandable-listview-trong-android/
+
+s? d?ng HashTable <key,string>
+hashtable.get 

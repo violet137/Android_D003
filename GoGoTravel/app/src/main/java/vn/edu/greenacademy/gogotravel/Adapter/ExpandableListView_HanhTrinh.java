@@ -17,82 +17,97 @@ import vn.edu.greenacademy.gogotravel.R;
 
 public class ExpandableListView_HanhTrinh extends BaseExpandableListAdapter {
     private Context context;
-    private ArrayList<String> listHeader;
+    private String[] listHeader;
+    private String[][] listChildren;
 
-    public ExpandableListView_HanhTrinh(Context context, ArrayList<String> listHeader) {
+    public ExpandableListView_HanhTrinh(Context context,String[] listHeader, String[][] listChildren) {
         this.context = context;
         this.listHeader = listHeader;
+        this.listChildren = listChildren;
     }
 
     @Override
     public int getGroupCount() {
-        return 0;
+        return listHeader.length;
     }
 
     @Override
     public int getChildrenCount(int i) {
-        return 0;
+        return listChildren.length;
     }
 
     @Override
     public Object getGroup(int i) {
-        return null;
+        return listHeader[i];
     }
 
     @Override
     public Object getChild(int i, int i1) {
-        return null;
+        return listChildren[i][i1];
     }
 
     @Override
     public long getGroupId(int i) {
-        return 0;
+        return i;
     }
 
     @Override
     public long getChildId(int i, int i1) {
-        return 0;
+        return i1;
     }
 
     @Override
     public boolean hasStableIds() {
-        return false;
+        return true;
     }
 
     @Override
-    public View getGroupView(int groupPosition, boolean b, View view, ViewGroup viewGroup) {
-        String data = (String) getGroup(groupPosition);
+    public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
+        ViewHolder holder;
+
         if (view == null) {
-            LayoutInflater inflater = (LayoutInflater) this.context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.listview_hanhtrinh_header, null);
+            LayoutInflater inflater = (LayoutInflater)
+                    context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(R.layout.listview_hanhtrinh_header, viewGroup,false);
+
+            holder = new ViewHolder();
+            holder.text = (TextView) view.findViewById(R.id.tvNgayDi);
+            view.setTag(holder);
+        } else {
+            holder = (ViewHolder) view.getTag();
         }
 
-        TextView tvNgayDi = (TextView) view.findViewById(R.id.tvNgayDi);
-
-        tvNgayDi.setText(data);
+        holder.text.setText(getGroup(i).toString());
 
         return view;
     }
 
     @Override
-    public View getChildView(int groupPosition, int childPosition, boolean b, View view, ViewGroup viewGroup) {
-//        final String data = (String) getChild(groupPosition, childPosition);
-//
-//        if (view == null) {
-//            LayoutInflater li = (LayoutInflater) this._context
-//                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//            view = li.inflate(R.layout.listview_item, null);
-//        }
-//
-//        TextView tvItem = (TextView) view.findViewById(R.id.tvItem);
-//
-//        tvItem.setText(data);
+    public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
+        ViewHolder holder;
+
+        if (view == null){
+            LayoutInflater inflater = (LayoutInflater)
+                    context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(R.layout.listview_hanhtrinh_item,viewGroup,false);
+            holder = new ViewHolder();
+
+            holder.text = (TextView) view.findViewById(R.id.tvTimeItem);
+            view.setTag(holder);
+        }
+        else {
+            holder = (ViewHolder) view.getTag();
+        }
+        holder.text.setText(getChild(i,i1).toString());
+
         return view;
     }
 
     @Override
     public boolean isChildSelectable(int i, int i1) {
         return true;
+    }
+    private class ViewHolder{
+        TextView text;
     }
 }
