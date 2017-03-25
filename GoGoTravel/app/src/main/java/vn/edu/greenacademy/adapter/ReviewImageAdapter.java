@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 import vn.edu.greenacademy.gogotravel.R;
 
@@ -52,7 +53,8 @@ public class ReviewImageAdapter extends BaseAdapter {
         View view = convertView;
 
         if (view == null){
-            view.inflate(context, R.layout.check, parent);
+            LayoutInflater inflater=LayoutInflater.from(context);
+            view=inflater.inflate(R.layout.check,parent,false);
             holder = new CatalogHolder();
             assert view != null;
             holder.imageView = (ImageView) view.findViewById(R.id.imageView);
@@ -63,7 +65,7 @@ public class ReviewImageAdapter extends BaseAdapter {
         }
         holder.imageView.setImageBitmap(datas.get(position));
 
-        return null;
+        return view;
     }
 
     class CatalogHolder {

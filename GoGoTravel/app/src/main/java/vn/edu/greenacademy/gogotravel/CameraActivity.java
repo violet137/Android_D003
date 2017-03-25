@@ -28,6 +28,7 @@ public class CameraActivity extends AppCompatActivity {
     private Uri uri;
     private List<String> list;
     private GridView grid;
+    ReviewImageAdapter reviewImageAdapter;
 
 
     @Override
@@ -40,8 +41,9 @@ public class CameraActivity extends AppCompatActivity {
         ibCapture = (ImageButton) findViewById(R.id.ibCapture);
         ibCapture.setImageResource(R.drawable.camera);
 
+        reviewImageAdapter = new ReviewImageAdapter(this);
         list = null;
-        grid.setAdapter(new ReviewImageAdapter(this));
+        grid.setAdapter(reviewImageAdapter);
 
 
         ibCapture.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +73,9 @@ public class CameraActivity extends AppCompatActivity {
         if (data!= null){
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
             ivImage.setImageBitmap(bitmap);
+            reviewImageAdapter.AddBitmap(bitmap);
         }
+
 
     }
 

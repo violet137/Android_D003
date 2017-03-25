@@ -20,7 +20,7 @@
         <GridView
             android:layout_width="match_parent"
             android:layout_height="235dp"
-            android:numColumns="auto_fit"
+            android:numColumns="3"
             android:id="@+id/grid" />
 
         <ImageView
