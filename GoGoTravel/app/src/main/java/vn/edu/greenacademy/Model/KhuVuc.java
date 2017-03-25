@@ -5,5 +5,11 @@ package vn.edu.greenacademy.Model;
  */
 
 public class KhuVuc {
-    
+
+    public String TenKhuVuc, LinkAnh, MoTa;
+    public double DanhGia;
+    public int SoLuotXem, YeuThich, Id;
+
+    public KhuVuc() {
+    }
 }
