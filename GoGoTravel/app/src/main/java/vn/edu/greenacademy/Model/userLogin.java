@@ -1,13 +1,10 @@
 package vn.edu.greenacademy.Model;
 
-/**
- * Created by MyPC on 27/03/2017.
- */
 
 public class userLogin {
-    String userName, matKhau;
-    int kieuTk;
-
+    public String userName;
+    public String matKhau;
+    public int kieuTk;
     public userLogin() {
     }
 
@@ -31,7 +28,7 @@ public class userLogin {
         return kieuTk;
     }
 
-    public void setKieuTk(int kieuTK) {
-        this.kieuTk = kieuTK;
+    public void setKieuTk(int kieuTk) {
+        this.kieuTk = kieuTk;
     }
 }

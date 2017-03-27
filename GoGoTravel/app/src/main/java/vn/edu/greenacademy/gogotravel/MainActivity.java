@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements
     private LinearLayout llProfileLayout;
     private ImageView imgProfilePic;
     private TextView txtName, txtEmail;
-    private static boolean checkID = false;
+    private static boolean checkID = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,10 +69,6 @@ public class MainActivity extends AppCompatActivity implements
         txtName = (TextView) findViewById(R.id.txtName);
         txtEmail = (TextView) findViewById(R.id.txtEmail);
 
-        btnSignIn.setOnClickListener(this);
-        btnSignOut.setOnClickListener(this);
-
-        //gọi api của google
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -82,9 +78,12 @@ public class MainActivity extends AppCompatActivity implements
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
+        btnSignIn.setOnClickListener(this);
+        btnSignOut.setOnClickListener(this);
+
+
         // Button google đế mặc định
         btnSignIn.setSize(SignInButton.SIZE_STANDARD);
-        btnSignIn.setScopes(gso.getScopeArray());
     }
 
 
@@ -195,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    @Override
+       @Override
     public void onStart() {
         super.onStart();
 
