@@ -3,6 +3,7 @@ package vn.edu.greenacademy.gogotravel;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -13,8 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -26,7 +25,20 @@ import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
-import java.util.ArrayList;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 
 import vn.edu.greenacademy.Unitl.Constrant;
 
@@ -43,9 +55,7 @@ public class MainActivity extends AppCompatActivity implements
     private LinearLayout llProfileLayout;
     private ImageView imgProfilePic;
     private TextView txtName, txtEmail;
-    public  String accessToken = "";
-    private static boolean checkID = true;
-    private ArrayList<String> arrID;
+    private static boolean checkID = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +68,6 @@ public class MainActivity extends AppCompatActivity implements
         imgProfilePic = (ImageView) findViewById(R.id.imgProfilePic);
         txtName = (TextView) findViewById(R.id.txtName);
         txtEmail = (TextView) findViewById(R.id.txtEmail);
-
-        arrID = new ArrayList();
 
         btnSignIn.setOnClickListener(this);
         btnSignOut.setOnClickListener(this);
@@ -108,40 +116,51 @@ public class MainActivity extends AppCompatActivity implements
             //id đăng ký account
             String id = acct.getId();
 
-            if (arrID.size() == 0){
-                checkID = true;
-            }else {
+            new DangNhap().execute(id,"","2");
 
-                for (int i = 0; i < arrID.size(); i++) {
-                    if (id.equals(arrID.get(i))){
-                        checkID = false;
-                        break;
-                    }else {
-                        checkID = true;
-                    }
-                }
+            if (checkID == false){
+                new DangKy().execute(id,"",personName);
+                txtName.setText(personName + id);
+                txtEmail.setText(email);
+            }else {
+                txtName.setText(id);
+                txtEmail.setText("");
             }
+
+//            if (arrID.size() == 0){
+//                checkID = true;
+//            }else {
+//
+//                for (int i = 0; i < arrID.size(); i++) {
+//                    if (id.equals(arrID.get(i))){
+//                        checkID = false;
+//                        break;
+//                    }else {
+//                        checkID = true;
+//                    }
+//                }
+//            }
 
             //------
-            if (checkID == false){
-                txtName.setText("Đã đăng nhập rồi");
-                txtEmail.setText("");
-                imgProfilePic.setImageResource(R.drawable.common_full_open_on_phone);
-            }else {
-                arrID.add(id);
-                txtName.setText(personName);
-                txtEmail.setText(email);
-                //Nếu link hình ảnh Null thì lấy hình mặc định
-                if (personPhotoUrl == null){
-                    imgProfilePic.setImageResource(R.drawable.common_google_signin_btn_icon_dark);
-                }else {
-                    Glide.with(getApplicationContext()).load(personPhotoUrl.toString())
-                            .thumbnail(0.5f)
-                            .crossFade()
-                            .diskCacheStrategy(DiskCacheStrategy.ALL)
-                            .into(imgProfilePic);
-                }
-            }
+//            if (checkID == false){
+//                txtName.setText("Đã đăng nhập rồi");
+//                txtEmail.setText("");
+//                imgProfilePic.setImageResource(R.drawable.common_full_open_on_phone);
+//            }else {
+//                arrID.add(id);
+//                txtName.setText(personName);
+//                txtEmail.setText(email);
+//                //Nếu link hình ảnh Null thì lấy hình mặc định
+//                if (personPhotoUrl == null){
+//                    imgProfilePic.setImageResource(R.drawable.common_google_signin_btn_icon_dark);
+//                }else {
+//                    Glide.with(getApplicationContext()).load(personPhotoUrl.toString())
+//                            .thumbnail(0.5f)
+//                            .crossFade()
+//                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                            .into(imgProfilePic);
+//                }
+//            }
             updateUI(true);
         } else {
             // Signed out
@@ -174,7 +193,6 @@ public class MainActivity extends AppCompatActivity implements
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             loginGoogle(result);
         }
-
     }
 
     @Override
@@ -202,6 +220,157 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Toast.makeText(MainActivity.this,"Login Faild", Toast.LENGTH_LONG).show();
+    }
+
+    public class DangNhap extends AsyncTask<String, String, String>{
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            try {
+                URL url = new URL("http://103.237.147.137:9045/TaiKhoan/DangNhap");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+                //kieu du lieu server tra ve
+                connection.addRequestProperty("Accept", "text/json"); // dinh nghia du lieu tu server ve client
+                connection.addRequestProperty("Content-Type", "application/json"); // dinh nghia du lieu tu client len server
+
+                //giao thuc truyen len server GET - POST - PUT - DELETE
+                connection.setRequestMethod("POST");
+
+
+                //mo ket noi den server
+                connection.connect();
+
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    //JsonObject : tuong ung {}
+                    //JsonArray : tuong ung []
+                    jsonObject.put("Username", strings[0]);
+                    jsonObject.put("MatKhau", strings[1]);
+                    jsonObject.put("KieuTK",Integer.parseInt(strings[2]));
+
+                    //DataOutputStream : gui du lieu len server
+                    DataOutputStream data = new DataOutputStream(connection.getOutputStream());
+                    data.writeBytes(jsonObject.toString());
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                if (connection.getResponseCode() == HttpURLConnection.HTTP_OK){ // lay poncode kiem tra tu server
+
+                    InputStream it = new BufferedInputStream(connection.getInputStream());
+                    InputStreamReader read = new InputStreamReader(it);
+                    BufferedReader buff = new BufferedReader(read);
+
+                    String result = "";
+                    String chenks;
+
+                    while ((chenks = buff.readLine()) != null){
+                        //doc den khi nao server tra ve null thi dung
+                        result += chenks;
+                    }
+
+                    return result;
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+//            lay respone tu server tra ve
+            String serever_respone = "";
+            try {
+                JSONObject jsonObject_server = new JSONObject(s);
+                String token = jsonObject_server.getString("Token");
+                int status = jsonObject_server.getInt("Status");
+                String description = jsonObject_server.getString("Description");
+
+                if (status == 0){
+                    checkID = false;
+                }else {
+                    checkID = true;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    private class DangKy extends AsyncTask<String, String, String>{
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            URL url = null;
+            try {
+                url = new URL("http://103.237.147.137:9045/TaiKhoan/DangKy");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+                //kieu du lieu server tra ve
+                connection.addRequestProperty("Accept", "text/json");
+                connection.addRequestProperty("Content-Type", "application/json");
+
+                //giao thuc truyen len server GET - POST - PUT - DELETE
+                connection.setRequestMethod("POST");
+
+                connection.connect();
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    //JsonObject : tuong ung {}
+                    //JsonArray : tuong ung []
+                    jsonObject.put("Username", strings[0]);
+                    jsonObject.put("MatKhau", strings[1]);
+                    jsonObject.put("TenHienThi",strings[2]);
+
+                    //DataOutputStream : gui du lieu len server
+                    OutputStream outputStream = connection.getOutputStream();
+                    DataOutputStream data = new DataOutputStream(outputStream);
+                    data.writeBytes(jsonObject.toString());
+
+                    if (connection.getResponseCode() == HttpURLConnection.HTTP_OK){ // lay poncode kiem tra tu server
+
+                        InputStream it = new BufferedInputStream(connection.getInputStream());
+                        InputStreamReader read = new InputStreamReader(it);
+                        BufferedReader buff = new BufferedReader(read);
+
+                        String result = "";
+                        String chenks;
+
+                        while ((chenks = buff.readLine()) != null){
+                            //doc den khi nao server tra ve null thi dung
+                            result += chenks;
+                        }
+                        return result;
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (ProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+        }
     }
 
     private void showProgressDialog() {
