@@ -1,10 +1,12 @@
 package vn.edu.greenacademy.model;
 
+import java.io.Serializable;
+
 /**
  * Created by GIT on 3/21/2017.
  */
 
-public class KhachSans {
+public class KhachSans implements Serializable {
     public int ID;
     public String Ten;
     public String MoTa;

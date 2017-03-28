@@ -5,10 +5,12 @@ import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -65,8 +67,7 @@ public class KhachSanFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 arrChoice = new ArrayList();
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle(R.string.title_dialog)
                         .setSingleChoiceItems(R.array.danh_sach_bo_loc, 0, new DialogInterface.OnClickListener() {
                             @Override
@@ -89,25 +90,41 @@ public class KhachSanFragment extends Fragment {
                                         };
                                         Collections.sort(listHotel, comp);
                                         adapter.ReloadData(listHotel);
+                                        dialog.dismiss();
                                         break;
                                     case 2:
-
+                                        dialog.dismiss();
                                         break;
                                     case 3:
-                                     
+                                        dialog.dismiss();
                                         break;
                                     case 4:
+                                        dialog.dismiss();
                                         break;
                                     case 5:
                                         new KhachSanByNear().execute();
+                                        dialog.dismiss();
                                         break;
                                 }
 
                             }
                         });
                 AlertDialog dialog = builder.create();
-
                 dialog.show();
+            }
+        });
+        listViewKhachSan.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                KhachSans tempKhachSan = listHotel.get(position);
+                Fragment fragment = new DetaiKhachSanFragment();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("KhachSan",tempKhachSan);
+                fragment.setArguments(bundle);
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(android.R.id.content, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
         return view;

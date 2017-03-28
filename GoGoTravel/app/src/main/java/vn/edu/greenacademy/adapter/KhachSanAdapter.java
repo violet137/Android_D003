@@ -16,6 +16,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
+import vn.edu.greenacademy.asynctask.Image;
 import vn.edu.greenacademy.gogotravel.R;
 import vn.edu.greenacademy.model.KhachSans;
 
@@ -95,34 +96,4 @@ public class KhachSanAdapter extends BaseAdapter{
         return view;
     }
 
-    class Image extends AsyncTask<String, Void, Bitmap>{
-
-        String strLinkAnh;
-        ImageView ivImage;
-
-        public Image(String strLinkAnh, ImageView ivImage) {
-            this.strLinkAnh = strLinkAnh;
-            this.ivImage = ivImage;
-        }
-
-        @Override
-        protected Bitmap doInBackground(String... strings) {
-            try {
-                URL url = new URL(strLinkAnh);
-                Bitmap bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream()); //chuyển từ link ành sang thành image
-                return bitmap;
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap bitmap) {
-            super.onPostExecute(bitmap);
-            ivImage.setImageBitmap(bitmap);
-        }
-    }
 }
