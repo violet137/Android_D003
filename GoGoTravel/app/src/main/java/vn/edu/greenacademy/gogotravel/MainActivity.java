@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import vn.edu.greenacademy.Fragment.BanDoFragment;
+import vn.edu.greenacademy.Fragment.DetailFragment;
 import vn.edu.greenacademy.Fragment.HanhTrinhFragment;
 import vn.edu.greenacademy.Fragment.KhuVucFragment;
 import vn.edu.greenacademy.Fragment.TaiKhoanFragment;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     BanDoFragment banDoFragment;
     TaiKhoanFragment taiKhoanFragment;
     HanhTrinhFragment hanhTrinhFragment;
+    DetailFragment detailFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         banDoFragment = BanDoFragment.getInstance();
         taiKhoanFragment = TaiKhoanFragment.getInstance();
         hanhTrinhFragment = HanhTrinhFragment.getInstance();
+        detailFragment = DetailFragment.getInstance();
 
         callFragment(khuVucFragment);
 

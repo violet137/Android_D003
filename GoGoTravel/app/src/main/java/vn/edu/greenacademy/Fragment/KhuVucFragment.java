@@ -72,12 +72,12 @@ public class KhuVucFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 KhuVuc khuVuc = arrKhuVuc.get(position);
-                Fragment fragment = new DiaDiemFragment();
+                Fragment detail = new DetailFragment();
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("KhuVuc",khuVuc);
-                fragment.setArguments(bundle);
+                bundle.putInt("KhuVuc",khuVuc.Id);
+                detail.setArguments(bundle);
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.flKhuVuc,fragment);
+                transaction.replace(R.id.flKhuVuc,detail);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }

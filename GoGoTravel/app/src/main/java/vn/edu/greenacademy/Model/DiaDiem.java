@@ -5,5 +5,10 @@ package vn.edu.greenacademy.Model;
  */
 
 public class DiaDiem {
+    public String TenDiadiem, Mota,Diachi, LinkAnh;
+    public int Id, SoLuotXem,YeuThich, checkIn, IdKhuVuc;
+    public double DanhGia, Lat, Lng;
 
+    public DiaDiem() {
+    }
 }
