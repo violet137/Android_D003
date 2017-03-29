@@ -25,6 +25,7 @@ import java.util.ArrayList;
 
 import vn.edu.greenacademy.Adapter.DiaDiemAdapter;
 import vn.edu.greenacademy.Model.DiaDiem;
+import vn.edu.greenacademy.Until.Constant;
 import vn.edu.greenacademy.gogotravel.R;
 
 /**
@@ -36,6 +37,13 @@ public class DiaDiemFragment extends Fragment {
     ArrayList<DiaDiem> arrDiaDiem;
     DiaDiemAdapter diaDiemAdapter;
     ListView lvDiaDiem;
+
+    getDiaDiem dataDiaDiem;
+
+    HttpURLConnection con;
+    InputStream it;
+    InputStreamReader read;
+    BufferedReader buff;
 
     public static DiaDiemFragment instance;
 
@@ -64,15 +72,8 @@ public class DiaDiemFragment extends Fragment {
         arrDiaDiem = new ArrayList<>();
         lvDiaDiem = (ListView) v.findViewById(R.id.lvDiaDiem);
 
-        new getDiaDiem(v).execute(1);
-
-
-//        Bundle bundle = this.getArguments();
-//
-//        if (bundle != null){
-//            int i =  bundle.getInt("IdDiaDiem");
-//            new getDiaDiem(v).execute(i);
-//        }
+        dataDiaDiem = new getDiaDiem(v);
+        dataDiaDiem.execute(Constant.ID_DIADIEM);
 
         return v;
     }
@@ -89,18 +90,18 @@ public class DiaDiemFragment extends Fragment {
         protected String doInBackground(Integer... params) {
             try {
                 URL url = new URL("http://103.237.147.137:9045/DiaDiem/DiaDiemById?idKhuVuc="+params[0]);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.addRequestProperty("Accept", "text/json");
-                connection.addRequestProperty("Content-Type", "application/json");
-                connection.setRequestMethod("GET");
+                con = (HttpURLConnection) url.openConnection();
+                con.addRequestProperty("Accept", "text/json");
+                con.addRequestProperty("Content-Type", "application/json");
+                con.setRequestMethod("GET");
 
-                connection.connect();
+                con.connect();
 
-                if (connection.getResponseCode() == HttpURLConnection.HTTP_OK){
+                if (con.getResponseCode() == HttpURLConnection.HTTP_OK){
 
-                    InputStream it = new BufferedInputStream(connection.getInputStream());
-                    InputStreamReader read = new InputStreamReader(it);
-                    BufferedReader buff = new BufferedReader(read);
+                    it = new BufferedInputStream(con.getInputStream());
+                    read = new InputStreamReader(it);
+                    buff = new BufferedReader(read);
 
                     String result = "";
                     String chenks;
@@ -114,6 +115,8 @@ public class DiaDiemFragment extends Fragment {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
+            }finally {
+                closeConnect();
             }
             return null;
         }
@@ -146,6 +149,25 @@ public class DiaDiemFragment extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void closeConnect(){
+        try {
+            if (buff != null){
+                buff.close();
+            }
+            if (read != null){
+                read.close();
+            }
+            if (it != null){
+                it.close();
+            }
+            if (con != null){
+                con.disconnect();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 

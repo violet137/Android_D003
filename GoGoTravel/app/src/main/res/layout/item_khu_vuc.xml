@@ -12,11 +12,11 @@
         android:id="@+id/frKhuVuc">
 
         <ImageView
-            android:layout_width="match_parent"
-            app:srcCompat="@mipmap/ic_launcher"
             android:id="@+id/ivLinkAnh_KhuVuc"
+            android:layout_width="360dp"
             android:layout_height="300dp"
-            android:scaleType="fitXY" />
+            android:scaleType="fitXY"
+            app:srcCompat="@mipmap/ic_launcher" />
 
         <LinearLayout
             android:orientation="horizontal"

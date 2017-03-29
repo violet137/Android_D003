@@ -6,7 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import vn.edu.greenacademy.Until.Constant;
 import vn.edu.greenacademy.gogotravel.R;
 
 /**
@@ -14,6 +16,7 @@ import vn.edu.greenacademy.gogotravel.R;
  */
 public class QuanAnFragment extends Fragment {
 
+    TextView tvDemoQuanAn;
 
     public static QuanAnFragment instance;
 
@@ -32,7 +35,13 @@ public class QuanAnFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_quan_an, container, false);
+        View v = inflater.inflate(R.layout.fragment_quan_an, container, false);
+
+        tvDemoQuanAn = (TextView) v.findViewById(R.id.tvDemoQuanAn);
+
+        tvDemoQuanAn.setText(Constant.TEN_DIADIEM);
+
+        return v;
     }
 
 }
