@@ -111,17 +111,18 @@
         android:layout_height="10dp" />
 
     <TextView
-        android:text="MoTa"
+        android:id="@+id/tvMoTa_KhuVuc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tvMoTa_KhuVuc"
+        android:lines="2"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:lines="2" />
+        android:text="MoTa" />
 
     <TextView
-        android:layout_width="match_parent"
         android:id="@+id/textView"
-        android:background="@android:color/darker_gray"
-        android:layout_height="10dp" />
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/darker_gray" />
 </LinearLayout>

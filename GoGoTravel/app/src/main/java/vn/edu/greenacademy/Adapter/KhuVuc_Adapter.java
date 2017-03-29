@@ -1,7 +1,6 @@
 package vn.edu.greenacademy.Adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -56,7 +55,7 @@ public class KhuVuc_Adapter extends ArrayAdapter {
         ImageView ivLinkAnh_KhuVuc = (ImageView) convertView.findViewById(R.id.ivLinkAnh_KhuVuc);
 
         tvTen_KhuVuc.setText(khuvuc.TenKhuVuc);
-        tvMota_KhuVuc.setText(khuvuc.MoTa);
+        tvMota_KhuVuc.setText(khuvuc.MoTa + ".....");
         tvDanhgia_KhuVuc.setText(String.valueOf(khuvuc.DanhGia));
         tvSoLuotXem_KhuVuc.setText(String.valueOf(khuvuc.SoLuotXem));
         tvYeuThich_KhuVuc.setText(String.valueOf(khuvuc.YeuThich));

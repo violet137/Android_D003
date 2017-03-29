@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,7 @@ public class KhuVucFragment extends Fragment {
 
 
 
+
     public static KhuVucFragment instance;
 
     public static KhuVucFragment getInstance(){
@@ -63,17 +65,23 @@ public class KhuVucFragment extends Fragment {
         lvKhuVuc = (ListView) v.findViewById(R.id.lvkhuVuc);
         arrKhuVuc = new ArrayList<>();
 
+
         new getKhuVuc(v).execute();
 
         lvKhuVuc.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                KhuVuc khuVuc = arrKhuVuc.get(position);
+                Fragment fragment = new DiaDiemFragment();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("KhuVuc",khuVuc);
+                fragment.setArguments(bundle);
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.flKhuVuc,fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
-
-
-
         return v;
     }
 
