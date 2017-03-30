@@ -49,6 +49,7 @@
 
         <Button
             android:text="@string/dangky"
+            android:textAllCaps="false"
             style="@style/button_style"
             android:id="@+id/btnDangKy"
             android:layout_gravity="center"/>

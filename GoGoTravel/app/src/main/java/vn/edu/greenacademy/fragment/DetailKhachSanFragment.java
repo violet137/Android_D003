@@ -1,15 +1,22 @@
 package vn.edu.greenacademy.fragment;
 
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
 import vn.edu.greenacademy.adapter.KhachSanAdapter;
+import vn.edu.greenacademy.adapter.LoadImageAdapter;
 import vn.edu.greenacademy.asynctask.Image;
 import vn.edu.greenacademy.gogotravel.R;
 import vn.edu.greenacademy.model.KhachSans;
@@ -18,7 +25,7 @@ import vn.edu.greenacademy.model.KhachSans;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetaiKhachSanFragment extends Fragment {
+public class DetailKhachSanFragment extends Fragment {
 
     ImageView imageKhachSan;
     TextView tvTenKhachSan;
@@ -27,10 +34,12 @@ public class DetaiKhachSanFragment extends Fragment {
     TextView tvSoLuotYeuThich;
     TextView tvSoLuotCheckIn;
     TextView tvSoLuotXem;
-    TextView tvGiaTien;
     TextView tvMoTa;
+    GridView gridImage;
+    List<ImageView> listImage;
+    int[] imageId;
 
-    public DetaiKhachSanFragment() {
+    public DetailKhachSanFragment() {
         // Required empty public constructor
     }
 
@@ -44,12 +53,13 @@ public class DetaiKhachSanFragment extends Fragment {
         imageKhachSan = (ImageView) view.findViewById(R.id.imageHotel);
         tvDanhGia = (TextView) view.findViewById(R.id.tvDanhGia);
         tvDiaChi = (TextView) view.findViewById(R.id.tvAddress);
-        tvGiaTien = (TextView) view.findViewById(R.id.tvGia);
         tvSoLuotCheckIn = (TextView) view.findViewById(R.id.tvCheckIn);
-        tvSoLuotYeuThich = (TextView) view.findViewById(R.id.tvYeuThich);
-        tvSoLuotXem = (TextView) view.findViewById(R.id.tvSoLuotXem);
+        tvSoLuotYeuThich = (TextView) view.findViewById(R.id.tvLike);
+        tvSoLuotXem = (TextView) view.findViewById(R.id.tvSee);
         tvTenKhachSan = (TextView) view.findViewById(R.id.tvNameHotel);
-        tvMoTa = (TextView) view.findViewById(R.id.tvMoTa);
+        tvMoTa = (TextView) view.findViewById(R.id.tvDescribe);
+        gridImage = (GridView) view.findViewById(R.id.gridImage);
+        imageId = new int[]{R.drawable.ks1,R.drawable.ks2,R.drawable.ks3,R.drawable.ks4,R.drawable.ks5,R.drawable.ks6};
 
         Bundle bundle = this.getArguments();
         if(bundle != null){
@@ -60,11 +70,24 @@ public class DetaiKhachSanFragment extends Fragment {
             tvSoLuotXem.setText(String.valueOf(ks.getSoLuotXem()));
             tvDiaChi.setText(ks.getAddress());
             tvSoLuotYeuThich.setText(String.valueOf(ks.getYeuThich()));
-            tvGiaTien.setText(String.valueOf(ks.getGia()));
             tvTenKhachSan.setText(ks.getTen());
-            tvMoTa.setText(ks.getMoTa());
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+                tvMoTa.setText(Html.fromHtml(ks.getMoTa(),Html.FROM_HTML_MODE_LEGACY));  //chuyển html sang textview
+            }else {
+                tvMoTa.setText(Html.fromHtml(ks.getMoTa()));
+            }
         }
+        LoadImageAdapter adapter = new LoadImageAdapter(getContext(),R.layout.fragment_detai_khach_san,imageId);
+        gridImage.setAdapter(adapter);
+        gridImage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
         return view;
     }
+
+
 
 }

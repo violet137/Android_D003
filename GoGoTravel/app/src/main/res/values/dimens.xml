@@ -18,5 +18,6 @@
     <dimen name="width_image_listview">80dp</dimen>
     <dimen name="height_image_icon">20dp</dimen>
     <dimen name="width_image_icon">20dp</dimen>
+    <dimen name="padding_left_textview_detal_ks">13dp</dimen>
 
 </resources>

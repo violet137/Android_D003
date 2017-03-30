@@ -117,7 +117,7 @@ public class KhachSanFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 KhachSans tempKhachSan = listHotel.get(position);
-                Fragment fragment = new DetaiKhachSanFragment();
+                Fragment fragment = new DetailKhachSanFragment();
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("KhachSan",tempKhachSan);
                 fragment.setArguments(bundle);
