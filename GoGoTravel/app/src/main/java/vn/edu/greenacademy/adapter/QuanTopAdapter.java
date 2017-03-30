@@ -39,17 +39,26 @@ public class QuanTopAdapter extends RecyclerView.Adapter<QuanTopAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder_QuanAn holder, int position) {
+    public void onBindViewHolder(final ViewHolder_QuanAn holder, final int position) {
         String mota = list.get(position).getMota();
         String gio = split_mota_gio(mota);
+        float sao = list.get(position).getDanhgia()/2;
         holder.setData(
                 list.get(position).getLink(),
                 list.get(position).getTen(),
                 String.valueOf(list.get(position).getYeuthich()),
                 String.valueOf(list.get(position).getChenkin()),
-                list.get(position).getDanhgia()/2,gio
+                sao,gio
 
         );
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mItemClickListener != null){
+                    mItemClickListener.ItemClick(holder.itemView,position);
+                }
+            }
+        });
     }
 
     private String split_mota_gio(String mota) {
@@ -71,6 +80,16 @@ public class QuanTopAdapter extends RecyclerView.Adapter<QuanTopAdapter.ViewHold
         return list.size();
     }
 
+    private ItemClickListener mItemClickListener;
+
+    public interface ItemClickListener {
+        void ItemClick(View view,int position);
+    }
+
+    public void onItemClickListener(ItemClickListener listener){
+        mItemClickListener = listener;
+    }
+
     public class ViewHolder_QuanAn extends RecyclerView.ViewHolder{
         private ImageView  ivHinh;
         private TextView tvTen,tvYeuThich,tvChenkin,tvGio;
@@ -86,7 +105,7 @@ public class QuanTopAdapter extends RecyclerView.Adapter<QuanTopAdapter.ViewHold
             ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
         }
 
-        public void setData(String link,String ten,String yt,String check,int rating,String gio){
+        public void setData(String link,String ten,String yt,String check,float rating,String gio){
             new DownloadImage(ivHinh).execute(link);
             tvTen.setText(ten);
             tvYeuThich.setText(yt);

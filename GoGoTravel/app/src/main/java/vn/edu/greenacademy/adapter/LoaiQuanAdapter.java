@@ -5,12 +5,16 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -40,17 +44,24 @@ public class LoaiQuanAdapter extends RecyclerView.Adapter<LoaiQuanAdapter.ViewHo
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View itemView = inflater.inflate(R.layout.item_loaiquanan,parent,false);
         return new ViewHolder_LoaiQuan(itemView);
-
-
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder_LoaiQuan holder, int position) {
+    public void onBindViewHolder(final ViewHolder_LoaiQuan holder, final int position) {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mItemClickListener != null){
+                    mItemClickListener.ItemClick(holder.itemView,position);
+                }
+            }
+        });
         holder.setData(
                     list.get(position).getLink(),
                     list.get(position).getTen(),
                     String.valueOf(list.get(position).getSoluot())
         );
+
     }
 
     @Override
@@ -58,15 +69,36 @@ public class LoaiQuanAdapter extends RecyclerView.Adapter<LoaiQuanAdapter.ViewHo
         return list.size();
     }
 
-    public class ViewHolder_LoaiQuan extends RecyclerView.ViewHolder{
+
+    private ItemClickListener mItemClickListener;
+
+    public interface ItemClickListener {
+        void ItemClick(View view,int position);
+    }
+
+    public void onItemClickListener(ItemClickListener listener){
+        mItemClickListener = listener;
+    }
+
+    public class ViewHolder_LoaiQuan extends RecyclerView.ViewHolder {
         private ImageView ivHinh;
         private TextView tvTen,tvSoluong;
+
 
         public ViewHolder_LoaiQuan(View itemView) {
             super(itemView);
             ivHinh = (ImageView) itemView.findViewById(R.id.ivLoaiquanan);
             tvTen = (TextView) itemView.findViewById(R.id.tvTenloai);
             tvSoluong = (TextView) itemView.findViewById(R.id.tvSoluong);
+//            View.OnClickListener onClickListener=new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//
+//                }
+//            };
+//            ivHinh.setOnClickListener(onClickListener);
+//            tvTen.setOnClickListener(onClickListener);
+//            tvSoluong.setOnClickListener(onClickListener);
         }
 
         public void setData(String link,String ten,String sl){
@@ -74,6 +106,9 @@ public class LoaiQuanAdapter extends RecyclerView.Adapter<LoaiQuanAdapter.ViewHo
             tvTen.setText(ten);
             tvSoluong.setText(sl);
         }
+
+
+
     }
 
     class DownloadImage extends AsyncTask<String, Void, Bitmap> {

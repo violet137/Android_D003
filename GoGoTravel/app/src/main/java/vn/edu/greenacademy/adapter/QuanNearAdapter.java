@@ -45,7 +45,7 @@ public class QuanNearAdapter extends ArrayAdapter{
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
 
         ViewHolder holder;
@@ -81,9 +81,31 @@ public class QuanNearAdapter extends ArrayAdapter{
         holder.ratingBar.setRating(temp.getDanhgia()/2);
 
         new DownloadImage(holder.ivHinh).execute(temp.getLink());
+//        holder.ivHinh.setFocusable(false);
+//        holder.ivHinh.setFocusableInTouchMode(false);
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mItemClickListener != null){
+                    mItemClickListener.ItemClick(position);
+                }
+            }
+        });
+
 
         return convertView;
     }
+
+    private QuanNearAdapter.ItemClickListener mItemClickListener;
+
+    public interface ItemClickListener {
+        void ItemClick(int position);
+    }
+
+    public void onItemClickListener(QuanNearAdapter.ItemClickListener listener){
+        mItemClickListener = listener;
+    }
+
 
     private String split_mota_gio(String mota) {
         String result = null;
@@ -135,4 +157,7 @@ public class QuanNearAdapter extends ArrayAdapter{
         TextView tvID,tvTen,tvYeuthich,tvCheckin,tvGio;
         RatingBar ratingBar;
     }
+
+
+
 }

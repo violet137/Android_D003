@@ -7,7 +7,8 @@ package vn.edu.greenacademy.model;
 public class QuanAn {
     int id,loai_id;
     String ten,mota,diachi;
-    int danhgia,soluot,yeuthich,chenkin;
+    int soluot,yeuthich,chenkin;
+    float danhgia;
     String link;
     int lat,lng;
 
@@ -51,11 +52,11 @@ public class QuanAn {
         this.diachi = diachi;
     }
 
-    public int getDanhgia() {
+    public float getDanhgia() {
         return danhgia;
     }
 
-    public void setDanhgia(int danhgia) {
+    public void setDanhgia(float danhgia) {
         this.danhgia = danhgia;
     }
 
