@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 
@@ -37,6 +39,8 @@ public class DiaDiemAdapter extends ArrayAdapter {
         this.layout = resource;
         this.arrDiaDiem = objects;
     }
+
+
 
     @NonNull
     @Override
@@ -73,6 +77,8 @@ public class DiaDiemAdapter extends ArrayAdapter {
         holderDiaDiem.tvYeuThichDiaDiem.setText(String.valueOf(diaDiem.YeuThich));
         holderDiaDiem.tvCheckInDiaDiem.setText(String.valueOf(diaDiem.checkIn));
         holderDiaDiem.tvDiaChiDiaDiem.setText(diaDiem.Diachi);
+
+        Picasso.with(getContext()).load(diaDiem.LinkAnh).resize(120,120).into(holderDiaDiem.ivLinkAnhDiaDiem);
 
         convertView.setBackgroundResource(R.drawable.border_dia_diem);
 

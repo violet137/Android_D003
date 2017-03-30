@@ -3,6 +3,7 @@ package vn.edu.greenacademy.Fragment;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +38,7 @@ public class DiaDiemFragment extends Fragment {
     ArrayList<DiaDiem> arrDiaDiem;
     DiaDiemAdapter diaDiemAdapter;
     ListView lvDiaDiem;
+    static int id = 1;
 
     getDiaDiem dataDiaDiem;
 
@@ -56,11 +58,15 @@ public class DiaDiemFragment extends Fragment {
     }
 
     public DiaDiemFragment() {
-        // Required empty public constructor
     }
+
 
     //truyền dứ liệu giữa 2 fragment dùng Arguments
 
+
+    public static void setId(int ids) {
+        DiaDiemFragment.id = ids;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,10 +79,11 @@ public class DiaDiemFragment extends Fragment {
         lvDiaDiem = (ListView) v.findViewById(R.id.lvDiaDiem);
 
         dataDiaDiem = new getDiaDiem(v);
-        dataDiaDiem.execute(Constant.ID_DIADIEM);
+        dataDiaDiem.execute(id);
 
         return v;
     }
+
 
     public class getDiaDiem extends AsyncTask<Integer, String, String> {
 

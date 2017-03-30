@@ -1,6 +1,7 @@
 package vn.edu.greenacademy.Adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -23,16 +24,18 @@ public class SwipeDetailKhuVuc extends FragmentStatePagerAdapter {
     private Context context;
     private List<Fragment> listSwipe = new LinkedList<Fragment>();
 
-    Fragment result = null;
-
     @Override
     public CharSequence getPageTitle(int position) {
         return arrTitle[position];
     }
 
-    public SwipeDetailKhuVuc(FragmentManager fm, Context context) {
+    public SwipeDetailKhuVuc(FragmentManager fm, Context context, int id) {
         super(fm);
         this.context = context;
+
+        DiaDiemFragment.setId(id);
+        KhachSanFragment.setId(id);
+        QuanAnFragment.setId(id);
         listSwipe.add(DiaDiemFragment.getInstance());
         listSwipe.add(KhachSanFragment.getInstance());
         listSwipe.add(QuanAnFragment.getInstance());

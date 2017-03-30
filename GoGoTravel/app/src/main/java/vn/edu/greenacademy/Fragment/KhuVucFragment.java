@@ -87,15 +87,17 @@ public class KhuVucFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 KhuVuc khuVuc = arrKhuVuc.get(position);
                 Fragment detail = DetailFragment.getInstance();
-                Constant.ID_DIADIEM = khuVuc.Id;
-                //test
-                Constant.TEN_DIADIEM = khuVuc.TenKhuVuc;
-                //
+                Bundle bundle = new Bundle();
+                bundle.putInt("khuvuc",khuVuc.Id);
+
+                detail.setArguments(bundle);
+
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.flKhuVuc,detail);
                 transaction.addToBackStack(null);
-                transaction.commit();
                 dataKhuVuc.cancel(true);
+                transaction.commit();
+                detail.isRemoving();
             }
         });
     }
@@ -123,11 +125,8 @@ public class KhuVucFragment extends Fragment {
                      it = new BufferedInputStream(con.getInputStream());
                      read = new InputStreamReader(it);
                      buff = new BufferedReader(read);
-
                     String result = "";
                     String chenks;
-
-
                     while ((chenks = buff.readLine()) != null){
                         result += chenks;
                     }

@@ -3,6 +3,7 @@ package vn.edu.greenacademy.Adapter;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -12,7 +13,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 
 import vn.edu.greenacademy.Model.KhuVuc;
@@ -27,6 +31,7 @@ public class KhuVuc_Adapter extends ArrayAdapter {
     Activity con;
     int layout;
     ArrayList<KhuVuc> arrKhuVuc;
+
 
     public KhuVuc_Adapter(Activity context, int resource, ArrayList<KhuVuc> objects) {
 
@@ -62,11 +67,15 @@ public class KhuVuc_Adapter extends ArrayAdapter {
             holder = (ViewHolderKhuVuc) convertView.getTag();
         }
         holder.tvTen_KhuVuc.setText(khuvuc.TenKhuVuc);
-        holder.tvMota_KhuVuc.setText(khuvuc.MoTa + ".....");
+        holder.tvMota_KhuVuc.setText(khuvuc.MoTa);
         holder.tvDanhgia_KhuVuc.setText(String.valueOf(khuvuc.DanhGia));
         holder.tvSoLuotXem_KhuVuc.setText(String.valueOf(khuvuc.SoLuotXem));
         holder.tvYeuThich_KhuVuc.setText(String.valueOf(khuvuc.YeuThich));
-        new DownloadImageTask(position,holder).execute(khuvuc.LinkAnh);
+
+
+        Picasso.with(getContext()).load(khuvuc.LinkAnh).resize(360,300).into(holder.ivLinkAnh_KhuVuc);
+
+//        new DownloadImageTask(position,holder).execute(khuvuc.LinkAnh);
 
         return convertView;
     }
@@ -81,6 +90,8 @@ public class KhuVuc_Adapter extends ArrayAdapter {
         public ImageView ivLinkAnh_KhuVuc;
     }
 
+
+
     public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 
         public int mPosition;
@@ -89,6 +100,7 @@ public class KhuVuc_Adapter extends ArrayAdapter {
         public DownloadImageTask(int mPosition, ViewHolderKhuVuc holder) {
             this.mPosition = mPosition;
             this.mHolder = holder;
+
         }
 
         protected Bitmap doInBackground(String... urls) {

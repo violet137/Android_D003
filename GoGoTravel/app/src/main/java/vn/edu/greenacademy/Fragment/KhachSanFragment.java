@@ -17,6 +17,7 @@ import vn.edu.greenacademy.gogotravel.R;
 public class KhachSanFragment extends Fragment {
 
     TextView tvDemoKhachSan;
+    static int id = 1;
 
     public static KhachSanFragment instance;
 
@@ -25,6 +26,10 @@ public class KhachSanFragment extends Fragment {
             instance = new KhachSanFragment();
         }
         return instance;
+    }
+
+    public static void setId(int id) {
+        KhachSanFragment.id = id;
     }
 
     public KhachSanFragment() {
@@ -38,7 +43,7 @@ public class KhachSanFragment extends Fragment {
 
         tvDemoKhachSan = (TextView) v.findViewById(R.id.tvDemoKhachSan);
 
-        tvDemoKhachSan.setText(Constant.TEN_DIADIEM);
+        tvDemoKhachSan.setText(id+"");
 
         return v;
     }

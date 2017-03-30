@@ -17,6 +17,7 @@ import vn.edu.greenacademy.gogotravel.R;
 public class QuanAnFragment extends Fragment {
 
     TextView tvDemoQuanAn;
+    static int id = 1;
 
     public static QuanAnFragment instance;
 
@@ -31,6 +32,10 @@ public class QuanAnFragment extends Fragment {
     public QuanAnFragment() {
     }
 
+    public static void setId(int id) {
+        QuanAnFragment.id = id;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -39,7 +44,7 @@ public class QuanAnFragment extends Fragment {
 
         tvDemoQuanAn = (TextView) v.findViewById(R.id.tvDemoQuanAn);
 
-        tvDemoQuanAn.setText(Constant.TEN_DIADIEM);
+        tvDemoQuanAn.setText(id+"");
 
         return v;
     }

@@ -54,10 +54,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    public void callFragment(Fragment fragment){
+    public void callFragment(Fragment fragment2){
         manager = getSupportFragmentManager();
         transaction = manager.beginTransaction();
-        transaction.replace(R.id.flKhuVuc, fragment).commit();
+        transaction.replace(R.id.flKhuVuc, fragment2).commit();
     }
 
     @Override
