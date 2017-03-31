@@ -1,7 +1,6 @@
 package vn.edu.greenacademy.Adapter;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -23,6 +22,9 @@ public class SwipeDetailKhuVuc extends FragmentStatePagerAdapter {
     String[] arrTitle = {"Địa Điểm", "Khách Sạn", "Quán Ăn"};
     private Context context;
     private List<Fragment> listSwipe = new LinkedList<Fragment>();
+    DiaDiemFragment diaDiemFragment = DiaDiemFragment.getInstance();
+    QuanAnFragment quanAnFragment = QuanAnFragment.getInstance();
+    KhachSanFragment khachSanFragment = KhachSanFragment.getInstance();
 
     @Override
     public CharSequence getPageTitle(int position) {
@@ -36,14 +38,25 @@ public class SwipeDetailKhuVuc extends FragmentStatePagerAdapter {
         DiaDiemFragment.setId(id);
         KhachSanFragment.setId(id);
         QuanAnFragment.setId(id);
-        listSwipe.add(DiaDiemFragment.getInstance());
-        listSwipe.add(KhachSanFragment.getInstance());
-        listSwipe.add(QuanAnFragment.getInstance());
+        listSwipe.add(diaDiemFragment);
+        listSwipe.add(khachSanFragment);
+        listSwipe.add(quanAnFragment);
     }
 
     @Override
     public Fragment getItem(int position) {
 
+        switch (position){
+            case 0:
+                diaDiemFragment.refreshView();
+                break;
+            case 1:
+                khachSanFragment.refreshView();
+                break;
+            case 2:
+                quanAnFragment.refreshView();
+                break;
+        }
         return listSwipe.get(position);
     }
 

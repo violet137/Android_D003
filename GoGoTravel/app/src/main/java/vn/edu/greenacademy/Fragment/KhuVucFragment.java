@@ -1,15 +1,17 @@
 package vn.edu.greenacademy.Fragment;
 
 
-import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -28,20 +30,28 @@ import java.util.ArrayList;
 
 import vn.edu.greenacademy.Adapter.KhuVuc_Adapter;
 import vn.edu.greenacademy.Model.KhuVuc;
-import vn.edu.greenacademy.Until.Constant;
 import vn.edu.greenacademy.gogotravel.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class KhuVucFragment extends Fragment {
+public class KhuVucFragment extends Fragment implements View.OnClickListener {
 
-    Activity activity;
+
     KhuVuc khuVuc;
     ArrayList<KhuVuc> arrKhuVuc;
     KhuVuc_Adapter khuVuc_adapter;
     ListView lvKhuVuc;
     View v;
+
+    KhuVucFragment khuVucFragment;
+    BanDoFragment banDoFragment;
+    TaiKhoanFragment taiKhoanFragment;
+    HanhTrinhFragment hanhTrinhFragment;
+    DetailFragment detailFragment;
+
+    ImageButton ibHome, ibBanDo, ibhanhTrinh, ibTaiKhoan;
+    FrameLayout flKhuVuc;
 
     HttpURLConnection con;
     InputStream it;
@@ -69,18 +79,25 @@ public class KhuVucFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_khu_vuc, container, false);
+
         lvKhuVuc = (ListView) v.findViewById(R.id.lvkhuVuc);
+        ibHome = (ImageButton) v.findViewById(R.id.ibHome);
+        ibBanDo = (ImageButton) v.findViewById(R.id.ibBanDo);
+        ibhanhTrinh = (ImageButton) v.findViewById(R.id.ibhanhTrinh);
+        ibTaiKhoan = (ImageButton) v.findViewById(R.id.ibTaiKhoan);
+        flKhuVuc = (FrameLayout) v.findViewById(R.id.flKhuVuc);
+
+        khuVucFragment = KhuVucFragment.getInstance();
+        banDoFragment = BanDoFragment.getInstance();
+        taiKhoanFragment = TaiKhoanFragment.getInstance();
+        hanhTrinhFragment = HanhTrinhFragment.getInstance();
+        detailFragment = DetailFragment.getInstance();
+
+        ibHome.setOnClickListener(this);
+        ibBanDo.setOnClickListener(this);
+        ibhanhTrinh.setOnClickListener(this);
+        ibTaiKhoan.setOnClickListener(this);
         arrKhuVuc = new ArrayList<>();
-
-
-        return v;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        dataKhuVuc = new getKhuVuc(v);
-        dataKhuVuc.execute();
 
         lvKhuVuc.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -89,17 +106,42 @@ public class KhuVucFragment extends Fragment {
                 Fragment detail = DetailFragment.getInstance();
                 Bundle bundle = new Bundle();
                 bundle.putInt("khuvuc",khuVuc.Id);
-
                 detail.setArguments(bundle);
-
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.flKhuVuc,detail);
-                transaction.addToBackStack(null);
+                dataKhuVuc = new getKhuVuc(v);
+                dataKhuVuc.execute();
                 dataKhuVuc.cancel(true);
-                transaction.commit();
-                detail.isRemoving();
+                callFragment(KhuVucFragment.getInstance(), detail);
             }
         });
+
+        return v;
+    }
+
+    public void callFragment(Fragment fragment, Fragment fragment2){
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.flKhuVuc, fragment2);
+        transaction.addToBackStack(null);
+        transaction.remove(fragment);
+        transaction.commit();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.ibHome:
+                callFragment(this,khuVucFragment);
+                break;
+            case R.id.ibBanDo:
+                callFragment(this,banDoFragment);
+                break;
+            case R.id.ibhanhTrinh:
+                callFragment(this,hanhTrinhFragment);
+                break;
+            case R.id.ibTaiKhoan:
+                callFragment(this,taiKhoanFragment);
+                break;
+        }
     }
 
     public class getKhuVuc extends AsyncTask<Void, String, String> {
@@ -131,6 +173,7 @@ public class KhuVucFragment extends Fragment {
                         result += chenks;
                     }
                     return result;
+
                 }
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -161,11 +204,13 @@ public class KhuVucFragment extends Fragment {
                     khuVuc.YeuThich = obj.getInt("YeuThich");
                     khuVuc.LinkAnh = obj.getString("LinkAnh");
                     arrKhuVuc.add(khuVuc);
+                    if (isCancelled())break;
                 }
 //                int status = jsonObject.getInt("Status");
 //                String description = jsonObject.getString("Description");
                 khuVuc_adapter = new KhuVuc_Adapter(getActivity(), R.layout.item_khu_vuc, arrKhuVuc);
                 lvKhuVuc.setAdapter(khuVuc_adapter);
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }

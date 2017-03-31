@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import vn.edu.greenacademy.Until.Constant;
 import vn.edu.greenacademy.gogotravel.R;
 
 /**
@@ -33,6 +32,16 @@ public class KhachSanFragment extends Fragment {
     }
 
     public KhachSanFragment() {
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        refreshView();
+    }
+
+    public void refreshView(){
+
     }
 
     @Override

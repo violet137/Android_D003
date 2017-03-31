@@ -8,7 +8,6 @@ public class Constant {
 
     public static final int DETAIL_KHU_VUC = 3;
 
-    public static int ID_DIADIEM = 1;
-    public static String TEN_DIADIEM = "";
+    public static int STATUS_LLHOME = 1;
 
 }

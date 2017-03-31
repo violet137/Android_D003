@@ -9,57 +9,18 @@
     tools:context="vn.edu.greenacademy.gogotravel.MainActivity"
     android:weightSum="1">
 
+
     <FrameLayout
-        android:id="@+id/flKhuVuc"
+        android:id="@+id/flMain"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="460dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_weight="0.91">
 
     </FrameLayout>
 
-    <LinearLayout
-        android:id="@+id/llHome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/flKhuVuc"
-        android:layout_gravity="bottom"
-        android:background="@android:color/background_light"
-        android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/ibHome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            app:srcCompat="@drawable/home_main" />
 
-        <ImageButton
-            android:id="@+id/ibBanDo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            app:srcCompat="@drawable/ban_do" />
-
-        <ImageButton
-            android:id="@+id/ibhanhTrinh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            app:srcCompat="@drawable/hanh_trinh" />
-
-        <ImageButton
-            android:id="@+id/ibTaiKhoan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            app:srcCompat="@drawable/tai_khoan" />
-
-    </LinearLayout>
 
 </LinearLayout>

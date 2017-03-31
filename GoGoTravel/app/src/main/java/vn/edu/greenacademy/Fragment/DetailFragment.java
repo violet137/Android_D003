@@ -2,13 +2,16 @@ package vn.edu.greenacademy.Fragment;
 
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.FrameLayout;
 
 import vn.edu.greenacademy.Adapter.SwipeDetailKhuVuc;
 import vn.edu.greenacademy.gogotravel.R;
@@ -23,6 +26,10 @@ public class DetailFragment extends Fragment {
     View v;
     int id = 1;
     private TabLayout tabLayout;
+    Button btnBack;
+    FrameLayout flDetail;
+
+    KhuVucFragment khuVucFragment;
 
 
     public static DetailFragment instance;
@@ -46,8 +53,16 @@ public class DetailFragment extends Fragment {
         v = inflater.inflate(R.layout.fragment_detail, container, false);
         mViewPager = (ViewPager) v.findViewById(R.id.view_pager);
         tabLayout = (TabLayout) v.findViewById(R.id.tabLayout);
+        btnBack = (Button) v.findViewById(R.id.btnBack);
+        flDetail = (FrameLayout) v.findViewById(R.id.flDetail);
 
-
+        khuVucFragment = KhuVucFragment.getInstance();
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callFragment(DetailFragment.getInstance(),khuVucFragment);
+            }
+        });
         return v;
     }
 
@@ -60,11 +75,34 @@ public class DetailFragment extends Fragment {
 
         swipeDetailKhuVuc = new SwipeDetailKhuVuc(getFragmentManager(),getContext(),id);
         mViewPager.setAdapter(swipeDetailKhuVuc);
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         tabLayout.setupWithViewPager(mViewPager);
         tabLayout.getTabAt(0).setIcon(R.drawable.ban_do);
         tabLayout.getTabAt(1).setIcon(R.drawable.hotel);
         tabLayout.getTabAt(2).setIcon(R.drawable.quan_an);
+    }
 
-
+    public void callFragment(Fragment fragment, Fragment fragment2){
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.flKhuVuc, fragment2);
+        transaction.addToBackStack(null);
+        transaction.remove(fragment);
+        transaction.commit();
     }
 }

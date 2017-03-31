@@ -3,8 +3,9 @@ package vn.edu.greenacademy.Fragment;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,6 @@ import java.util.ArrayList;
 
 import vn.edu.greenacademy.Adapter.DiaDiemAdapter;
 import vn.edu.greenacademy.Model.DiaDiem;
-import vn.edu.greenacademy.Until.Constant;
 import vn.edu.greenacademy.gogotravel.R;
 
 /**
@@ -39,6 +39,7 @@ public class DiaDiemFragment extends Fragment {
     DiaDiemAdapter diaDiemAdapter;
     ListView lvDiaDiem;
     static int id = 1;
+    View v;
 
     getDiaDiem dataDiaDiem;
 
@@ -73,15 +74,29 @@ public class DiaDiemFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View v = inflater.inflate(R.layout.fragment_dia_diem, container, false);
+        v = inflater.inflate(R.layout.fragment_dia_diem, container, false);
 
         arrDiaDiem = new ArrayList<>();
         lvDiaDiem = (ListView) v.findViewById(R.id.lvDiaDiem);
 
-        dataDiaDiem = new getDiaDiem(v);
-        dataDiaDiem.execute(id);
+        refreshView();
 
         return v;
+    }
+
+    public void refreshView(){
+        dataDiaDiem = new getDiaDiem(v);
+        dataDiaDiem.execute(id);
+    }
+
+
+    public void callFragment(Fragment fragment, Fragment fragment2){
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.flKhuVuc, fragment2);
+        transaction.addToBackStack(null);
+        transaction.remove(fragment);
+        transaction.commit();
     }
 
 

@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import vn.edu.greenacademy.Until.Constant;
 import vn.edu.greenacademy.gogotravel.R;
 
 /**
@@ -30,6 +29,16 @@ public class QuanAnFragment extends Fragment {
     }
 
     public QuanAnFragment() {
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        refreshView();
+    }
+
+    public void refreshView(){
+
     }
 
     public static void setId(int id) {
