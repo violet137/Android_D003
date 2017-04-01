@@ -37,7 +37,7 @@ public class KhachSanFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        refreshView();
+//        refreshView();
     }
 
     public void refreshView(){

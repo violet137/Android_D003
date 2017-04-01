@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.widget.FrameLayout;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -22,42 +23,36 @@ public class SwipeDetailKhuVuc extends FragmentStatePagerAdapter {
     String[] arrTitle = {"Địa Điểm", "Khách Sạn", "Quán Ăn"};
     private Context context;
     private List<Fragment> listSwipe = new LinkedList<Fragment>();
-    DiaDiemFragment diaDiemFragment = DiaDiemFragment.getInstance();
-    QuanAnFragment quanAnFragment = QuanAnFragment.getInstance();
-    KhachSanFragment khachSanFragment = KhachSanFragment.getInstance();
 
     @Override
     public CharSequence getPageTitle(int position) {
         return arrTitle[position];
     }
 
-    public SwipeDetailKhuVuc(FragmentManager fm, Context context, int id) {
+    public SwipeDetailKhuVuc(FragmentManager fm,  int id) {
         super(fm);
-        this.context = context;
+//        this.context = context;
 
         DiaDiemFragment.setId(id);
         KhachSanFragment.setId(id);
         QuanAnFragment.setId(id);
-        listSwipe.add(diaDiemFragment);
-        listSwipe.add(khachSanFragment);
-        listSwipe.add(quanAnFragment);
     }
 
     @Override
     public Fragment getItem(int position) {
-
+        Fragment fragment = new Fragment();
         switch (position){
             case 0:
-                diaDiemFragment.refreshView();
+                fragment = DiaDiemFragment.getInstance();
                 break;
             case 1:
-                khachSanFragment.refreshView();
+                fragment = KhachSanFragment.getInstance();
                 break;
             case 2:
-                quanAnFragment.refreshView();
+                fragment = QuanAnFragment.getInstance();
                 break;
         }
-        return listSwipe.get(position);
+        return fragment;
     }
 
     @Override

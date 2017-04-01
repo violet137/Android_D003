@@ -107,22 +107,26 @@ public class KhuVucFragment extends Fragment implements View.OnClickListener {
                 Bundle bundle = new Bundle();
                 bundle.putInt("khuvuc",khuVuc.Id);
                 detail.setArguments(bundle);
-                dataKhuVuc = new getKhuVuc(v);
-                dataKhuVuc.execute();
+                callFragment(detail);
                 dataKhuVuc.cancel(true);
-                callFragment(KhuVucFragment.getInstance(), detail);
             }
         });
 
         return v;
     }
 
-    public void callFragment(Fragment fragment, Fragment fragment2){
+    @Override
+    public void onResume() {
+        super.onResume();
+        dataKhuVuc = new getKhuVuc(v);
+        dataKhuVuc.execute();
+    }
+
+    public void callFragment(Fragment fragment){
         FragmentManager manager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.flKhuVuc, fragment2);
+        transaction.replace(R.id.flKhuVuc, fragment);
         transaction.addToBackStack(null);
-        transaction.remove(fragment);
         transaction.commit();
     }
 
@@ -130,16 +134,16 @@ public class KhuVucFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.ibHome:
-                callFragment(this,khuVucFragment);
+                callFragment(khuVucFragment);
                 break;
             case R.id.ibBanDo:
-                callFragment(this,banDoFragment);
+                callFragment(banDoFragment);
                 break;
             case R.id.ibhanhTrinh:
-                callFragment(this,hanhTrinhFragment);
+                callFragment(hanhTrinhFragment);
                 break;
             case R.id.ibTaiKhoan:
-                callFragment(this,taiKhoanFragment);
+                callFragment(taiKhoanFragment);
                 break;
         }
     }
@@ -159,11 +163,9 @@ public class KhuVucFragment extends Fragment implements View.OnClickListener {
                 con.addRequestProperty("Accept", "text/json");
                 con.addRequestProperty("Content-Type", "application/json");
                 con.setRequestMethod("GET");
-
                 con.connect();
 
                 if (con.getResponseCode() == HttpURLConnection.HTTP_OK){
-
                      it = new BufferedInputStream(con.getInputStream());
                      read = new InputStreamReader(it);
                      buff = new BufferedReader(read);
@@ -173,7 +175,6 @@ public class KhuVucFragment extends Fragment implements View.OnClickListener {
                         result += chenks;
                     }
                     return result;
-
                 }
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -210,7 +211,6 @@ public class KhuVucFragment extends Fragment implements View.OnClickListener {
 //                String description = jsonObject.getString("Description");
                 khuVuc_adapter = new KhuVuc_Adapter(getActivity(), R.layout.item_khu_vuc, arrKhuVuc);
                 lvKhuVuc.setAdapter(khuVuc_adapter);
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }

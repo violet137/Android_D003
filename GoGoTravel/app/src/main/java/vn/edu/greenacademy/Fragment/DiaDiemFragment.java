@@ -38,7 +38,7 @@ public class DiaDiemFragment extends Fragment {
     ArrayList<DiaDiem> arrDiaDiem;
     DiaDiemAdapter diaDiemAdapter;
     ListView lvDiaDiem;
-    static int id = 1;
+    static int id, index;
     View v;
 
     getDiaDiem dataDiaDiem;
@@ -79,14 +79,19 @@ public class DiaDiemFragment extends Fragment {
         arrDiaDiem = new ArrayList<>();
         lvDiaDiem = (ListView) v.findViewById(R.id.lvDiaDiem);
 
-        refreshView();
-
         return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        index = id;
+        refreshView();
     }
 
     public void refreshView(){
         dataDiaDiem = new getDiaDiem(v);
-        dataDiaDiem.execute(id);
+        dataDiaDiem.execute(index);
     }
 
 
@@ -116,18 +121,14 @@ public class DiaDiemFragment extends Fragment {
                 con.addRequestProperty("Accept", "text/json");
                 con.addRequestProperty("Content-Type", "application/json");
                 con.setRequestMethod("GET");
-
                 con.connect();
 
                 if (con.getResponseCode() == HttpURLConnection.HTTP_OK){
-
                     it = new BufferedInputStream(con.getInputStream());
                     read = new InputStreamReader(it);
                     buff = new BufferedReader(read);
-
                     String result = "";
                     String chenks;
-
                     while ((chenks = buff.readLine()) != null){
                         result += chenks;
                     }
@@ -163,7 +164,7 @@ public class DiaDiemFragment extends Fragment {
                     diaDiem.LinkAnh = obj.getString("LinkAnh");
                     diaDiem.Diachi = obj.getString("DiaChi");
                     diaDiem.IdKhuVuc = obj.getInt("IdKhuVuc");
-
+                    diaDiem.checkIn = obj.getInt("CheckIn");
                     arrDiaDiem.add(diaDiem);
                 }
                 diaDiemAdapter = new DiaDiemAdapter(getActivity(), R.layout.item_dia_diem, arrDiaDiem);

@@ -57,12 +57,10 @@ public class DetailFragment extends Fragment {
         flDetail = (FrameLayout) v.findViewById(R.id.flDetail);
 
         khuVucFragment = KhuVucFragment.getInstance();
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                callFragment(DetailFragment.getInstance(),khuVucFragment);
-            }
-        });
+
+        Bundle bundle = this.getArguments();
+        id = bundle.getInt("khuvuc");
+
         return v;
     }
 
@@ -70,39 +68,31 @@ public class DetailFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        Bundle bundle = this.getArguments();
-        id = bundle.getInt("khuvuc");
-
-        swipeDetailKhuVuc = new SwipeDetailKhuVuc(getFragmentManager(),getContext(),id);
+        swipeDetailKhuVuc = new SwipeDetailKhuVuc(getFragmentManager(),id);
         mViewPager.setAdapter(swipeDetailKhuVuc);
-        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
         tabLayout.setupWithViewPager(mViewPager);
+
         tabLayout.getTabAt(0).setIcon(R.drawable.ban_do);
         tabLayout.getTabAt(1).setIcon(R.drawable.hotel);
         tabLayout.getTabAt(2).setIcon(R.drawable.quan_an);
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager().popBackStack();
+            }
+        });
+
     }
 
-    public void callFragment(Fragment fragment, Fragment fragment2){
+    public void callFragment(Fragment fragment){
         FragmentManager manager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.flKhuVuc, fragment2);
+        transaction.replace(R.id.flDetail, fragment);
         transaction.addToBackStack(null);
-        transaction.remove(fragment);
         transaction.commit();
     }
+
+
+
 }

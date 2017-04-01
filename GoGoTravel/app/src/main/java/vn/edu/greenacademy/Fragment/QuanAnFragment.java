@@ -34,7 +34,7 @@ public class QuanAnFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        refreshView();
+//        refreshView();
     }
 
     public void refreshView(){
