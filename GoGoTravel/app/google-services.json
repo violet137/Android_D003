@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "39272882474",
+    "project_id": "project-6977293920863227900"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39272882474:android:2e1ff242d7c30d18",
+        "android_client_info": {
+          "package_name": "vn.edu.greenacademy.gogotravel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "39272882474-j8huj94kf2pv04ao8balpuqge7tvt3em.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vn.edu.greenacademy.gogotravel",
+            "certificate_hash": "c93df65f999d53b5ad36e9deb1e623e9110d9c33"
+          }
+        },
+        {
+          "client_id": "39272882474-314bann6ltse24g821fjnhifgg56e4k8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDC38JFc6N9RLYrOJ_xADMbVN6Xz-vDZLg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
