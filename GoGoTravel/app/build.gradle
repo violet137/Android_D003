@@ -1,13 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        config {
-            keyAlias 'facebook.k' +
-                    'eystore'
-            storeFile file('E:/Quang/GoGoTravel/facebook.keystore')
-        }
-    }
+
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
