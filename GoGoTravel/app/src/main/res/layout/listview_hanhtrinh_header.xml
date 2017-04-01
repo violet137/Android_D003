@@ -19,22 +19,22 @@
             android:text="N/a"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvLikeSum"
+            android:id="@+id/tvTongLike"
             android:layout_weight="1"
             android:gravity="right"/>
 
         <ImageView
+            android:id="@+id/imvLikeSum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@mipmap/ic_launcher"
-            android:id="@+id/imvLikeSum"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            app:srcCompat="@drawable/icon_like" />
 
         <TextView
             android:text="N/a"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvPhotoSum"
+            android:id="@+id/tvTongAnh"
             android:layout_weight="1"
             android:gravity="right"
             />
@@ -42,7 +42,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@mipmap/ic_launcher"
+            app:srcCompat="@drawable/icon_image"
             android:id="@+id/imvPhotoSum" />
     </TableRow>
 

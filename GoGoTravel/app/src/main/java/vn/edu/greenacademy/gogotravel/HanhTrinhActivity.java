@@ -18,7 +18,7 @@ public class HanhTrinhActivity extends AppCompatActivity {
 
         Fragment hanhtrinhFragment = new HanhTrinhFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment,hanhtrinhFragment);
+        ft.replace(R.id.fragment_hanhtrinh,hanhtrinhFragment);
         ft.addToBackStack(null);
         ft.commit();
 

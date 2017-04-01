@@ -12,28 +12,49 @@
         android:layout_weight="1" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
-            android:text="TextView"
+            android:id="@+id/tvTenDiaDiem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tvTenDiaDiem" />
+            android:text="TextView" />
 
         <TextView
-            android:text="TextView"
+            android:id="@+id/tvDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tvDescription" />
+            android:text="TextView" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvLikeItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/tvPhotoItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@mipmap/ic_launcher"
-        android:id="@+id/imageView"
+        android:id="@+id/ImageItem"
         android:layout_weight="1"
         />
 </LinearLayout>
