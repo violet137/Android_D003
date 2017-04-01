@@ -9,7 +9,7 @@
         android:id="@+id/ivLoaiquanan" android:focusable="false"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        app:srcCompat="@drawable/common_ic_googleplayservices" />
+        app:srcCompat="@drawable/fb" />
 
     <TextView android:focusable="false"
         android:id="@+id/tvTenloai"

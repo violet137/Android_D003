@@ -12,7 +12,7 @@
         android:id="@+id/ivQuan"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        app:srcCompat="@drawable/common_ic_googleplayservices"
+        app:srcCompat="@drawable/fb"
         android:focusable="false"
         />
 
@@ -33,7 +33,6 @@
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/Base.Widget.AppCompat.RatingBar.Small"
             android:isIndicator="false"
             android:focusable="false"
             android:numStars="5" />
