@@ -139,6 +139,30 @@ public class DanhsachQuan_AllFragment extends Fragment {
                 listall.setAdapter(quanNearAdapter);
                 quanNearAdapter.notifyDataSetChanged();
 
+                quanNearAdapter.onItemClickListener(new QuanNearAdapter.ItemClickListener(){
+                    @Override
+                    public void ItemClick(int position) {
+                        Fragment fragment = new ChitietQuanFragment();
+
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("id",list.get(position).getId());
+                        bundle.putString("ten",list.get(position).getTen());
+                        bundle.putString("diachi",list.get(position).getDiachi());
+                        bundle.putString("mota",list.get(position).getMota());
+                        bundle.putFloat("danhgia",list.get(position).getDanhgia());
+                        bundle.putInt("soluot",list.get(position).getSoluot());
+                        bundle.putInt("like",list.get(position).getYeuthich());
+                        bundle.putInt("checkin",list.get(position).getChenkin());
+                        bundle.putString("link",list.get(position).getLink());
+                        fragment.setArguments(bundle);
+                        android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.layout,fragment);
+                        transaction.addToBackStack(null);
+
+                        transaction.commit();
+                    }
+                });
+
                 listall.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

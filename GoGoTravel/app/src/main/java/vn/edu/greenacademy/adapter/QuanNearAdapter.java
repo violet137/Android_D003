@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.util.LruCache;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +18,14 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FilterOutputStream;
 import java.io.IOException;
+import java.lang.ref.SoftReference;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 
 import vn.edu.greenacademy.gogotravel.R;
@@ -121,6 +127,8 @@ public class QuanNearAdapter extends ArrayAdapter{
         return result;
     }
 
+
+    ImageCache cache = ImageCache.getInstance();
     class DownloadImage extends AsyncTask<String, Void, Bitmap> {
         ImageView imageView;
 
@@ -133,9 +141,16 @@ public class QuanNearAdapter extends ArrayAdapter{
         protected Bitmap doInBackground(String... params) {
             String image_url = params[0];
             Bitmap bitmap = null;
+
+            cache.initializeCache();
+
+//            String name = image_url+".jpg";
+//            File file = new File("/sdcard/"+name);
             try {
                 URL url = new URL(image_url);
                 bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+//                bitmap.compress(Bitmap.CompressFormat.JPEG,100,new FileOutputStream(file));
+                cache.addImagetoStore(image_url,bitmap);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -143,6 +158,7 @@ public class QuanNearAdapter extends ArrayAdapter{
             }
 
             return bitmap;
+
         }
 
         @Override
@@ -158,6 +174,55 @@ public class QuanNearAdapter extends ArrayAdapter{
         RatingBar ratingBar;
     }
 
+    public static class ImageCache{
+        private LruCache<String,Bitmap> imageStore;
+        private static ImageCache cache;
+
+        public static ImageCache getInstance(){
+            if(cache == null){
+                cache = new ImageCache();
+            }
+            return cache;
+        }
+
+        public void initializeCache(){
+            final int maxMemory = (int) (Runtime.getRuntime().maxMemory()/1024);
+            final int cacheSize = maxMemory/8;
+
+            imageStore = new LruCache<String, Bitmap>(cacheSize){
+                protected int sizeOf(String key,Bitmap value){
+                    int bitmapByteCount = value.getRowBytes()*value.getHeight();
+
+                    return bitmapByteCount/1024;
+                }
+            };
+        }
+
+        public void addImagetoStore(String key,Bitmap value){
+            if(imageStore != null && imageStore.get(key) == null){
+                imageStore.put(key,value);
+            }
+        }
+
+        public Bitmap getImagefromStore(String key){
+            if(key !=null){
+                return imageStore.get(key);
+            }else{
+                return null;
+            }
+        }
+
+        public void removeImagefromStore(String key){
+            imageStore.remove(key);
+        }
+
+        public void clearCache(){
+            if(imageStore != null){
+                imageStore.evictAll();
+            }
+        }
+
+    }
 
 
 }

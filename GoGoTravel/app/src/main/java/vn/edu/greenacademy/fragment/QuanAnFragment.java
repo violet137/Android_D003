@@ -79,7 +79,7 @@ public class QuanAnFragment extends Fragment {
         btnAll = (Button) view.findViewById(R.id.btnAll);
         scrollView = (ScrollView) view.findViewById(R.id.sv);
 
-        
+
         LinearLayoutManager layoutManager1 = new LinearLayoutManager(getContext());
         layoutManager1.setOrientation(LinearLayoutManager.HORIZONTAL);
         list1.setLayoutManager(layoutManager1);
@@ -437,14 +437,14 @@ public class QuanAnFragment extends Fragment {
                     }
                 });
 
-//                list3.setItemsCanFocus(false);
-//
-//                list3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//
-//                    }
-//                });
+                list3.setItemsCanFocus(false);
+
+                list3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+
+                    }
+                });
 
 
 

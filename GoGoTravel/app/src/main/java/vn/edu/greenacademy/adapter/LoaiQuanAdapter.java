@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -103,6 +105,7 @@ public class LoaiQuanAdapter extends RecyclerView.Adapter<LoaiQuanAdapter.ViewHo
 
         public void setData(String link,String ten,String sl){
             new DownloadImage(ivHinh).execute(link);
+
             tvTen.setText(ten);
             tvSoluong.setText(sl);
         }
