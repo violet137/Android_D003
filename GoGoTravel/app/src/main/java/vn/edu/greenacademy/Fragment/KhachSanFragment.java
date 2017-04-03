@@ -36,6 +36,7 @@ import vn.edu.greenacademy.adapter.KhachSanAdapter;
 import vn.edu.greenacademy.gogotravel.R;
 import vn.edu.greenacademy.model.KhachSans;
 
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -117,7 +118,7 @@ public class KhachSanFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 KhachSans tempKhachSan = listHotel.get(position);
-                Fragment fragment = new DetailKhachSanFragment();
+                Fragment fragment = new vn.edu.greenacademy.fragment.DetailKhachSanFragment();
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("KhachSan",tempKhachSan);
                 fragment.setArguments(bundle);

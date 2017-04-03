@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -34,8 +35,20 @@ public class ChiTietAnhFragment extends Fragment {
 
         tvTitle = (TextView) v.findViewById(R.id.tvTitle);
         gridChiTietAnh = (GridView) v.findViewById(R.id.gridChiTietAnh);
+        imageId = new int[]{R.drawable.ks1,R.drawable.ks2,R.drawable.ks3,R.drawable.ks4,R.drawable.ks5,R.drawable.ks6};
         LoadImageAdapter adapter = new LoadImageAdapter(getContext(),R.layout.fragment_chi_tiet_anh,imageId);
         gridChiTietAnh.setAdapter(adapter);
+        final Bundle bundle = this.getArguments();
+        if(bundle != null){
+            String strTen = bundle.getString("title");
+            tvTitle.setText(strTen);
+        }
+        gridChiTietAnh.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                
+            }
+        });
         return v;
     }
 

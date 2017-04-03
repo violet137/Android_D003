@@ -4,6 +4,7 @@ package vn.edu.greenacademy.fragment;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import vn.edu.greenacademy.adapter.KhachSanAdapter;
 import vn.edu.greenacademy.adapter.LoadImageAdapter;
 import vn.edu.greenacademy.asynctask.Image;
 import vn.edu.greenacademy.gogotravel.R;
@@ -61,7 +61,7 @@ public class DetailKhachSanFragment extends Fragment {
         gridImage = (GridView) view.findViewById(R.id.gridImage);
         imageId = new int[]{R.drawable.ks1,R.drawable.ks2,R.drawable.ks3,R.drawable.ks4,R.drawable.ks5,R.drawable.ks6};
 
-        Bundle bundle = this.getArguments();
+        final Bundle bundle = this.getArguments();
         if(bundle != null){
             KhachSans ks = (KhachSans) bundle.getSerializable("KhachSan");
             new Image(ks.getLinkAnh(),imageKhachSan).execute();
@@ -82,7 +82,15 @@ public class DetailKhachSanFragment extends Fragment {
         gridImage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                Fragment fragment = new ChiTietAnhFragment();
+                Bundle bund = new Bundle();
+                KhachSans ksan = (KhachSans) bundle.getSerializable("KhachSan");
+                bund.putString("title",ksan.getTen());
+                fragment.setArguments(bund);
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(android.R.id.content, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
         return view;

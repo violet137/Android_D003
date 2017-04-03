@@ -35,8 +35,10 @@
                 android:text="TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12dp"
+                android:textSize="13dp"
                 android:id="@+id/tvDiaChi"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:layout_weight="1" />
 
             <TextView
@@ -59,7 +61,7 @@
             <ImageView
                 android:layout_height="@dimen/height_image_icon"
                 android:layout_width="@dimen/width_image_icon"
-                app:srcCompat="@drawable/like"
+                app:srcCompat="@drawable/ic_favorite_black_24dp"
                 android:id="@+id/imageView2"
                 android:layout_weight="1" />
 
@@ -73,7 +75,7 @@
             <ImageView
                 android:layout_height="@dimen/height_image_icon"
                 android:layout_width="@dimen/width_image_icon"
-                app:srcCompat="@drawable/comment"
+                app:srcCompat="@drawable/ic_chat_bubble_black_24dp"
                 android:id="@+id/imageView4"
                 android:layout_weight="1" />
 
@@ -87,7 +89,7 @@
             <ImageView
                 android:layout_height="@dimen/height_image_icon"
                 android:layout_width="@dimen/width_image_icon"
-                app:srcCompat="@drawable/xem"
+                app:srcCompat="@drawable/ic_visibility_black_24dp"
                 android:id="@+id/imageView5"
                 android:layout_weight="1" />
 

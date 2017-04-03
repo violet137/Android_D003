@@ -9,13 +9,15 @@
 
     <TextView
         android:text="TextView"
+        android:gravity="center"
+        android:textColor="#ffcc0000"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvTitle" />
 
     <GridView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/gridChiTietAnh"
         android:numColumns="3" />
 </LinearLayout>

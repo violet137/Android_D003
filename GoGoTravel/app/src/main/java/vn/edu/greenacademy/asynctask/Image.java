@@ -42,4 +42,4 @@ public class Image extends AsyncTask<String, Void, Bitmap> {
         super.onPostExecute(bitmap);
         ivImage.setImageBitmap(bitmap);
     }
-}
+    }
