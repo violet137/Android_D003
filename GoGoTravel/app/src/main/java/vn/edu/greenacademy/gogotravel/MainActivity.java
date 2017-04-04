@@ -23,7 +23,6 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,7 +39,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
-import vn.edu.greenacademy.Unitl.Constrant;
+import vn.edu.greenacademy.Unitl.Constant;
 
 
 public class MainActivity extends AppCompatActivity implements
@@ -89,20 +88,20 @@ public class MainActivity extends AppCompatActivity implements
 
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent, Constrant.SIGN_IN_GG);
+        startActivityForResult(signInIntent, Constant.SIGN_IN_GG);
     }
 
 
-    private void signOut() {
-        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-                new ResultCallback<Status>() {
-                    @Override
-                    public void onResult(Status status) {
-                        Toast.makeText(MainActivity.this,"Log Out", Toast.LENGTH_LONG).show();
-                        updateUI(false);
-                    }
-                });
-    }
+//    private void signOut() {
+//        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+//                new ResultCallback<Status>() {
+//                    @Override
+//                    public void onResult(Status status) {
+//                        Toast.makeText(MainActivity.this,"Log Out", Toast.LENGTH_LONG).show();
+////                        updateUI(false);
+//                    }
+//                });
+//    }
     private void loginGoogle(GoogleSignInResult result) {
         if (result.isSuccess()) {
 
@@ -125,45 +124,10 @@ public class MainActivity extends AppCompatActivity implements
                 txtName.setText(id);
                 txtEmail.setText("");
             }
-
-//            if (arrID.size() == 0){
-//                checkID = true;
-//            }else {
-//
-//                for (int i = 0; i < arrID.size(); i++) {
-//                    if (id.equals(arrID.get(i))){
-//                        checkID = false;
-//                        break;
-//                    }else {
-//                        checkID = true;
-//                    }
-//                }
-//            }
-
-            //------
-//            if (checkID == false){
-//                txtName.setText("Đã đăng nhập rồi");
-//                txtEmail.setText("");
-//                imgProfilePic.setImageResource(R.drawable.common_full_open_on_phone);
-//            }else {
-//                arrID.add(id);
-//                txtName.setText(personName);
-//                txtEmail.setText(email);
-//                //Nếu link hình ảnh Null thì lấy hình mặc định
-//                if (personPhotoUrl == null){
-//                    imgProfilePic.setImageResource(R.drawable.common_google_signin_btn_icon_dark);
-//                }else {
-//                    Glide.with(getApplicationContext()).load(personPhotoUrl.toString())
-//                            .thumbnail(0.5f)
-//                            .crossFade()
-//                            .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                            .into(imgProfilePic);
-//                }
-//            }
-            updateUI(true);
+//            updateUI(true);
         } else {
             // Signed out
-            updateUI(false);
+//            updateUI(false);
         }
     }
 
@@ -177,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements
                 break;
 
             case R.id.btn_sign_out:
-                signOut();
+                //signOut();
                 break;
 
         }
@@ -188,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements
         super.onActivityResult(requestCode, resultCode, data);
 
         // Gọi intenr login google
-        if (requestCode == Constrant.SIGN_IN_GG) {
+        if (requestCode == Constant.SIGN_IN_GG) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             loginGoogle(result);
         }
@@ -388,15 +352,15 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    private void updateUI(boolean isSignedIn) {
-        if (isSignedIn) {
-            btnSignIn.setVisibility(View.GONE);
-            btnSignOut.setVisibility(View.VISIBLE);
-            llProfileLayout.setVisibility(View.VISIBLE);
-        } else {
-            btnSignIn.setVisibility(View.VISIBLE);
-            btnSignOut.setVisibility(View.GONE);
-            llProfileLayout.setVisibility(View.GONE);
-        }
-    }
+//    private void updateUI(boolean isSignedIn) {
+//        if (isSignedIn) {
+//            btnSignIn.setVisibility(View.GONE);
+//            btnSignOut.setVisibility(View.VISIBLE);
+//            llProfileLayout.setVisibility(View.VISIBLE);
+//        } else {
+//            btnSignIn.setVisibility(View.VISIBLE);
+//            btnSignOut.setVisibility(View.GONE);
+//            llProfileLayout.setVisibility(View.GONE);
+//        }
+//    }
 }

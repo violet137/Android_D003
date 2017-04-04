@@ -1,4 +1,4 @@
-package vn.edu.greenacademy.Model;
+package vn.edu.greenacademy.model;
 
 
 public class userLogin {

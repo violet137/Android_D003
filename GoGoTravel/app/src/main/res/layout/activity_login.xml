@@ -87,6 +87,15 @@
 "
             android:backgroundTint="@android:color/transparent"
             app:srcCompat="@drawable/fb" />
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/btnLogInFacebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:visibility="gone"
+            />
 
 
         <ImageButton
@@ -97,7 +106,13 @@
             android:layout_weight="1"
             android:backgroundTint="@android:color/transparent"
             app:srcCompat="@drawable/gg" />
-
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/btnLogInGoogle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:visibility="gone"
+            />
 
 
     </LinearLayout>
