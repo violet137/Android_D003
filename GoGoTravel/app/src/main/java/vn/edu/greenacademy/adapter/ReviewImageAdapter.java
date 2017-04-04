@@ -58,7 +58,7 @@ public class ReviewImageAdapter extends BaseAdapter {
             holder = new CatalogHolder();
             assert view != null;
             holder.imageView = (ImageView) view.findViewById(R.id.imageView);
-            holder.cbCheck = (CheckBox) view.findViewById(R.id.cbCheck);
+
             view.setTag(holder);
         }else{
             holder = (CatalogHolder) view.getTag();
@@ -70,6 +70,6 @@ public class ReviewImageAdapter extends BaseAdapter {
 
     class CatalogHolder {
         ImageView imageView;
-        CheckBox cbCheck;
+
     }
 }

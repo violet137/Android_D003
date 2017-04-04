@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -18,12 +19,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import vn.edu.greenacademy.adapter.ReviewImageAdapter;
 
 public class CameraActivity extends AppCompatActivity {
-    private ImageButton ibCapture;
+    private ImageButton ibCapture, ibSDCard;
     private ImageView ivImage;
     private Uri uri;
     private List<String> list;
@@ -37,13 +39,23 @@ public class CameraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_camera);
 
         grid = (GridView) findViewById(R.id.grid);
-        ivImage = (ImageView) findViewById(R.id.ivImage);
+        ibSDCard = (ImageButton) findViewById(R.id.ibSDCard);
         ibCapture = (ImageButton) findViewById(R.id.ibCapture);
         ibCapture.setImageResource(R.drawable.camera);
+
+        ibSDCard.setImageResource(R.drawable.gallery1);
 
         reviewImageAdapter = new ReviewImageAdapter(this);
         list = null;
         grid.setAdapter(reviewImageAdapter);
+
+        ibSDCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CameraActivity.this, SDCardActivity.class);
+                startActivityForResult(intent,50);
+            }
+        });
 
 
         ibCapture.setOnClickListener(new View.OnClickListener() {
@@ -69,12 +81,20 @@ public class CameraActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (data!= null){
-            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-            ivImage.setImageBitmap(bitmap);
-            reviewImageAdapter.AddBitmap(bitmap);
+        if (requestCode == 100){
+            if (data!= null){
+                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                reviewImageAdapter.AddBitmap(bitmap);
+            }
+        }else if (requestCode == 50){
+            //từ màn hình SDCard
+            ArrayList<String> list = data.getStringArrayListExtra("Image");
+            for (int i=0;i<list.size();i++){
+                Bitmap bit = BitmapFactory.decodeFile(list.get(i));
+                reviewImageAdapter.AddBitmap(bit);
+            }
         }
+
 
 
     }
