@@ -66,6 +66,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.btnLogin:
                 new Dangnhap().execute(etUser.getText().toString(),etPass.getText().toString());
+                intent = new Intent(LoginActivity.this,MainActivity.class);
+                startActivity(intent);
                 break;
             case R.id.btnFacebook:
 //                intent = new Intent(LoginActivity.this,FacebookActivity.class);

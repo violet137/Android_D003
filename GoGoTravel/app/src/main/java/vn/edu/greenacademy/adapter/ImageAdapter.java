@@ -14,6 +14,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import vn.edu.greenacademy.gogotravel.R;
 import vn.edu.greenacademy.model.QuanAn;
 
 /**
@@ -47,55 +48,53 @@ public class ImageAdapter extends BaseAdapter{
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        ImageView imageView;
-        TextView textView;
-
-
-
+        Row row;
         if(view == null){
-            imageView = new ImageView(mcontext);
-//            imageView.setLayoutParams(new GridView.LayoutParams(450,450));
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(8,8,8,8);
-        }else{
-            imageView = (ImageView) view;
+            view = inflater.inflate(Row.LayOut,viewGroup,false);
+            row = new Row(mcontext,view);
+            view.setTag(row);
         }
+            row = (Row) view.getTag();
+            Picasso.with(mcontext).load(list.get(i).getLink()).into(row.imageView);
+            if(i == 5){
+                row.textView.setVisibility(View.VISIBLE);
+                row.textView.setText("Show All");
+
+            }else{
+                row.textView.setVisibility(View.INVISIBLE);
+            }
+
+
+
+//            imageView = new ImageView(mcontext);
+////            imageView.setLayoutParams(new GridView.LayoutParams(450,450));
+//            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//            imageView.setPadding(8,8,8,8);
+//        }else{
+//            imageView = (ImageView) view;
+//        }
 //        imageView.setImageResource(list.get(i).getLink());
-        Picasso.with(mcontext).load(list.get(i).getLink()).into(imageView);
+//        Picasso.with(mcontext).load(list.get(i).getLink()).into(imageView);
 
-        if(i == 5){
 
-        }
 
-        return imageView;
-    }
-
-    private class ViewModel{
-        String text;
-        String url;
-
-        private ViewModel(String text,String url){
-            this.text = text;
-            this.url = url;
-        }
-
-        public String getText() {
-            return text;
-        }
-
-        public void setText(String text) {
-            this.text = text;
-        }
-
-        public String getUrl() {
-            return url;
-        }
-
-        public void setUrl(String url) {
-            this.url = url;
-        }
+        return view;
     }
 
     private class Row{
+        public static final int LayOut = R.layout.item_hinh;
+
+        private Context context;
+        private TextView textView;
+        private ImageView imageView;
+
+        private Row(Context context,View view){
+            this.context = context;
+            this.imageView = (ImageView) view.findViewById(R.id.ivHinhQ);
+            this.textView = (TextView) view.findViewById(R.id.tvQ);
+        }
+
+
     }
+
 }

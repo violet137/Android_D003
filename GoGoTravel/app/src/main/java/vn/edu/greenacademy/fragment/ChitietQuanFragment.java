@@ -1,6 +1,7 @@
 package vn.edu.greenacademy.fragment;
 
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -95,6 +96,20 @@ public class ChitietQuanFragment extends Fragment {
         tvCheckin.setText("Checkin : "+String.valueOf(checkin));
 
         new Danhsach_HinhAsyncTask().execute();
+
+        gvHinh.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(i == 5){
+                    Fragment fragment = new DanhsachQuan_AllFragment();
+                    android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.layout,fragment);
+                    transaction.addToBackStack(null);
+
+                    transaction.commit();
+                }
+            }
+        });
 
         return view;
     }
