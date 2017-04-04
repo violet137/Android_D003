@@ -35,16 +35,6 @@ public class KhachSanFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-//        refreshView();
-    }
-
-    public void refreshView(){
-
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment

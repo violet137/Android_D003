@@ -31,15 +31,6 @@ public class QuanAnFragment extends Fragment {
     public QuanAnFragment() {
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-//        refreshView();
-    }
-
-    public void refreshView(){
-
-    }
 
     public static void setId(int id) {
         QuanAnFragment.id = id;

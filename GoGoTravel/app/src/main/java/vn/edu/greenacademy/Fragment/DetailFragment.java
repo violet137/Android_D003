@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import vn.edu.greenacademy.Adapter.SwipeDetailKhuVuc;
 import vn.edu.greenacademy.gogotravel.R;
@@ -55,20 +56,13 @@ public class DetailFragment extends Fragment {
         tabLayout = (TabLayout) v.findViewById(R.id.tabLayout);
         btnBack = (Button) v.findViewById(R.id.btnBack);
         flDetail = (FrameLayout) v.findViewById(R.id.flDetail);
-
+        Toast.makeText(getActivity(),"2",Toast.LENGTH_LONG).show();
         khuVucFragment = KhuVucFragment.getInstance();
 
         Bundle bundle = this.getArguments();
         id = bundle.getInt("khuvuc");
 
-        return v;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        swipeDetailKhuVuc = new SwipeDetailKhuVuc(getFragmentManager(),id);
+        swipeDetailKhuVuc = new SwipeDetailKhuVuc(getFragmentManager(),getContext(),id);
         mViewPager.setAdapter(swipeDetailKhuVuc);
         tabLayout.setupWithViewPager(mViewPager);
 
@@ -76,22 +70,39 @@ public class DetailFragment extends Fragment {
         tabLayout.getTabAt(1).setIcon(R.drawable.hotel);
         tabLayout.getTabAt(2).setIcon(R.drawable.quan_an);
 
+        return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Bundle bundle = this.getArguments();
+        id = bundle.getInt("khuvuc");
+        swipeDetailKhuVuc = new SwipeDetailKhuVuc(getFragmentManager(),getContext(),id);
+        swipeDetailKhuVuc.notifyDataSetChanged();
+        mViewPager.setAdapter(swipeDetailKhuVuc);
+        tabLayout.setupWithViewPager(mViewPager);
+        tabLayout.getTabAt(0).setIcon(R.drawable.ban_do);
+        tabLayout.getTabAt(1).setIcon(R.drawable.hotel);
+        tabLayout.getTabAt(2).setIcon(R.drawable.quan_an);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(getActivity(),"3",Toast.LENGTH_LONG).show();
                 getFragmentManager().popBackStack();
+                mViewPager.removeAllViewsInLayout();
+                tabLayout.removeAllViewsInLayout();
             }
         });
-
     }
 
-    public void callFragment(Fragment fragment){
-        FragmentManager manager = getActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.flDetail, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
+//    public void callFragment(Fragment fragment){
+//        FragmentManager manager = getActivity().getSupportFragmentManager();
+//        FragmentTransaction transaction = manager.beginTransaction();
+//        transaction.replace(R.id.flDetail, fragment);
+//        transaction.addToBackStack(null);
+//        transaction.commit();
+//    }
 
 
 

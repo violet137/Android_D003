@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,6 +44,7 @@ public class KhuVucFragment extends Fragment implements View.OnClickListener {
     KhuVuc_Adapter khuVuc_adapter;
     ListView lvKhuVuc;
     View v;
+    int checkReload = 1;
 
     KhuVucFragment khuVucFragment;
     BanDoFragment banDoFragment;
@@ -52,6 +54,7 @@ public class KhuVucFragment extends Fragment implements View.OnClickListener {
 
     ImageButton ibHome, ibBanDo, ibhanhTrinh, ibTaiKhoan;
     FrameLayout flKhuVuc;
+    Fragment detail;
 
     HttpURLConnection con;
     InputStream it;
@@ -67,7 +70,6 @@ public class KhuVucFragment extends Fragment implements View.OnClickListener {
         if (instance == null){
             instance = new KhuVucFragment();
         }
-
         return instance;
     }
 
@@ -98,29 +100,33 @@ public class KhuVucFragment extends Fragment implements View.OnClickListener {
         ibhanhTrinh.setOnClickListener(this);
         ibTaiKhoan.setOnClickListener(this);
         arrKhuVuc = new ArrayList<>();
-
+        dataKhuVuc = new getKhuVuc(v);
+        dataKhuVuc.execute();
         lvKhuVuc.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 KhuVuc khuVuc = arrKhuVuc.get(position);
-                Fragment detail = DetailFragment.getInstance();
+                detail = DetailFragment.getInstance();
                 Bundle bundle = new Bundle();
                 bundle.putInt("khuvuc",khuVuc.Id);
                 detail.setArguments(bundle);
+                if (checkReload > 1){
+                    detail.onResume();
+                }
                 callFragment(detail);
                 dataKhuVuc.cancel(true);
+                Toast.makeText(getActivity(),"1",Toast.LENGTH_LONG).show();
             }
         });
-
         return v;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        dataKhuVuc = new getKhuVuc(v);
-        dataKhuVuc.execute();
-    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        dataKhuVuc = new getKhuVuc(v);
+//        dataKhuVuc.execute();
+//    }
 
     public void callFragment(Fragment fragment){
         FragmentManager manager = getActivity().getSupportFragmentManager();
@@ -164,7 +170,6 @@ public class KhuVucFragment extends Fragment implements View.OnClickListener {
                 con.addRequestProperty("Content-Type", "application/json");
                 con.setRequestMethod("GET");
                 con.connect();
-
                 if (con.getResponseCode() == HttpURLConnection.HTTP_OK){
                      it = new BufferedInputStream(con.getInputStream());
                      read = new InputStreamReader(it);

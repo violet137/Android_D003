@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.widget.FrameLayout;
 
 import java.util.LinkedList;
@@ -23,16 +24,21 @@ public class SwipeDetailKhuVuc extends FragmentStatePagerAdapter {
     String[] arrTitle = {"Địa Điểm", "Khách Sạn", "Quán Ăn"};
     private Context context;
     private List<Fragment> listSwipe = new LinkedList<Fragment>();
+    FragmentTransaction fragmentTransaction;
+    FragmentManager fm ;
+
+
 
     @Override
     public CharSequence getPageTitle(int position) {
         return arrTitle[position];
     }
 
-    public SwipeDetailKhuVuc(FragmentManager fm,  int id) {
+    public SwipeDetailKhuVuc(FragmentManager fm,Context context,  int id) {
         super(fm);
-//        this.context = context;
-
+        this.context = context;
+        this.fm = fm;
+        fragmentTransaction = fm.beginTransaction();
         DiaDiemFragment.setId(id);
         KhachSanFragment.setId(id);
         QuanAnFragment.setId(id);
@@ -42,14 +48,27 @@ public class SwipeDetailKhuVuc extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         Fragment fragment = new Fragment();
         switch (position){
+
             case 0:
                 fragment = DiaDiemFragment.getInstance();
+                if (fragment.isAdded()){
+                    fragmentTransaction.show(fragment);
+                }
                 break;
             case 1:
-                fragment = KhachSanFragment.getInstance();
+                if (fragment.isAdded()){
+                    fragmentTransaction.show(fragment);
+                }else {
+                    fragment = KhachSanFragment.getInstance();
+                }
                 break;
             case 2:
-                fragment = QuanAnFragment.getInstance();
+                if (fragment.isAdded()){
+                    fragmentTransaction.show(fragment);
+                }else {
+                    fragment = QuanAnFragment.getInstance();
+                }
+
                 break;
         }
         return fragment;
