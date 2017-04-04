@@ -13,9 +13,8 @@
 
         <Button
             android:text="@string/boloc"
+            style="@style/button_style"
             android:textAllCaps="false"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/btnBoLoc" />
 
         <ListView

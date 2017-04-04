@@ -23,15 +23,16 @@ public class LoadImageAdapter extends BaseAdapter {
     private Context context = null;
     int layout;
     int[] imageId;
+    int a;
 
     ImageView imageDetail;
     TextView tvSoLuongImage;
 
-    public LoadImageAdapter(Context context,  int layout, int[] imageId) {
-        this.listImage = listImage;
-        this.imageId = imageId;
+    public LoadImageAdapter(Context context, int layout, int[] imageId, int a) {
         this.context = context;
         this.layout = layout;
+        this.imageId = imageId;
+        this.a = a;
         mlayoutInflater = LayoutInflater.from(context);
     }
 
@@ -59,11 +60,13 @@ public class LoadImageAdapter extends BaseAdapter {
             tvSoLuongImage = (TextView) convertView.findViewById(R.id.tvSoLuongImage);
         }
         imageDetail.setImageResource(imageId[position]);
-        if(position == imageId.length - 1){
-            tvSoLuongImage.setText("+23");
-            tvSoLuongImage.setVisibility(View.VISIBLE);
-        }else {
-            tvSoLuongImage.setVisibility(View.GONE);
+        if(a == 0){
+            if(position == imageId.length - 1){
+                tvSoLuongImage.setText("+23");
+                tvSoLuongImage.setVisibility(View.VISIBLE);
+            }else {
+                tvSoLuongImage.setVisibility(View.GONE);
+            }
         }
         return convertView;
     }

@@ -77,7 +77,7 @@ public class DetailKhachSanFragment extends Fragment {
                 tvMoTa.setText(Html.fromHtml(ks.getMoTa()));
             }
         }
-        LoadImageAdapter adapter = new LoadImageAdapter(getContext(),R.layout.fragment_detai_khach_san,imageId);
+        LoadImageAdapter adapter = new LoadImageAdapter(getContext(),R.layout.fragment_detai_khach_san,imageId, 0);
         gridImage.setAdapter(adapter);
         gridImage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

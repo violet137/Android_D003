@@ -11,8 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"></activity>
-        <activity android:name=".DangKyActivity">
-        </activity>
+        <activity android:name=".DangKyActivity"></activity>
         <activity android:name=".KhachSanActivity">
             //chuyen intent-filter xuong de activity chay truoc
             <intent-filter>

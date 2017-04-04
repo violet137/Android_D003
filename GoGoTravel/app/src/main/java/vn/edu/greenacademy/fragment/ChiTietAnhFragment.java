@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import vn.edu.greenacademy.adapter.LoadImageAdapter;
@@ -21,11 +22,11 @@ public class ChiTietAnhFragment extends Fragment {
     TextView tvTitle;
     GridView gridChiTietAnh;
     int[] imageId;
+    ImageButton imgbtnAnhZoom;
 
     public ChiTietAnhFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,8 +36,10 @@ public class ChiTietAnhFragment extends Fragment {
 
         tvTitle = (TextView) v.findViewById(R.id.tvTitle);
         gridChiTietAnh = (GridView) v.findViewById(R.id.gridChiTietAnh);
+        imgbtnAnhZoom = (ImageButton) v.findViewById(R.id.imgbtnAnhZoom);
+
         imageId = new int[]{R.drawable.ks1,R.drawable.ks2,R.drawable.ks3,R.drawable.ks4,R.drawable.ks5,R.drawable.ks6};
-        LoadImageAdapter adapter = new LoadImageAdapter(getContext(),R.layout.fragment_chi_tiet_anh,imageId);
+        LoadImageAdapter adapter = new LoadImageAdapter(getContext(),R.layout.fragment_chi_tiet_anh,imageId, 1);
         gridChiTietAnh.setAdapter(adapter);
         final Bundle bundle = this.getArguments();
         if(bundle != null){
@@ -46,10 +49,18 @@ public class ChiTietAnhFragment extends Fragment {
         gridChiTietAnh.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                
+                gridChiTietAnh.setVisibility(View.GONE);
+                imgbtnAnhZoom.setVisibility(View.VISIBLE);
+                imgbtnAnhZoom.setImageResource(imageId[i]);
+                imgbtnAnhZoom.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        gridChiTietAnh.setVisibility(View.VISIBLE);
+                        imgbtnAnhZoom.setVisibility(View.GONE);
+                    }
+                });
             }
         });
         return v;
     }
-
 }
