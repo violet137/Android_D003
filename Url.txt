@@ -1,1 +1,5 @@
 http://103.237.147.137:9045/swagger/ui/index#/
+
+https://github.com/codepath/android_guides/wiki/ActionBar-Tabs-with-Fragments
+
+https://gist.github.com/luksprog/4162098

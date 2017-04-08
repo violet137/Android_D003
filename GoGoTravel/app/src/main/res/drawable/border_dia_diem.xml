@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!--background item listview-->
+    <solid android:color="#aaa"/>
+
+    <!--Độ cong của item listview-->
+    <corners android:radius="20dp" />
+
+    <!--Canh lề nội dung-->
+    <padding android:left="8dp" android:top="8dp" android:right="8dp" android:bottom="8dp" />
+
+
+    <!--Màu khung độ cong-->
+    <stroke android:width="3dp" android:color="#FF062BF7"/>
+</shape>
+

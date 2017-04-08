@@ -6,8 +6,24 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <ListView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listKhachSan" />
+        android:orientation="vertical">
+
+        <Button
+            android:text="@string/boloc"
+            style="@style/button_style"
+            android:textAllCaps="false"
+            android:id="@+id/btnBoLoc" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listViewKhachSan"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+    </LinearLayout>
+
 </FrameLayout>

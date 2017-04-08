@@ -1,0 +1,150 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="vn.edu.greenacademy.fragment.DetailKhachSanFragment"
+    android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    app:srcCompat="@mipmap/ic_launcher"
+                    android:id="@+id/imageHotel" />
+
+                <TextView
+                    android:text="TextView"
+                    android:textSize="15dp"
+                    android:textColor="#ff669900"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:id="@+id/tvDanhGia" />
+            </FrameLayout>
+
+            <TextView
+                android:text="TextView"
+                android:textSize="18dp"
+                android:paddingLeft="@dimen/padding_left_textview_detal_ks"
+                android:textColor="#ffcc0000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvNameHotel" />
+
+            <TextView
+                android:text="TextView"
+                android:textColor="@color/colorPrimary"
+                android:paddingLeft="@dimen/padding_left_textview_detal_ks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvAddress" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:text="TextView"
+                        android:textColor="#ff000000"
+                        android:textStyle="bold"
+                        android:paddingLeft="@dimen/padding_left_textview_detal_ks"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvLike"/>
+
+                    <TextView
+                        android:text="@string/detail_yeuthich"
+                        android:paddingLeft="@dimen/padding_left_textview_detal_ks"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView4" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:text="TextView"
+                        android:textStyle="bold"
+                        android:textColor="#ff000000"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvCheckIn"/>
+
+                    <TextView
+                        android:text="@string/detail_checkin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView6"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="TextView"
+                        android:textStyle="bold"
+                        android:textColor="#ff000000"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvSee"/>
+
+                    <TextView
+                        android:text="@string/detail_xem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView8"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:text="TextView"
+                android:paddingLeft="@dimen/padding_left_textview_detal_ks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvDescribe" />
+
+    </LinearLayout>
+
+    <TextView
+        android:text="@string/detail_hinhanh"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView7" />
+
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:numColumns="3"
+        android:id="@+id/gridImage" />
+
+</LinearLayout>

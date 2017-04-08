@@ -3,7 +3,10 @@
     <string name="action_settings">Settings</string>
     <string name="facebook_app_id">1443396689014073</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="dangky">Đăng ký</string>
+    <string name="boloc">Bộ lọc</string>
 
     <!-- Button text -->
 
@@ -17,5 +20,23 @@
     <string name="thanh_cong">"Đăng ký tài khoản thành công!"</string>
     <string name="that_bai">"Đăng ký không thành công. Vui lòng xem lại thông tin vừa nhập!"</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <string-array name="danh_sach_bo_loc">
+        <item>Không lọc</item>
+        <item>Điểm</item>
+        <item>Số lượt check in</item>
+        <item>Số lượt yêu thích</item>
+        <item>Mới nhất</item>
+        <item>Gần tôi</item>
+    </string-array>
+
+    <string name="title_dialog">Bạn muốn lọc theo:</string>
+    <string name="positive_button">OK</string>
+    <string name="negative_button">Cancel</string>
+
+    <string name="detail_yeuthich">Yêu thích</string>
+    <string name="detail_checkin">Check-in</string>
+    <string name="detail_xem">Số lượt xem</string>
+    <string name="detail_hinhanh">Hình ảnh</string>
+
+
 </resources>
