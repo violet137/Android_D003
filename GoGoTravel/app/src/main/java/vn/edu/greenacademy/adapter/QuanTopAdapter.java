@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -106,7 +108,10 @@ public class QuanTopAdapter extends RecyclerView.Adapter<QuanTopAdapter.ViewHold
         }
 
         public void setData(String link,String ten,String yt,String check,float rating,String gio){
-            new DownloadImage(ivHinh).execute(link);
+//            new DownloadImage(ivHinh).execute(link);
+            Picasso.with(itemView.getContext())
+                    .load(link)
+                    .into(ivHinh);
             tvTen.setText(ten);
             tvYeuThich.setText(yt);
             tvChenkin.setText(check);

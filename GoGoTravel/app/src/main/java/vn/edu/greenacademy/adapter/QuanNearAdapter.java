@@ -1,6 +1,8 @@
-package vn.edu.greenacademy.Adapter;
+package vn.edu.greenacademy.adapter;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -16,13 +18,20 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FilterOutputStream;
 import java.io.IOException;
+import java.lang.ref.SoftReference;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 
 import vn.edu.greenacademy.gogotravel.R;
-import vn.edu.greenacademy.Model.QuanAn;
+import vn.edu.greenacademy.model.QuanAn;
 
 /**
  * Created by MSI on 3/25/2017.
@@ -36,7 +45,7 @@ public class QuanNearAdapter extends ArrayAdapter{
 
     public QuanNearAdapter(@NonNull Activity context, @LayoutRes int resource, @NonNull List<QuanAn> objects) {
         super(context, resource, objects);
-
+        ImageCache.getInstance().initializeCache();
         this.context = context;
         this.layout = resource;
         list = objects;
@@ -79,9 +88,13 @@ public class QuanNearAdapter extends ArrayAdapter{
 
         holder.ratingBar.setRating(temp.getDanhgia()/2);
 
-        new DownloadImage(holder.ivHinh).execute(temp.getLink());
+//        new DownloadImage(holder.ivHinh).execute(temp.getLink());
 //        holder.ivHinh.setFocusable(false);
 //        holder.ivHinh.setFocusableInTouchMode(false);
+        Picasso.with(getContext())
+                .load(temp.getLink())
+                .into(holder.ivHinh);
+
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,7 +134,6 @@ public class QuanNearAdapter extends ArrayAdapter{
     }
 
 
-    ImageCache cache = ImageCache.getInstance();
     class DownloadImage extends AsyncTask<String, Void, Bitmap> {
         ImageView imageView;
 
@@ -135,15 +147,22 @@ public class QuanNearAdapter extends ArrayAdapter{
             String image_url = params[0];
             Bitmap bitmap = null;
 
-            cache.initializeCache();
 
 //            String name = image_url+".jpg";
 //            File file = new File("/sdcard/"+name);
             try {
                 URL url = new URL(image_url);
-                bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+
+                Bitmap temp=ImageCache.getInstance().getImagefromStore(image_url);
+                if(temp != null){
+                    return temp;
+                    // neu chua co trong cache thi download tu server
+                }else{
+                    bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                    ImageCache.getInstance().addImagetoStore(image_url,bitmap);
+                }
 //                bitmap.compress(Bitmap.CompressFormat.JPEG,100,new FileOutputStream(file));
-                cache.addImagetoStore(image_url,bitmap);
+
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {

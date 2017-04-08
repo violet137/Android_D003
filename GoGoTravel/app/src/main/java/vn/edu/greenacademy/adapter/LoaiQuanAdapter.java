@@ -95,8 +95,10 @@ public class LoaiQuanAdapter extends RecyclerView.Adapter<LoaiQuanAdapter.ViewHo
         }
 
         public void setData(String link,String ten,String sl){
-            new DownloadImage(ivHinh).execute(link);
-
+//            new DownloadImage(ivHinh).execute(link);
+            Picasso.with(itemView.getContext())
+                    .load(link)
+                    .into(ivHinh);
             tvTen.setText(ten);
             tvSoluong.setText(sl);
         }
