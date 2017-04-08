@@ -4,10 +4,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.style.BackgroundColorSpan;
 import android.widget.ImageView;
-
-import vn.edu.greenacademy.fragment.Hinh1Fragment;
 
 public class ManHinhChoActivity extends AppCompatActivity {
     ImageView ivCho;

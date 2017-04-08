@@ -1,4 +1,4 @@
-package vn.edu.greenacademy.utils;
+package vn.edu.greenacademy.Utils;
 
 /**
  * Created by User on 3/18/2017.

@@ -4,18 +4,11 @@ import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
 
 
-import vn.edu.greenacademy.adapter.MyAdapter;
-import vn.edu.greenacademy.fragment.Hinh4Fragment;
-
-import static vn.edu.greenacademy.gogotravel.R.layout.activity_main;
+import vn.edu.greenacademy.Adapter.MyAdapter;
 
 public class GioiThieuActivity extends AppCompatActivity {
 
@@ -32,7 +25,7 @@ public class GioiThieuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_gioithieu);
         viewPager = (ViewPager) findViewById(R.id.view);
         btnNext = (Button) findViewById(R.id.btnNext);
 

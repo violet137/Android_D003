@@ -1,18 +1,15 @@
-package vn.edu.greenacademy.adapter;
+package vn.edu.greenacademy.Adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.zip.Inflater;
 
 import vn.edu.greenacademy.gogotravel.R;
 

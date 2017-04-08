@@ -1,15 +1,14 @@
-package vn.edu.greenacademy.adapter;
+package vn.edu.greenacademy.Adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import vn.edu.greenacademy.fragment.Hinh1Fragment;
-import vn.edu.greenacademy.fragment.Hinh2Fragment;
-import vn.edu.greenacademy.fragment.Hinh3Fragment;
-import vn.edu.greenacademy.fragment.Hinh4Fragment;
-import vn.edu.greenacademy.gogotravel.R;
-import vn.edu.greenacademy.utils.Constant;
+import vn.edu.greenacademy.Fragment.Hinh1Fragment;
+import vn.edu.greenacademy.Fragment.Hinh2Fragment;
+import vn.edu.greenacademy.Fragment.Hinh3Fragment;
+import vn.edu.greenacademy.Fragment.Hinh4Fragment;
+import vn.edu.greenacademy.Utils.Constant;
 
 /**
  * Created by User on 3/18/2017.

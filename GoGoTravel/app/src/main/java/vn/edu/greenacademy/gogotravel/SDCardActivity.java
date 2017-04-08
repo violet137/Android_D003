@@ -2,7 +2,6 @@ package vn.edu.greenacademy.gogotravel;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Debug;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,7 +13,7 @@ import android.widget.GridView;
 import java.io.File;
 import java.util.ArrayList;
 
-import vn.edu.greenacademy.adapter.SDCardApdapter;
+import vn.edu.greenacademy.Adapter.SDCardApdapter;
 
 public class SDCardActivity extends AppCompatActivity {
     AsyncTaskLoadFile myAsyncTaskLoadFile;
