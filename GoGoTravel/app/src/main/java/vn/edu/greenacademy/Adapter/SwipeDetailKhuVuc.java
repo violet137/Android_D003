@@ -57,7 +57,7 @@ public class SwipeDetailKhuVuc extends FragmentStatePagerAdapter {
 //                }
                 break;
             case 1:
-                fragment = KhachSanFragment.getInstance();;
+                fragment = KhachSanFragment.getInstance();
 //                if (fragment.isAdded()){
 //                    fragmentTransaction.show(fragment);
 //                }else {

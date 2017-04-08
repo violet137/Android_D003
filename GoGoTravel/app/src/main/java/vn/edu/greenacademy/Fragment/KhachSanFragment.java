@@ -48,14 +48,13 @@ public class KhachSanFragment extends Fragment {
     List<KhachSans> listHotel = new LinkedList<>();
     ArrayList arrChoice;
     int luaChon=0;
-    static int id, index;
+    static int id;
 
     public static KhachSanFragment instance;
     public static KhachSanFragment getInstance(){
         if (instance == null){
             instance = new KhachSanFragment();
         }
-
         return instance;
     }
 
@@ -73,70 +72,70 @@ public class KhachSanFragment extends Fragment {
 
 //        new AllKhachSan().execute();
         new KhachSanByKhuVuc().execute(id);
-        btnBoLoc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                arrChoice = new ArrayList();
-                final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle(R.string.title_dialog)
-                        .setSingleChoiceItems(R.array.danh_sach_bo_loc, 0, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                luaChon = which;
-                                switch (which) {
-                                    case 0:
-                                        break;
-                                    case 1:
-                                        Comparator comp = new Comparator<KhachSans>(){
-                                            @Override
-                                            public int compare(KhachSans s1, KhachSans s2)
-                                            {
-                                                if(s1.getDanhGia()>s2.getDanhGia()){
-                                                    return 1;
-                                                }else{
-                                                    return -1;
-                                                }
-                                            }
-                                        };
-                                        Collections.sort(listHotel, comp);
-                                        adapter.ReloadData(listHotel);
-                                        dialog.dismiss();
-                                        break;
-                                    case 2:
-                                        dialog.dismiss();
-                                        break;
-                                    case 3:
-                                        dialog.dismiss();
-                                        break;
-                                    case 4:
-                                        dialog.dismiss();
-                                        break;
-                                    case 5:
-                                        new KhachSanByNear().execute();
-                                        dialog.dismiss();
-                                        break;
-                                }
-
-                            }
-                        });
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            }
-        });
-        listViewKhachSan.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                KhachSans tempKhachSan = listHotel.get(position);
-                Fragment fragment = new DetailKhachSanFragment();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("KhachSan",tempKhachSan);
-                fragment.setArguments(bundle);
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(android.R.id.content, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
-        });
+//        btnBoLoc.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                arrChoice = new ArrayList();
+//                final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+//                builder.setTitle(R.string.title_dialog)
+//                        .setSingleChoiceItems(R.array.danh_sach_bo_loc, 0, new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                luaChon = which;
+//                                switch (which) {
+//                                    case 0:
+//                                        break;
+//                                    case 1:
+//                                        Comparator comp = new Comparator<KhachSans>(){
+//                                            @Override
+//                                            public int compare(KhachSans s1, KhachSans s2)
+//                                            {
+//                                                if(s1.getDanhGia()>s2.getDanhGia()){
+//                                                    return 1;
+//                                                }else{
+//                                                    return -1;
+//                                                }
+//                                            }
+//                                        };
+//                                        Collections.sort(listHotel, comp);
+//                                        adapter.ReloadData(listHotel);
+//                                        dialog.dismiss();
+//                                        break;
+//                                    case 2:
+//                                        dialog.dismiss();
+//                                        break;
+//                                    case 3:
+//                                        dialog.dismiss();
+//                                        break;
+//                                    case 4:
+//                                        dialog.dismiss();
+//                                        break;
+//                                    case 5:
+//                                        new KhachSanByNear().execute();
+//                                        dialog.dismiss();
+//                                        break;
+//                                }
+//
+//                            }
+//                        });
+//                AlertDialog dialog = builder.create();
+//                dialog.show();
+//            }
+//        });
+//        listViewKhachSan.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                KhachSans tempKhachSan = listHotel.get(position);
+//                Fragment fragment = new DetailKhachSanFragment();
+//                Bundle bundle = new Bundle();
+//                bundle.putSerializable("KhachSan",tempKhachSan);
+//                fragment.setArguments(bundle);
+//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                transaction.replace(android.R.id.content, fragment);
+//                transaction.addToBackStack(null);
+//                transaction.commit();
+//            }
+//        });
         return view;
     }
 
