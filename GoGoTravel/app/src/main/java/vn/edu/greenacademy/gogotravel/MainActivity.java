@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
-
         flMain = (FrameLayout) findViewById(R.id.flMain);
         khuVucFragment = KhuVucFragment.getInstance();
         callFragment(khuVucFragment);

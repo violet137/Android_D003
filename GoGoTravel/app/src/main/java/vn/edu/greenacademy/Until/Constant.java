@@ -7,7 +7,4 @@ package vn.edu.greenacademy.Until;
 public class Constant {
 
     public static final int DETAIL_KHU_VUC = 3;
-
-    public static int STATUS_LLHOME = 1;
-
 }
