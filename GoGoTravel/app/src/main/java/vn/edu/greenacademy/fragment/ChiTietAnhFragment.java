@@ -1,4 +1,4 @@
-package vn.edu.greenacademy.fragment;
+package vn.edu.greenacademy.Fragment;
 
 
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import vn.edu.greenacademy.adapter.LoadImageAdapter;
+import vn.edu.greenacademy.Adapter.LoadImageAdapter;
 import vn.edu.greenacademy.gogotravel.R;
 
 /**

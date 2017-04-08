@@ -1,4 +1,4 @@
-package vn.edu.greenacademy.adapter;
+package vn.edu.greenacademy.Adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -18,7 +18,7 @@ import java.util.List;
 
 import vn.edu.greenacademy.asynctask.Image;
 import vn.edu.greenacademy.gogotravel.R;
-import vn.edu.greenacademy.model.KhachSans;
+import vn.edu.greenacademy.Model.KhachSans;
 
 /**
  * Created by User on 3/22/2017.

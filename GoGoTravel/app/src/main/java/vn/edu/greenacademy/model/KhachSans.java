@@ -1,4 +1,4 @@
-package vn.edu.greenacademy.model;
+package vn.edu.greenacademy.Model;
 
 import java.io.Serializable;
 

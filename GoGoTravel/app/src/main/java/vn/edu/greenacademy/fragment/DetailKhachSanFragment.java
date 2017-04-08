@@ -1,4 +1,4 @@
-package vn.edu.greenacademy.fragment;
+package vn.edu.greenacademy.Fragment;
 
 
 import android.os.Build;
@@ -16,10 +16,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import vn.edu.greenacademy.adapter.LoadImageAdapter;
+import vn.edu.greenacademy.Adapter.LoadImageAdapter;
 import vn.edu.greenacademy.asynctask.Image;
 import vn.edu.greenacademy.gogotravel.R;
-import vn.edu.greenacademy.model.KhachSans;
+import vn.edu.greenacademy.Model.KhachSans;
 
 
 /**

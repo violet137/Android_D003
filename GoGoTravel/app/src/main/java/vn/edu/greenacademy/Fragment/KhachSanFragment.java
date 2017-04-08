@@ -1,4 +1,4 @@
-package vn.edu.greenacademy.fragment;
+package vn.edu.greenacademy.Fragment;
 
 
 import android.content.DialogInterface;
@@ -32,9 +32,9 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
-import vn.edu.greenacademy.adapter.KhachSanAdapter;
+import vn.edu.greenacademy.Adapter.KhachSanAdapter;
 import vn.edu.greenacademy.gogotravel.R;
-import vn.edu.greenacademy.model.KhachSans;
+import vn.edu.greenacademy.Model.KhachSans;
 
 
 /**
@@ -48,12 +48,20 @@ public class KhachSanFragment extends Fragment {
     List<KhachSans> listHotel = new LinkedList<>();
     ArrayList arrChoice;
     int luaChon=0;
+    static int id, index;
 
-    public KhachSanFragment() {
-        // Required empty public constructor
+    public static KhachSanFragment instance;
+    public static KhachSanFragment getInstance(){
+        if (instance == null){
+            instance = new KhachSanFragment();
+        }
+
+        return instance;
     }
 
-
+    public static void setId(int ids) {
+        DiaDiemFragment.id = ids;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -63,7 +71,8 @@ public class KhachSanFragment extends Fragment {
         btnBoLoc = (Button) view.findViewById(R.id.btnBoLoc);
         listViewKhachSan = (ListView) view.findViewById(R.id.listViewKhachSan);
 
-        new AllKhachSan().execute();
+//        new AllKhachSan().execute();
+        new KhachSanByKhuVuc().execute(id);
         btnBoLoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,7 +127,7 @@ public class KhachSanFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 KhachSans tempKhachSan = listHotel.get(position);
-                Fragment fragment = new vn.edu.greenacademy.fragment.DetailKhachSanFragment();
+                Fragment fragment = new DetailKhachSanFragment();
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("KhachSan",tempKhachSan);
                 fragment.setArguments(bundle);
@@ -216,12 +225,12 @@ public class KhachSanFragment extends Fragment {
         }
     }
 
-    class KhachSanByKhuVuc extends AsyncTask<List<KhachSans>, Void, String> {
+    class KhachSanByKhuVuc extends AsyncTask<Integer, Void, String> {
 
         @Override
-        protected String doInBackground(List<KhachSans>... params) {
+        protected String doInBackground(Integer... params) {
             try {
-                URL url = new URL("http://103.237.147.137:9045/KhachSan/KhachSanByKhuVuc?idKhuVuc=1");
+                URL url = new URL("http://103.237.147.137:9045/KhachSan/KhachSanByKhuVuc?idKhuVuc=" + params[0]);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.addRequestProperty("Accept", "text/json");
                 connection.addRequestProperty("Content-Type", "application/json");
