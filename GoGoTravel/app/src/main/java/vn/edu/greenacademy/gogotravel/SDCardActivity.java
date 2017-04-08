@@ -14,7 +14,7 @@ import android.widget.GridView;
 import java.io.File;
 import java.util.ArrayList;
 
-import vn.edu.greenacademy.adapter.SDCardApdapter;
+import vn.edu.greenacademy.Adapter.SDCardApdapter;
 
 public class SDCardActivity extends AppCompatActivity {
     AsyncTaskLoadFile myAsyncTaskLoadFile;

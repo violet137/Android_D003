@@ -1,4 +1,4 @@
-package vn.edu.greenacademy.adapter;
+package vn.edu.greenacademy.Adapter;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -31,7 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import vn.edu.greenacademy.gogotravel.R;
-import vn.edu.greenacademy.model.QuanAn;
+import vn.edu.greenacademy.Model.QuanAn;
 
 /**
  * Created by MSI on 3/25/2017.

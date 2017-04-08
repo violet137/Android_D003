@@ -12,8 +12,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 
-import vn.edu.greenacademy.adapter.MyAdapter;
-import vn.edu.greenacademy.fragment.Hinh4Fragment;
+import vn.edu.greenacademy.Adapter.MyAdapter;
+import vn.edu.greenacademy.Fragment.Hinh4Fragment;
 
 import static vn.edu.greenacademy.gogotravel.R.layout.activity_main;
 

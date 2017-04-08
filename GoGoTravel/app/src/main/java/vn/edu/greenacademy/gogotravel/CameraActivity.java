@@ -22,7 +22,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import vn.edu.greenacademy.adapter.ReviewImageAdapter;
+import vn.edu.greenacademy.Adapter.ReviewImageAdapter;
 
 public class CameraActivity extends AppCompatActivity {
     private ImageButton ibCapture, ibSDCard;

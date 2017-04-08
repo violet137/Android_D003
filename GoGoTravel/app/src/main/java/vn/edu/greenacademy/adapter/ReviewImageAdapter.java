@@ -1,4 +1,4 @@
-package vn.edu.greenacademy.adapter;
+package vn.edu.greenacademy.Adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;

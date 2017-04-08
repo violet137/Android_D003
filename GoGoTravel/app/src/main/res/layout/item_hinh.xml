@@ -8,7 +8,7 @@
         android:id="@+id/ivHinhQ"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        app:srcCompat="@drawable/common_ic_googleplayservices" />
+        app:srcCompat="@drawable/gg" />
 
     <TextView
         android:id="@+id/tvQ"
