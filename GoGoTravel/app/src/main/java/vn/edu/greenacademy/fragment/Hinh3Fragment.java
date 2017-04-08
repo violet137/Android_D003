@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import vn.edu.greenacademy.gogotravel.R;
 
@@ -13,6 +15,9 @@ import vn.edu.greenacademy.gogotravel.R;
  * A simple {@link Fragment} subclass.
  */
 public class Hinh3Fragment extends Fragment {
+
+    ImageView ivIma3;
+
     private static Hinh3Fragment instance = null;
 
     public static Hinh3Fragment getInstance(){
@@ -32,7 +37,13 @@ public class Hinh3Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_hinh3, container, false);
+        View v = inflater.inflate(R.layout.fragment_hinh3, container, false);
+
+        ivIma3 = (ImageView) v.findViewById(R.id.ivIma3);
+        ivIma3.setImageResource(R.drawable.tutorial_3);
+
+
+        return v;
     }
 
 }

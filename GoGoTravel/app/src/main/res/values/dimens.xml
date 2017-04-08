@@ -3,6 +3,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="margin_bottom">15dp</dimen>
     <dimen name="top">200dp</dimen>
     <dimen name="magrin_bottom">20dp</dimen>
     <dimen name="height_imageButton">200dp</dimen>

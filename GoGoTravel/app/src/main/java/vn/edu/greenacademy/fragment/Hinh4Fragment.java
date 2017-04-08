@@ -1,9 +1,7 @@
-package vn.edu.greenacademy.Fragment;
+package vn.edu.greenacademy.fragment;
 
 
-import android.media.Image;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,20 +14,22 @@ import vn.edu.greenacademy.gogotravel.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Hinh1Fragment extends Fragment {
-    ImageView ivIma1;
+public class Hinh4Fragment extends Fragment {
 
-    private static Hinh1Fragment instance = null;
+    ImageView ivIma4;
 
-    public static Hinh1Fragment getInstance(){
+
+    private static Hinh4Fragment instance = null;
+
+    public static Hinh4Fragment getInstance(){
         if (instance==null){
-            instance = new Hinh1Fragment();
+            instance = new Hinh4Fragment();
         }
         return instance;
     }
 
 
-    public Hinh1Fragment() {
+    public Hinh4Fragment() {
         // Required empty public constructor
     }
 
@@ -38,15 +38,13 @@ public class Hinh1Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_hinh1, container, false);
+        View v = inflater.inflate(R.layout.fragment_hinh4, container, false);
 
-        ivIma1 = (ImageView) v.findViewById(R.id.ivIma1);
+        ivIma4 = (ImageView) v.findViewById(R.id.ivIma4);
+        ivIma4.setImageResource(R.drawable.tutorial_4);
 
-        ivIma1.setImageResource(R.drawable.tutorial_1);
 
         return v;
     }
-
-
 
 }
