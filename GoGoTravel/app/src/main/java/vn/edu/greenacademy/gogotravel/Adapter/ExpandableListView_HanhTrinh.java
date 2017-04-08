@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -80,6 +81,7 @@ public class ExpandableListView_HanhTrinh extends BaseExpandableListAdapter {
             holder.tvNgayDi = (TextView) convertView.findViewById(R.id.tvNgayDi);
             holder.tvTongLike = (TextView) convertView.findViewById(R.id.tvTongLike);
             holder.tvTongAnh = (TextView) convertView.findViewById(R.id.tvTongAnh);
+            convertView.setTag(holder);
         }
         else{
             holder = (HeaderViewHolder) convertView.getTag();
@@ -87,7 +89,8 @@ public class ExpandableListView_HanhTrinh extends BaseExpandableListAdapter {
         holder.tvNgayDi.setText(lstNgayDi.get(groupPosition).getNgayChuyenDi());
         holder.tvTongLike.setText(String.valueOf(lstNgayDi.get(groupPosition).getSoLuotLike()));
         holder.tvTongAnh.setText(String.valueOf(lstNgayDi.get(groupPosition).getSoLuongAnh()));
-
+//        ExpandableListView mExpandableListView = (ExpandableListView) parent;
+//        mExpandableListView.expandGroup(groupPosition);
         return convertView;
     }
 
@@ -103,6 +106,7 @@ public class ExpandableListView_HanhTrinh extends BaseExpandableListAdapter {
             holder.tvDescription = (TextView) convertView.findViewById(R.id.tvDescription);
             holder.tvPhotoItem = (TextView) convertView.findViewById(R.id.tvPhotoItem);
             holder.imvItem = (ImageView) convertView.findViewById(R.id.ImageItem);
+            convertView.setTag(holder);
         }else {
             holder = (ChildrenViewHolder) convertView.getTag();
         }

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,8 +43,8 @@ public class HanhTrinhFragment extends Fragment {
     ExpandableListView_HanhTrinh adapterHanhTrinh;
     ArrayList<NgayChuyenDiTranfers> arrlstNgayDi;
     HashMap<String,ArrayList<DiaDiemChuyenDiTranfers>> lstItems;
-    NgayChuyenDiTranfers lstNgaydi;
-    DiaDiemChuyenDiTranfers lstDiadiem;
+    NgayChuyenDiTranfers Ngaydi;
+    DiaDiemChuyenDiTranfers Diadiem;
     public HanhTrinhFragment() {
         // Required empty public constructor
     }
@@ -68,7 +69,7 @@ public class HanhTrinhFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        adapterHanhTrinh = new ExpandableListView_HanhTrinh(getContext(),arrlstNgayDi,lstItems);
+
         elvHanhTrinh = (ExpandableListView) view.findViewById(R.id.elvHanhTrinh);
 
     }
@@ -80,36 +81,37 @@ public class HanhTrinhFragment extends Fragment {
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("NgayChuyenDiTranfers");
                 for (int i =0; i < jsonArray.length();i++){
-                    lstNgaydi = new NgayChuyenDiTranfers();
+                    Ngaydi = new NgayChuyenDiTranfers();
                     //them data cho ngay di
                     JSONObject objectNgaydi = jsonArray.getJSONObject(i);
-                    lstNgaydi.idNgay = objectNgaydi.getInt("Id");
-                    lstNgaydi.NgayChuyenDi = objectNgaydi.getString("NgayChuyenDi");
-                    lstNgaydi.SoLuotLike = objectNgaydi.getInt("SoLuotLike");
-                    lstNgaydi.SoLuongAnh = objectNgaydi.getInt("SoLuongAnh");
+                    Ngaydi.idNgay = objectNgaydi.getInt("Id");
+                    Ngaydi.NgayChuyenDi = objectNgaydi.getString("NgayChuyenDi");
+                    Ngaydi.SoLuotLike = objectNgaydi.getInt("SoLuotLike");
+                    Ngaydi.SoLuongAnh = objectNgaydi.getInt("SoLuongAnh");
                     //parse array cho diadiem
                     JSONArray jsonDiaDiem = objectNgaydi.getJSONArray("DiaDiemChuyenDiTranfers");
                     //them data cho item dia diem trong ngay di
                     for (int j = 0 ;j<jsonDiaDiem.length();j++){
-                        lstDiadiem = new DiaDiemChuyenDiTranfers();
+                        Diadiem = new DiaDiemChuyenDiTranfers();
                         JSONObject objectDiaDiem = jsonDiaDiem.getJSONObject(j);
-                        lstDiadiem.idChuyenDi = objectDiaDiem.getInt("Id");
-                        lstDiadiem.IdNgayChuyenDi = objectDiaDiem.getInt("IdNgayChuyenDi");
-                        lstDiadiem.IdDiaDiem = objectDiaDiem.getInt("IdDiaDiem");
-                        lstDiadiem.LoaiDiaDiem = objectDiaDiem.getInt("LoaiDiaDiem");
-                        lstDiadiem.NoiDungCheckIn = objectDiaDiem.getString("NoiDungCheckIn");
-                        lstDiadiem.NgayCheckIn = objectDiaDiem.getString("NgayCheckIn");
-                        lstDiadiem.SoLuotLike = objectDiaDiem.getInt("SoLuotLike");
-                        lstDiadiem.SoLuongAnh = objectDiaDiem.getInt("SoLuongAnh");
-                        lstDiadiem.LinkAnh = objectDiaDiem.getString("LinkAnh");
-                        lstDiadiem.Address = objectDiaDiem.getString("Address");
-                        lstDiadiem.TenDiaDiem = objectDiaDiem.getString("TenDiaDiem");
-                        lstItems.put(String.valueOf(lstNgaydi.idNgay),lstNgaydi.arrDiaDiem);
+                        Diadiem.idChuyenDi = objectDiaDiem.getInt("Id");
+                        Diadiem.IdNgayChuyenDi = objectDiaDiem.getInt("IdNgayChuyenDi");
+                        Diadiem.IdDiaDiem = objectDiaDiem.getInt("IdDiaDiem");
+                        Diadiem.LoaiDiaDiem = objectDiaDiem.getInt("LoaiDiaDiem");
+                        Diadiem.NoiDungCheckIn = objectDiaDiem.getString("NoiDungCheckIn");
+                        Diadiem.NgayCheckIn = objectDiaDiem.getString("NgayCheckIn");
+                        Diadiem.SoLuotLike = objectDiaDiem.getInt("SoLuotLike");
+                        Diadiem.SoLuongAnh = objectDiaDiem.getInt("SoLuongAnh");
+                        Diadiem.LinkAnh = objectDiaDiem.getString("LinkAnh");
+                        Diadiem.Address = objectDiaDiem.getString("Address");
+                        Diadiem.TenDiaDiem = objectDiaDiem.getString("TenDiaDiem");
+                        lstItems.put(String.valueOf(Ngaydi.idNgay),Ngaydi.arrDiaDiem);
                     }
-                    arrlstNgayDi.add(lstNgaydi);
+                    arrlstNgayDi.add(Ngaydi);
                 }
                 int status = jsonObject.getInt("Status");
                 String description = jsonObject.getString("Description");
+                adapterHanhTrinh = new ExpandableListView_HanhTrinh(getContext(),arrlstNgayDi,lstItems);
                 elvHanhTrinh.setAdapter(adapterHanhTrinh);
                 elvHanhTrinh.setGroupIndicator(null);
             } catch (JSONException e) {
