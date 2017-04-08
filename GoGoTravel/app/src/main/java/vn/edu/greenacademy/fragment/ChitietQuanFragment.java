@@ -13,24 +13,11 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.LinkedList;
-import java.util.List;
 
-import vn.edu.greenacademy.adapter.QuanNearAdapter;
 import vn.edu.greenacademy.gogotravel.R;
-import vn.edu.greenacademy.model.QuanAn;
 
 /**
  * A simple {@link Fragment} subclass.

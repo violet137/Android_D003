@@ -127,7 +127,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        Intent intent;
+        Intent intent=null;
         switch (view.getId()){
             case R.id.btnReset:
 //                intent = new Intent(LoginActivity.this,ResetActivity.class);
@@ -140,11 +140,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //                intent = new Intent(LoginActivity.this,FacebookActivity.class);
                 break;
             case R.id.btnGoogle:
-                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-                startActivityForResult(signInIntent, Constant.SIGN_IN_GG);
+                intent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+                startActivityForResult(intent, Constant.SIGN_IN_GG);
                 break;
             case R.id.btnSignup:
-//                intent = new Intent(LoginActivity.this,SignupActivity.class);
+                intent = new Intent(LoginActivity.this,DangKyActivity.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -294,7 +295,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 String description = jsonObject.getString("Description");
 
                 if(status == 1){
-                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this,QuanAnActivity.class);
                     startActivity(intent);
                 }else if(status == 0){
                     Toast.makeText(LoginActivity.this,"Sai username/password",Toast.LENGTH_LONG).show();

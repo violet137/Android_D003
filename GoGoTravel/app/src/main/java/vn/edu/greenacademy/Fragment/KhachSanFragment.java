@@ -1,4 +1,4 @@
-package vn.edu.greenacademy.Fragment;
+package vn.edu.greenacademy.fragment;
 
 
 import android.os.Bundle;

@@ -16,10 +16,7 @@
         android:theme="@style/AppTheme"
         android:name="android.support.multidex.MultiDexApplication">
 
-        <activity android:name=".LoginFacebookActivity"/>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".QuanAnActivity">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".QuanAnActivity"></activity>
         <activity android:name=".DangKyActivity">
         </activity>
         <activity android:name=".KhachSanActivity">
