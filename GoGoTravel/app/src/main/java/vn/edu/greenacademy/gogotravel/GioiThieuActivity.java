@@ -32,7 +32,7 @@ public class GioiThieuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.gioithieu_activity);
         viewPager = (ViewPager) findViewById(R.id.view);
         btnNext = (Button) findViewById(R.id.btnNext);
 
