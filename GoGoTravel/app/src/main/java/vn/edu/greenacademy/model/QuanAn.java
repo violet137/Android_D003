@@ -1,4 +1,4 @@
-package vn.edu.greenacademy.model;
+package vn.edu.greenacademy.Model;
 
 /**
  * Created by MSI on 3/25/2017.

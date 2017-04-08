@@ -1,4 +1,4 @@
-package vn.edu.greenacademy.model;
+package vn.edu.greenacademy.Model;
 
 /**
  * Created by User on 3/17/2017.

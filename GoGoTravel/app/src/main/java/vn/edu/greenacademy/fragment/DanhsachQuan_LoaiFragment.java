@@ -1,4 +1,4 @@
-package vn.edu.greenacademy.fragment;
+package vn.edu.greenacademy.Fragment;
 
 
 import android.os.AsyncTask;
@@ -25,9 +25,9 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 
-import vn.edu.greenacademy.adapter.QuanNearAdapter;
+import vn.edu.greenacademy.Adapter.QuanNearAdapter;
 import vn.edu.greenacademy.gogotravel.R;
-import vn.edu.greenacademy.model.QuanAn;
+import vn.edu.greenacademy.Model.QuanAn;
 
 /**
  * A simple {@link Fragment} subclass.

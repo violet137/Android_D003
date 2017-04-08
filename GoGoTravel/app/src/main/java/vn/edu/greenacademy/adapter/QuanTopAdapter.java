@@ -1,4 +1,4 @@
-package vn.edu.greenacademy.adapter;
+package vn.edu.greenacademy.Adapter;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vn.edu.greenacademy.gogotravel.R;
-import vn.edu.greenacademy.model.QuanAn;
+import vn.edu.greenacademy.Model.QuanAn;
 
 /**
  * Created by MSI on 3/25/2017.

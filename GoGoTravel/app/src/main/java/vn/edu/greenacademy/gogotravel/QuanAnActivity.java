@@ -4,7 +4,7 @@ package vn.edu.greenacademy.gogotravel;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import vn.edu.greenacademy.fragment.QuanAnFragment;
+import vn.edu.greenacademy.Fragment.QuanAnFragment;
 
 public class QuanAnActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package vn.edu.greenacademy.fragment;
+package vn.edu.greenacademy.Fragment;
 
 
 import android.os.AsyncTask;
@@ -31,12 +31,11 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 
-import vn.edu.greenacademy.adapter.LoaiQuanAdapter;
-import vn.edu.greenacademy.adapter.QuanNearAdapter;
-import vn.edu.greenacademy.adapter.QuanTopAdapter;
+import vn.edu.greenacademy.Adapter.LoaiQuanAdapter;
+import vn.edu.greenacademy.Adapter.QuanNearAdapter;
+import vn.edu.greenacademy.Adapter.QuanTopAdapter;
 import vn.edu.greenacademy.gogotravel.R;
-import vn.edu.greenacademy.model.LoaiQuan;
-import vn.edu.greenacademy.model.QuanAn;
+import vn.edu.greenacademy.Model.*;
 
 
 /**
@@ -47,6 +46,7 @@ public class QuanAnFragment extends Fragment {
     ListView list3;
     ScrollView scrollView;
     Button btnAll;
+    static int id;
 
     private static QuanAnFragment instance;
     public static QuanAnFragment getInstance(){
@@ -60,6 +60,10 @@ public class QuanAnFragment extends Fragment {
 
     public QuanAnFragment() {
         // Required empty public constructor
+    }
+
+    public static void setId(int id) {
+        QuanAnFragment.id = id;
     }
 
 
