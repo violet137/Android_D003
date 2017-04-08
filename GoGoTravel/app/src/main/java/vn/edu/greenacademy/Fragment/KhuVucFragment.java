@@ -106,7 +106,11 @@ public class KhuVucFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 KhuVuc khuVuc = arrKhuVuc.get(position);
-                detail = DetailFragment.getInstance();
+                if (detail.isAdded()){
+                    showFragment(detailFragment);
+                }else {
+                    detail = DetailFragment.getInstance();
+                }
                 Bundle bundle = new Bundle();
                 bundle.putInt("khuvuc",khuVuc.Id);
                 detail.setArguments(bundle);
@@ -132,6 +136,14 @@ public class KhuVucFragment extends Fragment implements View.OnClickListener {
         FragmentManager manager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.flKhuVuc, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    public void showFragment(Fragment fragment){
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.show(fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
