@@ -3,4 +3,33 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dangky">Đăng ký</string>
+    <string name="boloc">Bộ lọc</string>
+
+    <string name="khong_nhap_du_thong_tin">"Vui lòng nhập đầy đủ thông tin!"</string>
+    <string name="thong_bao_kiem_tra_mat_khau">"Mật khẩu phải có từ 6-12 kí tự!"</string>
+    <string name="thanh_cong">"Đăng ký tài khoản thành công!"</string>
+    <string name="that_bai">"Đăng ký không thành công. Vui lòng xem lại thông tin vừa nhập!"</string>
+
+    <string-array name="danh_sach_bo_loc">
+        <item>Không lọc</item>
+        <item>Điểm</item>
+        <item>Số lượt check in</item>
+        <item>Số lượt yêu thích</item>
+        <item>Mới nhất</item>
+        <item>Gần tôi</item>
+    </string-array>
+
+    <string name="title_dialog">Bạn muốn lọc theo:</string>
+    <string name="positive_button">OK</string>
+    <string name="negative_button">Cancel</string>
+
+    <string name="detail_yeuthich">Yêu thích</string>
+    <string name="detail_checkin">Check-in</string>
+    <string name="detail_xem">Số lượt xem</string>
+    <string name="detail_hinhanh">Hình ảnh</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

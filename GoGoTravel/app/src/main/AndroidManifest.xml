@@ -3,13 +3,18 @@
     package="vn.edu.greenacademy.gogotravel">
     <uses-permission android:name="android.permission.INTERNET"/>
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:label="Go Go Travel"
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".DangKyActivity"></activity>
+        <activity android:name=".KhachSanActivity">
+            //chuyen intent-filter xuong de activity chay truoc
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
