@@ -79,7 +79,8 @@ public class SDCardApdapter extends BaseAdapter {
 //            ivSDCard = (ImageView) view;
             holder = (CatalogHolder) view.getTag();
         }
-        holder.ivSDCard.setImageBitmap(BitmapFactory.decodeFile(itemList.get(position)));
+        Bitmap bitmap = BitmapFactory.decodeFile(itemList.get(position));
+        holder.ivSDCard.setImageBitmap(Bitmap.createScaledBitmap(bitmap,90,100,true));
         holder.cbCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -97,6 +98,19 @@ public class SDCardApdapter extends BaseAdapter {
 //        return ivSDCard;
         return view;
 
+    }
+
+    public SDCardApdapter(final int position){
+        ImageView ivSDCard;
+
+        ivSDCard = new ImageView(mContext);
+            ivSDCard.setLayoutParams(new GridView.LayoutParams(220,220));
+            ivSDCard.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            ivSDCard.setPadding(8,8,8,8);
+
+        Bitmap bm = decodeSampleBitmapGromUri(itemList.get(position),220,220);
+        ivSDCard.setImageBitmap(bm);
+        return ;
     }
 
 

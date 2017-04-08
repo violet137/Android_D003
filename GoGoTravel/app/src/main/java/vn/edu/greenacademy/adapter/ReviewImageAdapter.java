@@ -2,6 +2,7 @@ package vn.edu.greenacademy.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,7 +64,10 @@ public class ReviewImageAdapter extends BaseAdapter {
         }else{
             holder = (CatalogHolder) view.getTag();
         }
-        holder.imageView.setImageBitmap(datas.get(position));
+
+        Bitmap bitmap = datas.get(position);
+        holder.imageView.setImageBitmap(Bitmap.createScaledBitmap(bitmap,100,100,true));
+//        holder.imageView.setImageBitmap(datas.get(position));
 
         return view;
     }
