@@ -8,7 +8,9 @@
         android:label="Go Go Travel"
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name="android.support.multidex.MultiDexApplication">
+
         <activity android:name=".KhachSanActivity"></activity>
         <activity android:name=".DangKyActivity"></activity>
         <activity android:name=".MainActivity">
