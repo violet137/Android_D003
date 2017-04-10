@@ -16,13 +16,16 @@
         android:theme="@style/AppTheme">
         <activity android:name=".KhachSanActivity"></activity>
         <activity android:name=".DangKyActivity"></activity>
-        <activity android:name=".GioiThieuActivity" />
-        <activity android:name=".ManHinhChoActivity">
+        <activity android:name=".GioiThieuActivity"></activity>
         <activity android:name=".QuanAnActivity"></activity>
-            //chuyen intent-filter xuong de activity chay truoc
-        </activity>
+        <!--<activity android:name=".ManHinhChoActivity"></activity>-->
+        <!--<activity android:name=".MainActivity">-->
+        <!--<activity android:name=".LoginActivity"></activity>-->
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".ManHinhChoActivity"></activity>
         <activity android:name=".LoginActivity">
-            <intent-filter>
+
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />

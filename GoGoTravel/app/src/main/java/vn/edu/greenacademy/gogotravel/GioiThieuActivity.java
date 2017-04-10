@@ -22,13 +22,6 @@ public class GioiThieuActivity extends AppCompatActivity {
     ViewPager viewPager;
     private MyAdapter mAdapter;
     Button btnNext;
-
-
-
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +39,7 @@ public class GioiThieuActivity extends AppCompatActivity {
                     btnNext.setText("Bắt đầu");
                 }
                 if (viewPager.getCurrentItem()==3){
-                    Intent intent = new Intent(GioiThieuActivity.this, CameraActivity.class);
+                    Intent intent = new Intent(GioiThieuActivity.this, LoginActivity.class);
                     GioiThieuActivity.this.startActivity(intent);
                 }else{
                     viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
@@ -54,10 +47,4 @@ public class GioiThieuActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
-
-
-
 }

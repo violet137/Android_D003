@@ -30,7 +30,6 @@ public class ManHinhChoActivity extends AppCompatActivity {
         public void run() {
             Intent intent = new Intent(ManHinhChoActivity.this, GioiThieuActivity.class);
             startActivity(intent);
-
         }
     };
 

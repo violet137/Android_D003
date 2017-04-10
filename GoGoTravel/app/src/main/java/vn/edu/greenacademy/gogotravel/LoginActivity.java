@@ -45,6 +45,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import vn.edu.greenacademy.Fragment.KhuVucFragment;
 import vn.edu.greenacademy.Unitl.Constant;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener,GoogleApiClient.OnConnectionFailedListener {
@@ -109,6 +110,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onSuccess(LoginResult loginResult) {
                 new LoginFacebookGoogle().execute(loginResult.getAccessToken().getUserId(),"","1");
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                LoginActivity.this.startActivity(intent);
             }
             @Override
             public void onCancel() {
@@ -120,9 +123,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Toast.makeText(LoginActivity.this,"Fail",Toast.LENGTH_LONG).show();
             }
         });
-
-
-
     }
 
     @Override
@@ -131,17 +131,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (view.getId()){
             case R.id.btnReset:
 //                intent = new Intent(LoginActivity.this,ResetActivity.class);
+                etPass.setText("");
+                etUser.setText("");
                 break;
             case R.id.btnLogin:
                 new Dangnhap().execute(etUser.getText().toString(),etPass.getText().toString());
-                intent = new Intent(LoginActivity.this,MainActivity.class);
-                startActivity(intent);
                 break;
             case R.id.btnFacebook:
                 btnLogInFacebook.performClick();
-//                intent = new Intent(LoginActivity.this,FacebookActivity.class);
                 break;
             case R.id.btnGoogle:
+                showProgressDialog();
                 intent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
                 startActivityForResult(intent, Constant.SIGN_IN_GG);
                 break;
@@ -188,8 +188,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            Intent intent = new Intent(LoginActivity.this,QuanAnActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(LoginActivity.this,QuanAnActivity.class);
+            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            LoginActivity.this.startActivity(intent);
         }
 
         @Override
@@ -297,8 +298,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 String description = jsonObject.getString("Description");
 
                 if(status == 1){
-                    Intent intent = new Intent(LoginActivity.this,QuanAnActivity.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(LoginActivity.this,QuanAnActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    LoginActivity.this.startActivity(intent);
                 }else if(status == 0){
                     Toast.makeText(LoginActivity.this,"Sai username/password",Toast.LENGTH_LONG).show();
                 }
@@ -310,7 +312,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void loginGoogle(GoogleSignInResult result) {
         if (result.isSuccess()) {
-
             // Login thành công
             final GoogleSignInAccount acct = result.getSignInAccount();
 //            String personName = acct.getDisplayName();
@@ -320,6 +321,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             String id = acct.getId();
 
             new LoginFacebookGoogle().execute(id,"","2");
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            LoginActivity.this.startActivity(intent);
         }
     }
     private void showProgressDialog() {
@@ -328,7 +331,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             mProgressDialog.setMessage(getString(R.string.loading));
             mProgressDialog.setIndeterminate(true);
         }
-
         mProgressDialog.show();
     }
 
@@ -346,4 +348,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //                    }
 //                });
 //    }
+
 }

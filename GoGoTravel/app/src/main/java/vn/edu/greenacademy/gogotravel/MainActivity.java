@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
         flMain = (FrameLayout) findViewById(R.id.flMain);
         khuVucFragment = KhuVucFragment.getInstance();

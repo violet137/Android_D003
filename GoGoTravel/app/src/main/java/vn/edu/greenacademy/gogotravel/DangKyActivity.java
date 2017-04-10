@@ -1,5 +1,6 @@
 package vn.edu.greenacademy.gogotravel;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -130,6 +131,8 @@ public class DangKyActivity extends AppCompatActivity {
                 int status = response.getInt("Status");
                 if(status == 1){
                     XuatThongBao(getString(R.string.thanh_cong));
+                    Intent it = new Intent(DangKyActivity.this, LoginActivity.class);
+                    startActivity(it);
                 }
                else {
                     XuatThongBao(getString(R.string.that_bai));
