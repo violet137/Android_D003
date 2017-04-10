@@ -4,9 +4,11 @@ package vn.edu.greenacademy.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -27,8 +29,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import vn.edu.greenacademy.Adapter.KhachSanAdapter;
-import vn.edu.greenacademy.gogotravel.R;
 import vn.edu.greenacademy.Model.KhachSans;
+import vn.edu.greenacademy.gogotravel.R;
 
 
 /**
@@ -53,7 +55,7 @@ public class KhachSanFragment extends Fragment {
     }
 
     public static void setId(int ids) {
-        DiaDiemFragment.id = ids;
+        KhachSanFragment.id = ids;
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,7 +67,7 @@ public class KhachSanFragment extends Fragment {
         listViewKhachSan = (ListView) view.findViewById(R.id.listViewKhachSan);
 
 //        new AllKhachSan().execute();
-        new KhachSanByKhuVuc().execute(id);
+        new KhachSanByKhuVuc().execute();
 //        btnBoLoc.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -116,20 +118,20 @@ public class KhachSanFragment extends Fragment {
 //                dialog.show();
 //            }
 //        });
-//        listViewKhachSan.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                KhachSans tempKhachSan = listHotel.get(position);
-//                Fragment fragment = new DetailKhachSanFragment();
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable("KhachSan",tempKhachSan);
-//                fragment.setArguments(bundle);
-//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                transaction.replace(android.R.id.content, fragment);
-//                transaction.addToBackStack(null);
-//                transaction.commit();
-//            }
-//        });
+        listViewKhachSan.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                KhachSans tempKhachSan = listHotel.get(position);
+                Fragment fragment = new DetailKhachSanFragment();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("KhachSan",tempKhachSan);
+                fragment.setArguments(bundle);
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(android.R.id.content, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
         return view;
     }
 
@@ -218,12 +220,12 @@ public class KhachSanFragment extends Fragment {
         }
     }
 
-    class KhachSanByKhuVuc extends AsyncTask<Integer, Void, String> {
+    class KhachSanByKhuVuc extends AsyncTask<String, String, String> {
 
         @Override
-        protected String doInBackground(Integer... params) {
+        protected String doInBackground(String... params) {
             try {
-                URL url = new URL("http://103.237.147.137:9045/KhachSan/KhachSanByKhuVuc?idKhuVuc=" + params[0]);
+                URL url = new URL("http://103.237.147.137:9045/KhachSan/KhachSanByKhuVuc?idKhuVuc=" + id);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.addRequestProperty("Accept", "text/json");
                 connection.addRequestProperty("Content-Type", "application/json");
@@ -246,7 +248,7 @@ public class KhachSanFragment extends Fragment {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return "";
+            return null;
         }
 
         @Override
@@ -294,6 +296,9 @@ public class KhachSanFragment extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            adapter = new KhachSanAdapter(getContext(), R.layout.item_khachsan_layout, listHotel);
+            listViewKhachSan.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
         }
 
     }

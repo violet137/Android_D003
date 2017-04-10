@@ -5,14 +5,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
-import android.widget.FrameLayout;
 
 import java.util.LinkedList;
 import java.util.List;
 
+import vn.edu.greenacademy.Fragment.DanhsachQuan_LoaiFragment;
 import vn.edu.greenacademy.Fragment.DiaDiemFragment;
 import vn.edu.greenacademy.Fragment.KhachSanFragment;
-import vn.edu.greenacademy.Fragment.QuanAnFragment;
 import vn.edu.greenacademy.Until.Constant;
 
 /**
@@ -41,14 +40,13 @@ public class SwipeDetailKhuVuc extends FragmentStatePagerAdapter {
         fragmentTransaction = fm.beginTransaction();
         DiaDiemFragment.setId(id);
         KhachSanFragment.setId(id);
-        QuanAnFragment.setId(id);
+        DanhsachQuan_LoaiFragment.setId(id);
     }
 
     @Override
     public Fragment getItem(int position) {
         Fragment fragment = new Fragment();
         switch (position){
-
             case 0:
                 fragment = DiaDiemFragment.getInstance();
 //                fragment = DiaDiemFragment.getInstance();
@@ -65,7 +63,7 @@ public class SwipeDetailKhuVuc extends FragmentStatePagerAdapter {
 //                }
                 break;
             case 2:
-                fragment = QuanAnFragment.getInstance();
+                fragment = DanhsachQuan_LoaiFragment.getInstance();
 //                if (fragment.isAdded()){
 //                    fragmentTransaction.show(fragment);
 //                }else {

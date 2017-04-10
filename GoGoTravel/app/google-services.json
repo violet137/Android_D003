@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "1013531893746",
-    "project_id": "project-gogo-travel"
+    "project_number": "228935029373",
+    "project_id": "firebase-gogotravel"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1013531893746:android:2e1ff242d7c30d18",
+        "mobilesdk_app_id": "1:228935029373:android:2e1ff242d7c30d18",
         "android_client_info": {
           "package_name": "vn.edu.greenacademy.gogotravel"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1013531893746-a4d7snehh2bco44ap7v78lra2mv8sejd.apps.googleusercontent.com",
+          "client_id": "228935029373-cpublmuh5ri3ct4skh0ms39ibfsa3v6l.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "vn.edu.greenacademy.gogotravel",
-            "certificate_hash": "5bc9cb577c4dcfc0210fa79802ac062afa1fa0ce"
+            "certificate_hash": "e3b33a941d936899ceb4faf344d11dc995d19941"
           }
         },
         {
-          "client_id": "1013531893746-7url5ai1fmakeet8dj9ld87gi0dp9kto.apps.googleusercontent.com",
+          "client_id": "228935029373-3kvht98at2k0k7rhjjujbd8fthmu8nb2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDCJapyVCddEj85f_UiIf86P1Obl0PH3BE"
+          "current_key": "AIzaSyBL32uGvTylxzKi98ksebFdt3kghoH4P0c"
         }
       ],
       "services": {

@@ -2,11 +2,10 @@ package vn.edu.greenacademy.gogotravel;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,11 +24,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,7 +42,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import vn.edu.greenacademy.Fragment.KhuVucFragment;
 import vn.edu.greenacademy.Unitl.Constant;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener,GoogleApiClient.OnConnectionFailedListener {
@@ -55,7 +51,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     ImageView ivLogo;
     LoginButton btnLogInFacebook;
     private CallbackManager callbackManager;
-    private GoogleApiClient mGoogleApiClient;
+    public static GoogleApiClient mGoogleApiClient;
     private ProgressDialog mProgressDialog;
 
     @Override
@@ -160,6 +156,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             // Giũ đăng nhập
             GoogleSignInResult result = opr.get();
             loginGoogle(result);
+//            signOut();
         } else {
             // Khi logout
             showProgressDialog();
@@ -189,8 +186,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 //            Intent intent = new Intent(LoginActivity.this,QuanAnActivity.class);
-            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-            LoginActivity.this.startActivity(intent);
+
         }
 
         @Override
@@ -215,7 +211,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 OutputStream outputStream = connection.getOutputStream();
                 DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
                 dataOutputStream.writeBytes(jsonObject.toString());
-
                 connection.connect();
 
                 if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
@@ -319,9 +314,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //            String email = acct.getEmail();
             //id đăng ký account
             String id = acct.getId();
-
             new LoginFacebookGoogle().execute(id,"","2");
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
             LoginActivity.this.startActivity(intent);
         }
     }
@@ -339,7 +333,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             mProgressDialog.hide();
         }
     }
-//    private void signOut() {
+//    public void signOut() {
 //        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
 //                new ResultCallback<Status>() {
 //                    @Override

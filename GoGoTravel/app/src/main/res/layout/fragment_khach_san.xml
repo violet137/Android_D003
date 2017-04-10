@@ -1,7 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cardview_light_background"
     tools:context="vn.edu.greenacademy.Fragment.KhachSanFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -12,17 +14,17 @@
         android:orientation="vertical">
 
         <Button
-            android:text="@string/boloc"
+            android:id="@+id/btnBoLoc"
             style="@style/button_style"
-            android:textAllCaps="false"
-            android:id="@+id/btnBoLoc" />
+            android:text="@string/boloc"
+            android:textAllCaps="false" />
 
         <ListView
+            android:id="@+id/listViewKhachSan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/listViewKhachSan"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true" />
 
     </LinearLayout>
 

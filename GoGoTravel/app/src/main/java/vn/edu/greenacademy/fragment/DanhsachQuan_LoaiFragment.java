@@ -34,10 +34,7 @@ import vn.edu.greenacademy.Model.QuanAn;
  */
 public class DanhsachQuan_LoaiFragment extends Fragment {
     ListView listloai;
-    int id;
-
-
-
+    static int id;
 
     private static DanhsachQuan_LoaiFragment instance;
     public static DanhsachQuan_LoaiFragment getInstance(){
@@ -48,7 +45,9 @@ public class DanhsachQuan_LoaiFragment extends Fragment {
         return instance;
     }
 
-
+    public static void setId(int ids) {
+        DanhsachQuan_LoaiFragment.id = ids;
+    }
 
     public DanhsachQuan_LoaiFragment() {
         // Required empty public constructor
@@ -58,8 +57,7 @@ public class DanhsachQuan_LoaiFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Bundle bundle = getArguments();
-        id = bundle.getInt("id");
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_danhsach_quan__loai, container, false);
         listloai = (ListView)view.findViewById(R.id.list_loai);

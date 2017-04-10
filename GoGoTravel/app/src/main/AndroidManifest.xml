@@ -18,12 +18,9 @@
         <activity android:name=".DangKyActivity"></activity>
         <activity android:name=".GioiThieuActivity"></activity>
         <activity android:name=".QuanAnActivity"></activity>
-        <!--<activity android:name=".ManHinhChoActivity"></activity>-->
-        <!--<activity android:name=".MainActivity">-->
-        <!--<activity android:name=".LoginActivity"></activity>-->
         <activity android:name=".MainActivity"></activity>
-        <activity android:name=".ManHinhChoActivity"></activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".ManHinhChoActivity">
 
         <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -106,18 +106,13 @@ public class KhuVucFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 KhuVuc khuVuc = arrKhuVuc.get(position);
-                if (detail.isAdded()){
-                    showFragment(detailFragment);
-                }else {
-                    detail = DetailFragment.getInstance();
-                }
                 Bundle bundle = new Bundle();
                 bundle.putInt("khuvuc",khuVuc.Id);
-                detail.setArguments(bundle);
+                detailFragment.setArguments(bundle);
                 if (checkReload > 1){
-                    detail.onResume();
+                    detailFragment.onResume();
                 }
-                callFragment(detail);
+                callFragment(detailFragment);
                 dataKhuVuc.cancel(true);
                 Toast.makeText(getActivity(),"1",Toast.LENGTH_LONG).show();
             }
@@ -135,33 +130,34 @@ public class KhuVucFragment extends Fragment implements View.OnClickListener {
     public void callFragment(Fragment fragment){
         FragmentManager manager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.flRelativeLayout, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    public void call(Fragment fragment){
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.flKhuVuc, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
 
-    public void showFragment(Fragment fragment){
-        FragmentManager manager = getActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.show(fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.ibHome:
-                callFragment(khuVucFragment);
+                call(khuVucFragment);
                 break;
             case R.id.ibBanDo:
-                callFragment(banDoFragment);
+                call(banDoFragment);
                 break;
             case R.id.ibhanhTrinh:
-                callFragment(hanhTrinhFragment);
+                call(hanhTrinhFragment);
                 break;
             case R.id.ibTaiKhoan:
-                callFragment(taiKhoanFragment);
+                call(taiKhoanFragment);
                 break;
         }
     }
@@ -253,5 +249,65 @@ public class KhuVucFragment extends Fragment implements View.OnClickListener {
             e.printStackTrace();
         }
     }
+
+//    Fragment f = mManager.findFragmentById(R.id.fragment_id);
+//if(f != null && f instanceof FragmentClassName) {
+//        //Fragment already exists
+//    } else {
+//        //Add Fragment
+//    }
+
+//    public void onClick(View v) {
+//        FragmentManager fm = getFragmentManager();
+//        FragmentBoxOffice f = (FragmentBoxOffice) fm.findFragmentByTag(FragmentBoxOffice.TAG);
+//        if (f == null) {
+//            f = new FragmentBoxOffice();
+//            fm.beginTransaction()
+//                    .replace(R.id.fragment_container, f, FragmentBoxOffice.TAG)
+//                    //.addToBackStack(null);  // uncomment this line if you want to be able to return to the prev. fragment with "back" button
+//                    .commit();
+//        }
+//    }
+
+    //----
+
+//    down vote
+//    accepted
+//    you can replace fragment by FragmentTransaction.
+//
+//    Here you go.
+//
+//    Make an interface.
+//
+//    public interface FragmentChangeListener
+//    {
+//        public void replaceFragment(Fragment fragment);
+//    }
+//implements your Fragment holding activity with this interface.
+//
+//    public class HomeScreen extends FragmentActivity implements
+//            FragmentChangeListener {
+//
+//
+//        @Override
+//        public void replaceFragment(Fragment fragment) {
+//            FragmentManager fragmentManager = getSupportFragmentManager();;
+//            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//            fragmentTransaction.replace(mContainerId, fragment, fragment.toString());
+//            fragmentTransaction.addToBackStack(fragment.toString());
+//            fragmentTransaction.commit();
+//        }
+//
+//    }
+//    Call this method from Fragments like this.
+//
+////In your fragment.
+//
+//    public void showOtherFragment()
+//    {
+//        Fragment fr=new NewDisplayingFragment();
+//        FragmentChangeListener fc=(FragmentChangeListener)getActivity();
+//        fc.replaceFragment(fr);
+//    }
 
 }

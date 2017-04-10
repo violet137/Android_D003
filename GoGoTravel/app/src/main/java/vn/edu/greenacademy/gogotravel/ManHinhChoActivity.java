@@ -1,18 +1,17 @@
 package vn.edu.greenacademy.gogotravel;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.style.BackgroundColorSpan;
 import android.widget.ImageView;
-
-import vn.edu.greenacademy.Fragment.Hinh1Fragment;
 
 public class ManHinhChoActivity extends AppCompatActivity {
     ImageView ivCho;
 
     private Handler handler = new Handler();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +22,8 @@ public class ManHinhChoActivity extends AppCompatActivity {
         ivCho.setImageResource(R.drawable.flash_screen);
 
         handler.postDelayed(updateTime,2000);
+
+
     }
 
     private Runnable updateTime = new Runnable() {

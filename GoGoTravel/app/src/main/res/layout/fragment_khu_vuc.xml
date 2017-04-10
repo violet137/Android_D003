@@ -1,64 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/flRelativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cardview_shadow_start_color"
     tools:context="vn.edu.greenacademy.Fragment.KhuVucFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <FrameLayout
         android:id="@+id/flKhuVuc"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ListView
             android:id="@+id/lvkhuVuc"
             android:layout_width="match_parent"
-            android:layout_height="504dp"
+            android:layout_height="514dp"
             android:layout_alignParentStart="true" />
 
-        <LinearLayout
-            android:id="@+id/llHome"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="@android:color/background_light"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/ibHome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                app:srcCompat="@drawable/home_main" />
-
-            <ImageButton
-                android:id="@+id/ibBanDo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                app:srcCompat="@drawable/ban_do" />
-
-            <ImageButton
-                android:id="@+id/ibhanhTrinh"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                app:srcCompat="@drawable/hanh_trinh" />
-
-            <ImageButton
-                android:id="@+id/ibTaiKhoan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                app:srcCompat="@drawable/tai_khoan" />
-
-        </LinearLayout>
     </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/llHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/flKhuVuc"
+        android:background="@android:color/transparent"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/ibHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/home_main" />
+
+        <ImageButton
+            android:id="@+id/ibBanDo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/ban_do" />
+
+        <ImageButton
+            android:id="@+id/ibhanhTrinh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/hanh_trinh" />
+
+        <ImageButton
+            android:id="@+id/ibTaiKhoan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/tai_khoan" />
+
+    </LinearLayout>
 
 </RelativeLayout>

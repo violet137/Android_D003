@@ -4,8 +4,6 @@ package vn.edu.greenacademy.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +28,6 @@ public class DetailFragment extends Fragment {
     Button btnBack;
     FrameLayout flDetail;
 
-    KhuVucFragment khuVucFragment;
 
 
     public static DetailFragment instance;
@@ -57,7 +54,6 @@ public class DetailFragment extends Fragment {
         btnBack = (Button) v.findViewById(R.id.btnBack);
         flDetail = (FrameLayout) v.findViewById(R.id.flDetail);
         Toast.makeText(getActivity(),"2",Toast.LENGTH_LONG).show();
-        khuVucFragment = KhuVucFragment.getInstance();
 
         Bundle bundle = this.getArguments();
         id = bundle.getInt("khuvuc");
@@ -70,6 +66,15 @@ public class DetailFragment extends Fragment {
         tabLayout.getTabAt(1).setIcon(R.drawable.hotel);
         tabLayout.getTabAt(2).setIcon(R.drawable.quan_an);
 
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(),"3",Toast.LENGTH_LONG).show();
+                getFragmentManager().popBackStack();
+                mViewPager.removeAllViewsInLayout();
+                tabLayout.removeAllViewsInLayout();
+            }
+        });
         return v;
     }
 
@@ -85,15 +90,7 @@ public class DetailFragment extends Fragment {
         tabLayout.getTabAt(0).setIcon(R.drawable.ban_do);
         tabLayout.getTabAt(1).setIcon(R.drawable.hotel);
         tabLayout.getTabAt(2).setIcon(R.drawable.quan_an);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getActivity(),"3",Toast.LENGTH_LONG).show();
-                getFragmentManager().popBackStack();
-                mViewPager.removeAllViewsInLayout();
-                tabLayout.removeAllViewsInLayout();
-            }
-        });
+
     }
 
 //    public void callFragment(Fragment fragment){

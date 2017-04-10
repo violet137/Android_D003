@@ -4,8 +4,6 @@ package vn.edu.greenacademy.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +36,7 @@ public class DiaDiemFragment extends Fragment {
     ArrayList<DiaDiem> arrDiaDiem;
     DiaDiemAdapter diaDiemAdapter;
     ListView lvDiaDiem;
-    static int id, index;
+    static int id;
     View v;
 
     getDiaDiem dataDiaDiem;
@@ -78,34 +76,22 @@ public class DiaDiemFragment extends Fragment {
 
         arrDiaDiem = new ArrayList<>();
         lvDiaDiem = (ListView) v.findViewById(R.id.lvDiaDiem);
-
+        dataDiaDiem = new getDiaDiem(v);
+        dataDiaDiem.execute();
         return v;
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        index = id;
-        refreshView();
-    }
-
-    public void refreshView(){
-        dataDiaDiem = new getDiaDiem(v);
-        dataDiaDiem.execute(index);
-    }
+//
+//    public void callFragment(Fragment fragment, Fragment fragment2){
+//        FragmentManager manager = getActivity().getSupportFragmentManager();
+//        FragmentTransaction transaction = manager.beginTransaction();
+//        transaction.replace(R.id.flKhuVuc, fragment2);
+//        transaction.addToBackStack(null);
+//        transaction.remove(fragment);
+//        transaction.commit();
+//    }
 
 
-    public void callFragment(Fragment fragment, Fragment fragment2){
-        FragmentManager manager = getActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.flKhuVuc, fragment2);
-        transaction.addToBackStack(null);
-        transaction.remove(fragment);
-        transaction.commit();
-    }
-
-
-    public class getDiaDiem extends AsyncTask<Integer, String, String> {
+    public class getDiaDiem extends AsyncTask<String, String, String> {
 
         View view;
 
@@ -114,9 +100,9 @@ public class DiaDiemFragment extends Fragment {
         }
 
         @Override
-        protected String doInBackground(Integer... params) {
+        protected String doInBackground(String... params) {
             try {
-                URL url = new URL("http://103.237.147.137:9045/DiaDiem/DiaDiemById?idKhuVuc="+params[0]);
+                URL url = new URL("http://103.237.147.137:9045/DiaDiem/DiaDiemById?idKhuVuc="+id);
                 con = (HttpURLConnection) url.openConnection();
                 con.addRequestProperty("Accept", "text/json");
                 con.addRequestProperty("Content-Type", "application/json");
@@ -167,11 +153,13 @@ public class DiaDiemFragment extends Fragment {
                     diaDiem.checkIn = obj.getInt("CheckIn");
                     arrDiaDiem.add(diaDiem);
                 }
-                diaDiemAdapter = new DiaDiemAdapter(getActivity(), R.layout.item_dia_diem, arrDiaDiem);
-                lvDiaDiem.setAdapter(diaDiemAdapter);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            diaDiemAdapter = new DiaDiemAdapter(getActivity(), R.layout.item_dia_diem, arrDiaDiem);
+
+            lvDiaDiem.setAdapter(diaDiemAdapter);
+            diaDiemAdapter.notifyDataSetChanged();
         }
     }
 
