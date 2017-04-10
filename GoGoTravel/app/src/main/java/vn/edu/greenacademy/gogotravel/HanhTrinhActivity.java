@@ -21,7 +21,5 @@ public class HanhTrinhActivity extends AppCompatActivity {
         ft.replace(R.id.fragment_hanhtrinh,hanhtrinhFragment);
         ft.addToBackStack(null);
         ft.commit();
-
-
     }
 }

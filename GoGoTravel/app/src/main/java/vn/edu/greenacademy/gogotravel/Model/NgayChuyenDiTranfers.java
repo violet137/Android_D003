@@ -11,7 +11,7 @@ public class NgayChuyenDiTranfers {
     public String NgayChuyenDi;
     public int SoLuotLike;
     public int SoLuongAnh;
-    public ArrayList<DiaDiemChuyenDiTranfers> arrDiaDiem;
+    public ArrayList<DiaDiemChuyenDiTranfers> arrDiaDiem = new ArrayList<>();
 
     public int getIdNgay() {
         return idNgay;

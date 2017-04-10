@@ -28,12 +28,10 @@ import vn.edu.greenacademy.gogotravel.R;
 public class ExpandableListView_HanhTrinh extends BaseExpandableListAdapter {
     private Context context;
     private ArrayList<NgayChuyenDiTranfers> lstNgayDi;
-    HashMap<String,ArrayList<DiaDiemChuyenDiTranfers>> lstItems;
 
-    public ExpandableListView_HanhTrinh(Context context, ArrayList<NgayChuyenDiTranfers> lstNgayDi, HashMap<String, ArrayList<DiaDiemChuyenDiTranfers>> lstItems) {
+    public ExpandableListView_HanhTrinh(Context context, ArrayList<NgayChuyenDiTranfers> lstNgayDi) {
         this.context = context;
         this.lstNgayDi = lstNgayDi;
-        this.lstItems = lstItems;
     }
 
     @Override
@@ -43,7 +41,7 @@ public class ExpandableListView_HanhTrinh extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return lstItems.get(getGroup(groupPosition)).size();
+        return lstNgayDi.get(groupPosition).arrDiaDiem.size();
     }
 
     @Override
@@ -53,17 +51,17 @@ public class ExpandableListView_HanhTrinh extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return lstItems.get(lstNgayDi.get(groupPosition)).get(childPosition);
+        return lstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition);
     }
 
     @Override
     public long getGroupId(int groupPosition) {
-        return groupPosition;
+        return lstNgayDi.get(groupPosition).getIdNgay();
     }
 
     @Override
     public long getChildId(int groupPosition, int childPosition) {
-        return childPosition;
+        return lstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getIdDiaDiem();
     }
 
     @Override
@@ -73,59 +71,64 @@ public class ExpandableListView_HanhTrinh extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+
         HeaderViewHolder holder;
         if (convertView==null){
             LayoutInflater inflater = LayoutInflater.from(context);
-            convertView = inflater.inflate(R.layout.listview_hanhtrinh_header,parent,false);
+            convertView = inflater.inflate(R.layout.listview_hanhtrinh_header,null);
+
             holder = new HeaderViewHolder();
             holder.tvNgayDi = (TextView) convertView.findViewById(R.id.tvNgayDi);
             holder.tvTongLike = (TextView) convertView.findViewById(R.id.tvTongLike);
             holder.tvTongAnh = (TextView) convertView.findViewById(R.id.tvTongAnh);
+
             convertView.setTag(holder);
-        }
-        else{
+
+        }else{
             holder = (HeaderViewHolder) convertView.getTag();
         }
+
         holder.tvNgayDi.setText(lstNgayDi.get(groupPosition).getNgayChuyenDi());
-        holder.tvTongLike.setText(String.valueOf(lstNgayDi.get(groupPosition).getSoLuotLike()));
         holder.tvTongAnh.setText(String.valueOf(lstNgayDi.get(groupPosition).getSoLuongAnh()));
-//        ExpandableListView mExpandableListView = (ExpandableListView) parent;
-//        mExpandableListView.expandGroup(groupPosition);
+        holder.tvTongLike.setText(String.valueOf(lstNgayDi.get(groupPosition).getSoLuotLike()));
+
         return convertView;
     }
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+
         ChildrenViewHolder holder;
         if (convertView==null){
             LayoutInflater inflater = LayoutInflater.from(context);
-            convertView = inflater.inflate(R.layout.listview_hanhtrinh_item,parent,false);
+            convertView = inflater.inflate(R.layout.listview_hanhtrinh_header,null);
+
             holder = new ChildrenViewHolder();
+
             holder.tvLikeItem = (TextView) convertView.findViewById(R.id.tvLikeItem);
             holder.tvTenDiaDiem = (TextView) convertView.findViewById(R.id.tvTenDiaDiem);
-            holder.tvDescription = (TextView) convertView.findViewById(R.id.tvDescription);
             holder.tvPhotoItem = (TextView) convertView.findViewById(R.id.tvPhotoItem);
-            holder.imvItem = (ImageView) convertView.findViewById(R.id.ImageItem);
+            holder.tvDescription = (TextView) convertView.findViewById(R.id.tvDescription);
+
             convertView.setTag(holder);
-        }else {
+
+        }else{
             holder = (ChildrenViewHolder) convertView.getTag();
         }
 
-        holder.tvTimeItem.setText(((DiaDiemChuyenDiTranfers)getChild(groupPosition,childPosition)).getNgayCheckIn());
-        holder.tvLikeItem.setText(((DiaDiemChuyenDiTranfers)getChild(groupPosition,childPosition)).getSoLuotLike());
-        holder.tvDescription.setText(((DiaDiemChuyenDiTranfers)getChild(groupPosition,childPosition)).getNoiDungCheckIn());
-        holder.tvPhotoItem.setText(((DiaDiemChuyenDiTranfers)getChild(groupPosition,childPosition)).getSoLuongAnh());
-        holder.tvTenDiaDiem.setText(((DiaDiemChuyenDiTranfers)getChild(groupPosition,childPosition)).getTenDiaDiem());
-
+        holder.tvTenDiaDiem.setText(lstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getTenDiaDiem());
+        holder.tvLikeItem.setText(String.valueOf(lstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getSoLuotLike()));
+        holder.tvDescription.setText(lstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getNoiDungCheckIn());
+        holder.tvPhotoItem.setText(String.valueOf(lstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getSoLuongAnh()));
+//        holder.tvTenDiaDiem.setText(lstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getTenDiaDiem());
 
         return convertView;
     }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return false;
+        return true;
     }
-
 
     static class HeaderViewHolder{
         TextView tvNgayDi,tvTongLike, tvTongAnh;

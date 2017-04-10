@@ -42,7 +42,6 @@ public class HanhTrinhFragment extends Fragment {
     ExpandableListView elvHanhTrinh;
     ExpandableListView_HanhTrinh adapterHanhTrinh;
     ArrayList<NgayChuyenDiTranfers> arrlstNgayDi;
-    HashMap<String,ArrayList<DiaDiemChuyenDiTranfers>> lstItems;
     NgayChuyenDiTranfers Ngaydi;
     DiaDiemChuyenDiTranfers Diadiem;
     public HanhTrinhFragment() {
@@ -61,7 +60,6 @@ public class HanhTrinhFragment extends Fragment {
                              Bundle savedInstanceState) {
             view = inflater.inflate(R.layout.fragment_hanhtrinh, container, false);
         arrlstNgayDi = new ArrayList<>();
-        lstItems = new HashMap<>();
 
         new LoadHanhTrinhData().execute();
         return view;
@@ -105,13 +103,13 @@ public class HanhTrinhFragment extends Fragment {
                         Diadiem.LinkAnh = objectDiaDiem.getString("LinkAnh");
                         Diadiem.Address = objectDiaDiem.getString("Address");
                         Diadiem.TenDiaDiem = objectDiaDiem.getString("TenDiaDiem");
-                        lstItems.put(String.valueOf(Ngaydi.idNgay),Ngaydi.arrDiaDiem);
+                        Ngaydi.arrDiaDiem.add(Diadiem);
                     }
                     arrlstNgayDi.add(Ngaydi);
                 }
                 int status = jsonObject.getInt("Status");
                 String description = jsonObject.getString("Description");
-                adapterHanhTrinh = new ExpandableListView_HanhTrinh(getContext(),arrlstNgayDi,lstItems);
+                adapterHanhTrinh = new ExpandableListView_HanhTrinh(getContext(),arrlstNgayDi);
                 elvHanhTrinh.setAdapter(adapterHanhTrinh);
                 elvHanhTrinh.setGroupIndicator(null);
             } catch (JSONException e) {
