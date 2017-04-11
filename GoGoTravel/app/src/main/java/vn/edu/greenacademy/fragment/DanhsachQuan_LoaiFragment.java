@@ -57,7 +57,8 @@ public class DanhsachQuan_LoaiFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        Bundle bundle = getArguments();
+        id = bundle.getInt("id");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_danhsach_quan__loai, container, false);
         listloai = (ListView)view.findViewById(R.id.list_loai);
@@ -171,23 +172,23 @@ public class DanhsachQuan_LoaiFragment extends Fragment {
                 });
 
 
-                listloai.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        Fragment fragment = new ChitietQuanFragment();
-                        Bundle bundle = new Bundle();
-                        bundle.putInt("id",list.get(i).getId());
-                        bundle.putString("ten",list.get(i).getTen());
-                        bundle.putString("diachi",list.get(i).getDiachi());
-                        bundle.putString("mota",list.get(i).getMota());
-                        bundle.putFloat("danhgia",list.get(i).getDanhgia());
-                        bundle.putInt("soluot",list.get(i).getSoluot());
-                        bundle.putInt("like",list.get(i).getYeuthich());
-                        bundle.putInt("checkin",list.get(i).getChenkin());
-                        bundle.putString("link",list.get(i).getLink());
-                        fragment.setArguments(bundle);
-                    }
-                });
+//                listloai.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                        Fragment fragment = new ChitietQuanFragment();
+//                        Bundle bundle = new Bundle();
+//                        bundle.putInt("id",list.get(i).getId());
+//                        bundle.putString("ten",list.get(i).getTen());
+//                        bundle.putString("diachi",list.get(i).getDiachi());
+//                        bundle.putString("mota",list.get(i).getMota());
+//                        bundle.putFloat("danhgia",list.get(i).getDanhgia());
+//                        bundle.putInt("soluot",list.get(i).getSoluot());
+//                        bundle.putInt("like",list.get(i).getYeuthich());
+//                        bundle.putInt("checkin",list.get(i).getChenkin());
+//                        bundle.putString("link",list.get(i).getLink());
+//                        fragment.setArguments(bundle);
+//                    }
+//                });
 
             } catch (JSONException e) {
                 e.printStackTrace();

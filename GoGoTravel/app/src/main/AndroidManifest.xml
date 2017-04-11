@@ -14,19 +14,25 @@
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".KhachSanActivity"></activity>
+        <activity android:name=".KhachSanActivity">
+
+        </activity>
         <activity android:name=".DangKyActivity"></activity>
-        <activity android:name=".GioiThieuActivity"></activity>
-        <activity android:name=".QuanAnActivity"></activity>
+        <activity android:name=".GioiThieuActivity">
+
+        </activity>
+        <activity android:name=".QuanAnActivity">
+
+        </activity>
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".ManHinhChoActivity">
-
-        <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
         <activity android:name=".CameraActivity" />

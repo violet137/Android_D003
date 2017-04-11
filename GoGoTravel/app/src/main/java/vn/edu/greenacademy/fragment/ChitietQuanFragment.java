@@ -1,7 +1,6 @@
 package vn.edu.greenacademy.Fragment;
 
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -32,7 +31,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import vn.edu.greenacademy.Adapter.ImageAdapter;
-import vn.edu.greenacademy.Adapter.QuanNearAdapter;
 import vn.edu.greenacademy.gogotravel.R;
 import vn.edu.greenacademy.Model.QuanAn;
 
