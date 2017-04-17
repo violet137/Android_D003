@@ -3,6 +3,7 @@ package vn.edu.greenacademy.Fragment;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.sax.StartElementListener;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.HeaderViewListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -197,9 +199,12 @@ public class QuanAnFragment extends Fragment {
                     }
                 }
                 //set adapter
+
+
                 LoaiQuanAdapter loaiQuanAdapter=new LoaiQuanAdapter(list);
                 list1.setAdapter(loaiQuanAdapter);
                 loaiQuanAdapter.notifyDataSetChanged();
+
 
 
                 loaiQuanAdapter.onItemClickListener(new LoaiQuanAdapter.ItemClickListener() {
@@ -298,6 +303,7 @@ public class QuanAnFragment extends Fragment {
                     }
                 }
                 //set adapter
+
                 QuanTopAdapter quanTopAdapter = new QuanTopAdapter(listqt);
                 list2.setAdapter(quanTopAdapter);
                 quanTopAdapter.notifyDataSetChanged();
@@ -405,6 +411,9 @@ public class QuanAnFragment extends Fragment {
                     }
                 }
                 //set adapter
+                TextView header = new TextView(getContext());
+                header.setText("Quán gần đây");
+                list3.addHeaderView(header);
                 QuanNearAdapter quanNearAdapter = new QuanNearAdapter(getActivity(),R.layout.item_quanan,listqn);
                 list3.setAdapter(quanNearAdapter);
                 quanNearAdapter.notifyDataSetChanged();

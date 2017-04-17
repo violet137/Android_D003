@@ -26,7 +26,7 @@ import vn.edu.greenacademy.Model.LoaiQuan;
  * Created by MSI on 3/22/2017.
  */
 
-public class LoaiQuanAdapter extends RecyclerView.Adapter<LoaiQuanAdapter.ViewHolder_LoaiQuan>{
+public class LoaiQuanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     List<LoaiQuan> list = new ArrayList<LoaiQuan>();
 
     public LoaiQuanAdapter(List<LoaiQuan> data){
@@ -34,15 +34,37 @@ public class LoaiQuanAdapter extends RecyclerView.Adapter<LoaiQuanAdapter.ViewHo
 //        notifyDataSetChanged();
     }
 
+    private static final int Header = 0;
+    private  static final int Content = 1;
+
     @Override
-    public ViewHolder_LoaiQuan onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View itemView = inflater.inflate(R.layout.item_loaiquanan,parent,false);
-        return new ViewHolder_LoaiQuan(itemView);
+    public int getItemViewType(int position) {
+//        return super.getItemViewType(position);
+        if(position == Header)
+            return Header;
+        else
+            return Content;
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder_LoaiQuan holder, final int position) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        if (viewType == Header) {
+            View itemView = inflater.inflate(R.layout.item_loaiquanan, parent, false);
+            return new ViewHolderHeader(itemView);
+        }
+        else if (viewType == Content) {
+
+            View itemView = inflater.inflate(R.layout.item_loaiquanan, parent, false);
+            return new ViewHolder_LoaiQuan(itemView);
+        }
+        else
+            throw new RuntimeException("Khong the tao giao dien");
+    }
+
+
+    @Override
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,11 +73,27 @@ public class LoaiQuanAdapter extends RecyclerView.Adapter<LoaiQuanAdapter.ViewHo
                 }
             }
         });
-        holder.setData(
+
+        if(holder instanceof ViewHolder_LoaiQuan){
+
+            ((ViewHolder_LoaiQuan) holder).setData(
                     list.get(position).getLink(),
                     list.get(position).getTen(),
                     String.valueOf(list.get(position).getSoluot())
-        );
+            );
+
+        }
+
+        if(holder instanceof ViewHolderHeader){
+            ((ViewHolderHeader) holder).header.setVisibility(View.VISIBLE);
+            ((ViewHolderHeader) holder).header.setText("Loại quán ăn");
+            ((ViewHolderHeader) holder).setData(
+                    list.get(position).getLink(),
+                    list.get(position).getTen(),
+                    String.valueOf(list.get(position).getSoluot())
+            );
+
+        }
 
     }
 
@@ -85,6 +123,8 @@ public class LoaiQuanAdapter extends RecyclerView.Adapter<LoaiQuanAdapter.ViewHo
             ivHinh = (ImageView) itemView.findViewById(R.id.ivLoaiquanan);
             tvTen = (TextView) itemView.findViewById(R.id.tvTenloai);
             tvSoluong = (TextView) itemView.findViewById(R.id.tvSoluong);
+
+
 //            View.OnClickListener onClickListener=new View.OnClickListener() {
 //                @Override
 //                public void onClick(View view) {
@@ -105,9 +145,32 @@ public class LoaiQuanAdapter extends RecyclerView.Adapter<LoaiQuanAdapter.ViewHo
             tvSoluong.setText(sl);
         }
 
-
-
     }
+
+    public static class ViewHolderHeader extends RecyclerView.ViewHolder {
+        private TextView header;
+        private ImageView ivHinh;
+        private TextView tvTen,tvSoluong;
+
+        public ViewHolderHeader(View itemView){
+            super(itemView);
+            header = (TextView) itemView.findViewById(R.id.tvHeader);
+            ivHinh = (ImageView) itemView.findViewById(R.id.ivLoaiquanan);
+            tvTen = (TextView) itemView.findViewById(R.id.tvTenloai);
+            tvSoluong = (TextView) itemView.findViewById(R.id.tvSoluong);
+//            header.setVisibility(View.VISIBLE);
+//            header.setText("Loại quán ăn");
+        }
+        public void setData(String link,String ten,String sl){
+//            new DownloadImage(ivHinh).execute(link);
+            Picasso.with(itemView.getContext())
+                    .load(link)
+                    .into(ivHinh);
+            tvTen.setText(ten);
+            tvSoluong.setText(sl);
+        }
+    }
+
 
     class DownloadImage extends AsyncTask<String, Void, Bitmap> {
         ImageView imageView;
