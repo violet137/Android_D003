@@ -8,6 +8,12 @@
 
     >
 
+    <TextView
+        android:id="@+id/tvHeaderQuan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
     <ImageView
         android:id="@+id/ivQuan"
         android:layout_width="100dp"

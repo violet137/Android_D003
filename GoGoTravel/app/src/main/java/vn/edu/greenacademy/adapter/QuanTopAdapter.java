@@ -26,33 +26,63 @@ import vn.edu.greenacademy.Model.QuanAn;
  * Created by MSI on 3/25/2017.
  */
 
-public class QuanTopAdapter extends RecyclerView.Adapter<QuanTopAdapter.ViewHolder_QuanAn>{
+public class QuanTopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     List<QuanAn> list = new ArrayList<QuanAn>();
 
     public QuanTopAdapter(List<QuanAn> data){
         list = data;
     }
 
+    private static final int Header = 0;
+    private  static final int Content = 1;
+
     @Override
-    public ViewHolder_QuanAn onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View itemView = inflater.inflate(R.layout.item_quanan,parent,false);
-        return new ViewHolder_QuanAn(itemView);
+    public int getItemViewType(int position) {
+//        return super.getItemViewType(position);
+        if(position == Header)
+            return Header;
+        else
+            return Content;
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder_QuanAn holder, final int position) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View itemView = inflater.inflate(R.layout.item_quanan, parent, false);
+        if(viewType == Content) {
+            return new ViewHolder_QuanAn(itemView);
+        }else if(viewType == Header){
+            return new ViewHolderHeader(itemView);
+        }
+        else
+            throw new RuntimeException("Khong the tao giao dien");
+    }
+
+    @Override
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         String mota = list.get(position).getMota();
         String gio = split_mota_gio(mota);
         float sao = list.get(position).getDanhgia()/2;
-        holder.setData(
-                list.get(position).getLink(),
-                list.get(position).getTen(),
-                String.valueOf(list.get(position).getYeuthich()),
-                String.valueOf(list.get(position).getChenkin()),
-                sao,gio
+        if(holder instanceof ViewHolder_QuanAn) {
+            ((ViewHolder_QuanAn) holder).setData(
+                    list.get(position).getLink(),
+                    list.get(position).getTen(),
+                    String.valueOf(list.get(position).getYeuthich()),
+                    String.valueOf(list.get(position).getChenkin()),
+                    sao, gio
 
-        );
+            );
+        }
+        if(holder instanceof ViewHolderHeader){
+            ViewHolderHeader holderHeader = (ViewHolderHeader) holder;
+//            holderHeader.tvHeader.setVisibility(View.VISIBLE);
+//            holderHeader.tvHeader.setText("Top Quán Ăn");
+            holderHeader.setData(list.get(position).getLink(),
+                    list.get(position).getTen(),
+                    String.valueOf(list.get(position).getYeuthich()),
+                    String.valueOf(list.get(position).getChenkin()),
+                    sao, gio);
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,6 +137,37 @@ public class QuanTopAdapter extends RecyclerView.Adapter<QuanTopAdapter.ViewHold
             ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
         }
 
+        public void setData(String link,String ten,String yt,String check,float rating,String gio){
+//            new DownloadImage(ivHinh).execute(link);
+            Picasso.with(itemView.getContext())
+                    .load(link)
+                    .into(ivHinh);
+            tvTen.setText(ten);
+            tvYeuThich.setText(yt);
+            tvChenkin.setText(check);
+            ratingBar.setRating(rating);
+            tvGio.setText(gio);
+        }
+    }
+
+    public class ViewHolderHeader extends RecyclerView.ViewHolder{
+        private TextView tvHeader;
+        private ImageView  ivHinh;
+        private TextView tvTen,tvYeuThich,tvChenkin,tvGio;
+        private RatingBar ratingBar;
+
+        public ViewHolderHeader(View itemView) {
+            super(itemView);
+            tvHeader = (TextView) itemView.findViewById(R.id.tvHeaderQuan);
+            ivHinh = (ImageView) itemView.findViewById(R.id.ivQuan);
+            tvTen = (TextView) itemView.findViewById(R.id.tvTen);
+            tvYeuThich = (TextView) itemView.findViewById(R.id.tvYeuThich);
+            tvChenkin = (TextView) itemView.findViewById(R.id.tvCheckin);
+            tvGio = (TextView) itemView.findViewById(R.id.tvGio);
+            ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
+
+
+        }
         public void setData(String link,String ten,String yt,String check,float rating,String gio){
 //            new DownloadImage(ivHinh).execute(link);
             Picasso.with(itemView.getContext())
