@@ -10,14 +10,4 @@
         android:layout_height="fill_parent"
         app:srcCompat="@drawable/gg" />
 
-    <TextView
-        android:id="@+id/tvQ"
-        android:textSize="20dp"
-        android:textColor="@color/colorPrimary"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:gravity="center"
-        android:text="TextView" />
-
 </FrameLayout>

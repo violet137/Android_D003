@@ -64,9 +64,7 @@ public class ImageAdapter extends BaseAdapter {
         row = (Row) view.getTag();
 
         if (i == 5) {
-            row.textView.setVisibility(View.VISIBLE);
-            row.textView.setText("Show All");
-            row.textView.setTextColor(mcontext.getResources().getColor(R.color.colorAccent));
+
 //            row.imageView = new BlurImageView(mcontext);
             Glide.with(mcontext).load(list.get(i).getLink())
                     .bitmapTransform(new BlurTransformation(mcontext))
@@ -74,7 +72,6 @@ public class ImageAdapter extends BaseAdapter {
 
         } else {
             Picasso.with(mcontext).load(list.get(i).getLink()).into(row.imageView);
-            row.textView.setVisibility(View.INVISIBLE);
         }
 
 
@@ -113,13 +110,11 @@ public class ImageAdapter extends BaseAdapter {
         public static final int LayOut = R.layout.item_hinh;
 
         private Context context;
-        private TextView textView;
         private ImageView imageView;
 
         private Row(Context context,View view){
             this.context = context;
             this.imageView = (ImageView) view.findViewById(R.id.ivHinhQ);
-            this.textView = (TextView) view.findViewById(R.id.tvQ);
         }
 
 

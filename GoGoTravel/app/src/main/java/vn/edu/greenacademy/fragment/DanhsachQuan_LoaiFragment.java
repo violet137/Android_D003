@@ -159,7 +159,7 @@ public class DanhsachQuan_LoaiFragment extends Fragment {
                         bundle.putString("link",list.get(position).getLink());
                         fragment.setArguments(bundle);
                         android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                        transaction.replace(R.id.layout,fragment);
+                        transaction.replace(R.id.flChiTietKhuVuc,fragment);
                         transaction.addToBackStack(null);
 
                         transaction.commit();
@@ -167,23 +167,23 @@ public class DanhsachQuan_LoaiFragment extends Fragment {
                 });
 
 
-//                listloai.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                        Fragment fragment = new ChitietQuanFragment();
-//                        Bundle bundle = new Bundle();
-//                        bundle.putInt("id",list.get(i).getId());
-//                        bundle.putString("ten",list.get(i).getTen());
-//                        bundle.putString("diachi",list.get(i).getDiachi());
-//                        bundle.putString("mota",list.get(i).getMota());
-//                        bundle.putFloat("danhgia",list.get(i).getDanhgia());
-//                        bundle.putInt("soluot",list.get(i).getSoluot());
-//                        bundle.putInt("like",list.get(i).getYeuthich());
-//                        bundle.putInt("checkin",list.get(i).getChenkin());
-//                        bundle.putString("link",list.get(i).getLink());
-//                        fragment.setArguments(bundle);
-//                    }
-//                });
+                listloai.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Fragment fragment = new ChitietQuanFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("id",list.get(i).getId());
+                        bundle.putString("ten",list.get(i).getTen());
+                        bundle.putString("diachi",list.get(i).getDiachi());
+                        bundle.putString("mota",list.get(i).getMota());
+                        bundle.putFloat("danhgia",list.get(i).getDanhgia());
+                        bundle.putInt("soluot",list.get(i).getSoluot());
+                        bundle.putInt("like",list.get(i).getYeuthich());
+                        bundle.putInt("checkin",list.get(i).getChenkin());
+                        bundle.putString("link",list.get(i).getLink());
+                        fragment.setArguments(bundle);
+                    }
+                });
 
             } catch (JSONException e) {
                 e.printStackTrace();

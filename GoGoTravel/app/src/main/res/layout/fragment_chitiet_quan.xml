@@ -1,10 +1,14 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/cardview_light_background"
     tools:context="vn.edu.greenacademy.Fragment.ChitietQuanFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <ImageView
         android:id="@+id/ivHinhquan"
         android:layout_width="match_parent"
@@ -98,16 +102,16 @@
 
     <GridView
         android:id="@+id/gvHinh"
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="297dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
         android:columnWidth="100dp"
-        android:numColumns="3"
-        android:verticalSpacing="10dp"
-        android:horizontalSpacing="10dp"
-        android:stretchMode="columnWidth"
         android:gravity="center"
-        android:layout_weight="1" />
+        android:horizontalSpacing="10dp"
+        android:numColumns="3"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dp" />
+    </LinearLayout>
 
-
-</LinearLayout>
+</ScrollView>
