@@ -64,12 +64,10 @@ public class ImageAdapter extends BaseAdapter {
         row = (Row) view.getTag();
 
         if (i == 5) {
-
 //            row.imageView = new BlurImageView(mcontext);
             Glide.with(mcontext).load(list.get(i).getLink())
                     .bitmapTransform(new BlurTransformation(mcontext))
                     .into(row.imageView);
-
         } else {
             Picasso.with(mcontext).load(list.get(i).getLink()).into(row.imageView);
         }

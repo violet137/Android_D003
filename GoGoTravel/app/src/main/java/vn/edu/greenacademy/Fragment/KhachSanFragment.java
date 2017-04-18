@@ -123,7 +123,7 @@ public class KhachSanFragment extends Fragment {
                 bundle.putSerializable("KhachSan",tempKhachSan);
                 fragment.setArguments(bundle);
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(android.R.id.content, fragment);
+                transaction.replace(R.id.flChiTietKhuVuc, fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }

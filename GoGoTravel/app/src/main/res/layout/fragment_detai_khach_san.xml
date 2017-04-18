@@ -1,14 +1,18 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="vn.edu.greenacademy.Fragment.DetailKhachSanFragment"
-    android:orientation="vertical">
+    android:background="@color/cardview_light_background"
+    tools:context="vn.edu.greenacademy.Fragment.DetailKhachSanFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -140,11 +144,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView7" />
 
-    <GridView
-        android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:numColumns="3"
-        android:id="@+id/gridImage" />
+        <GridView
+            android:id="@+id/gridImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:numColumns="3" />
 
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

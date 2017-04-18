@@ -101,13 +101,10 @@ public class ChitietQuanFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i == 5){
-
-
                     Fragment fragment = new DanhsachQuan_AllFragment();
                     android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.layout,fragment);
                     transaction.addToBackStack(null);
-
                     transaction.commit();
                 }
             }

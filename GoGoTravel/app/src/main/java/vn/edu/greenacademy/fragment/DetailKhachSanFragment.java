@@ -88,7 +88,7 @@ public class DetailKhachSanFragment extends Fragment {
                 bund.putString("title",ksan.getTen());
                 fragment.setArguments(bund);
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(android.R.id.content, fragment);
+                transaction.replace(R.id.flChiTietKhuVuc, fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }

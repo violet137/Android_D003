@@ -1,6 +1,8 @@
 package vn.edu.greenacademy.Adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +61,8 @@ public class LoadImageAdapter extends BaseAdapter {
             imageDetail = (ImageView) convertView.findViewById(R.id.imageKhachSanDetail);
             tvSoLuongImage = (TextView) convertView.findViewById(R.id.tvSoLuongImage);
         }
+//        Bitmap bitmap = BitmapFactory.decodeFile(imageId[position]);
+//        imageDetail.setImageBitmap(Bitmap.createScaledBitmap(bitmap,90,100,true));
         imageDetail.setImageResource(imageId[position]);
         if(a == 0){
             if(position == imageId.length - 1){

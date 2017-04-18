@@ -3,39 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cardview_light_background"
     tools:context="vn.edu.greenacademy.Fragment.ChiTietAnhFragment"
     android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
-        android:text="TextView"
-        android:gravity="center"
-        android:textColor="#ffcc0000"
+        android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tvTitle" />
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="@dimen/cast_intro_overlay_focus_radius" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageButton
-            android:background="@android:color/transparent"
-            android:layout_gravity="center_horizontal|center_vertical"
+            android:id="@+id/imgbtnAnhZoom"
             android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:background="@android:color/transparent"
+            android:elevation="0dp"
+            android:scaleType="fitXY"
             android:visibility="invisible"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/ks1"
-            android:id="@+id/imgbtnAnhZoom" />
+            app:srcCompat="@drawable/ks1" />
 
         <GridView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:horizontalSpacing="5dp"
-            android:verticalSpacing="5dp"
             android:id="@+id/gridChiTietAnh"
-            android:numColumns="3" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:horizontalSpacing="5dp"
+            android:numColumns="3"
+            android:verticalSpacing="5dp" />
 
     </FrameLayout>
 
