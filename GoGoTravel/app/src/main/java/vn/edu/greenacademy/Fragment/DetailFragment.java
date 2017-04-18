@@ -4,6 +4,8 @@ package vn.edu.greenacademy.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +14,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import vn.edu.greenacademy.Adapter.SwipeDetailKhuVuc;
 import vn.edu.greenacademy.gogotravel.R;
+import vn.edu.greenacademy.utils.Constant;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,14 +23,14 @@ import vn.edu.greenacademy.gogotravel.R;
 public class DetailFragment extends Fragment {
 
     ViewPager mViewPager;
-    SwipeDetailKhuVuc swipeDetailKhuVuc;
     View v;
     int id = 1;
     private TabLayout tabLayout;
     Button btnBack;
-    FrameLayout flDetail;
 
-
+    DiaDiemFragment diaDiemFragment;
+    KhachSanFragment khachSanFragment;
+    DanhsachQuan_LoaiFragment danhsachQuan_loaiFragment;
 
     public static DetailFragment instance;
 
@@ -49,57 +51,81 @@ public class DetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_detail, container, false);
-        mViewPager = (ViewPager) v.findViewById(R.id.view_pager);
         tabLayout = (TabLayout) v.findViewById(R.id.tabLayout);
         btnBack = (Button) v.findViewById(R.id.btnBack);
-        flDetail = (FrameLayout) v.findViewById(R.id.flDetail);
-        Toast.makeText(getActivity(),"2",Toast.LENGTH_LONG).show();
 
         Bundle bundle = this.getArguments();
-        id = bundle.getInt("khuvuc");
+        Constant.SET_ID = bundle.getInt("khuvuc");
 
-        swipeDetailKhuVuc = new SwipeDetailKhuVuc(getFragmentManager(),getContext(),id);
-        mViewPager.setAdapter(swipeDetailKhuVuc);
-        tabLayout.setupWithViewPager(mViewPager);
+        diaDiemFragment = DiaDiemFragment.getInstance();
+        khachSanFragment = KhachSanFragment.getInstance();
+        danhsachQuan_loaiFragment = DanhsachQuan_LoaiFragment.getInstance();
+
+        tabLayout.addTab(tabLayout.newTab().setText("Địa Điểm"),true);
+        tabLayout.addTab(tabLayout.newTab().setText("Khách Sạn"));
+        tabLayout.addTab(tabLayout.newTab().setText("Quán Ăn"));
+
 
         tabLayout.getTabAt(0).setIcon(R.drawable.ban_do);
         tabLayout.getTabAt(1).setIcon(R.drawable.hotel);
         tabLayout.getTabAt(2).setIcon(R.drawable.quan_an);
+
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                setCurrentTabFragment(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(),"3",Toast.LENGTH_LONG).show();
                 getFragmentManager().popBackStack();
-                mViewPager.removeAllViewsInLayout();
-                tabLayout.removeAllViewsInLayout();
             }
         });
         return v;
     }
-
     @Override
     public void onResume() {
+        callFragment(diaDiemFragment);
         super.onResume();
-        Bundle bundle = this.getArguments();
-        id = bundle.getInt("khuvuc");
-        swipeDetailKhuVuc = new SwipeDetailKhuVuc(getFragmentManager(),getContext(),id);
-        swipeDetailKhuVuc.notifyDataSetChanged();
-        mViewPager.setAdapter(swipeDetailKhuVuc);
-        tabLayout.setupWithViewPager(mViewPager);
-        tabLayout.getTabAt(0).setIcon(R.drawable.ban_do);
-        tabLayout.getTabAt(1).setIcon(R.drawable.hotel);
-        tabLayout.getTabAt(2).setIcon(R.drawable.quan_an);
 
     }
 
-//    public void callFragment(Fragment fragment){
-//        FragmentManager manager = getActivity().getSupportFragmentManager();
-//        FragmentTransaction transaction = manager.beginTransaction();
-//        transaction.replace(R.id.flDetail, fragment);
-//        transaction.addToBackStack(null);
-//        transaction.commit();
-//    }
+    public void callFragment(Fragment fragment){
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.flChiTietKhuVuc, fragment);
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        transaction.commit();
+    }
+
+    private void setCurrentTabFragment(int tabPosition)
+    {
+        switch (tabPosition)
+        {
+            case 0:
+                callFragment(diaDiemFragment);
+                break;
+            case 1:
+                callFragment(khachSanFragment);
+                break;
+            case 2:
+                callFragment(danhsachQuan_loaiFragment);
+                break;
+        }
+    }
 
 
 

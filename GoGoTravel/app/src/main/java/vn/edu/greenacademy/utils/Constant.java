@@ -10,5 +10,7 @@ public class Constant {
     public static final int PAGE3 = 2;
     public static final int PAGE4 = 3;
 
+    public static int SET_ID = 1;
+
 
 }

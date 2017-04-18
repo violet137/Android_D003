@@ -32,11 +32,12 @@ import java.util.ArrayList;
 import vn.edu.greenacademy.Adapter.KhuVuc_Adapter;
 import vn.edu.greenacademy.Model.KhuVuc;
 import vn.edu.greenacademy.gogotravel.R;
+import vn.edu.greenacademy.utils.Constant;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class KhuVucFragment extends Fragment implements View.OnClickListener {
+public class KhuVucFragment extends Fragment  {
 
 
     KhuVuc khuVuc;
@@ -46,15 +47,9 @@ public class KhuVucFragment extends Fragment implements View.OnClickListener {
     View v;
     int checkReload = 1;
 
-    KhuVucFragment khuVucFragment;
-    BanDoFragment banDoFragment;
-    TaiKhoanFragment taiKhoanFragment;
-    HanhTrinhFragment hanhTrinhFragment;
     DetailFragment detailFragment;
 
-    ImageButton ibHome, ibBanDo, ibhanhTrinh, ibTaiKhoan;
     FrameLayout flKhuVuc;
-    Fragment detail;
 
     HttpURLConnection con;
     InputStream it;
@@ -83,22 +78,11 @@ public class KhuVucFragment extends Fragment implements View.OnClickListener {
         v = inflater.inflate(R.layout.fragment_khu_vuc, container, false);
 
         lvKhuVuc = (ListView) v.findViewById(R.id.lvkhuVuc);
-        ibHome = (ImageButton) v.findViewById(R.id.ibHome);
-        ibBanDo = (ImageButton) v.findViewById(R.id.ibBanDo);
-        ibhanhTrinh = (ImageButton) v.findViewById(R.id.ibhanhTrinh);
-        ibTaiKhoan = (ImageButton) v.findViewById(R.id.ibTaiKhoan);
+
         flKhuVuc = (FrameLayout) v.findViewById(R.id.flKhuVuc);
 
-        khuVucFragment = KhuVucFragment.getInstance();
-        banDoFragment = BanDoFragment.getInstance();
-        taiKhoanFragment = TaiKhoanFragment.getInstance();
-        hanhTrinhFragment = HanhTrinhFragment.getInstance();
         detailFragment = DetailFragment.getInstance();
 
-        ibHome.setOnClickListener(this);
-        ibBanDo.setOnClickListener(this);
-        ibhanhTrinh.setOnClickListener(this);
-        ibTaiKhoan.setOnClickListener(this);
         arrKhuVuc = new ArrayList<>();
         dataKhuVuc = new getKhuVuc(v);
         dataKhuVuc.execute();
@@ -108,13 +92,12 @@ public class KhuVucFragment extends Fragment implements View.OnClickListener {
                 KhuVuc khuVuc = arrKhuVuc.get(position);
                 Bundle bundle = new Bundle();
                 bundle.putInt("khuvuc",khuVuc.Id);
+                Constant.SET_ID = khuVuc.Id;
                 detailFragment.setArguments(bundle);
                 if (checkReload > 1){
                     detailFragment.onResume();
                 }
                 callFragment(detailFragment);
-                dataKhuVuc.cancel(true);
-                Toast.makeText(getActivity(),"1",Toast.LENGTH_LONG).show();
             }
         });
         return v;
@@ -130,37 +113,12 @@ public class KhuVucFragment extends Fragment implements View.OnClickListener {
     public void callFragment(Fragment fragment){
         FragmentManager manager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.flRelativeLayout, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
-
-    public void call(Fragment fragment){
-        FragmentManager manager = getActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.flKhuVuc, fragment);
+        transaction.replace(R.id.activity_main, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
 
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.ibHome:
-                call(khuVucFragment);
-                break;
-            case R.id.ibBanDo:
-                call(banDoFragment);
-                break;
-            case R.id.ibhanhTrinh:
-                call(hanhTrinhFragment);
-                break;
-            case R.id.ibTaiKhoan:
-                call(taiKhoanFragment);
-                break;
-        }
-    }
 
     public class getKhuVuc extends AsyncTask<Void, String, String> {
 
@@ -249,65 +207,5 @@ public class KhuVucFragment extends Fragment implements View.OnClickListener {
             e.printStackTrace();
         }
     }
-
-//    Fragment f = mManager.findFragmentById(R.id.fragment_id);
-//if(f != null && f instanceof FragmentClassName) {
-//        //Fragment already exists
-//    } else {
-//        //Add Fragment
-//    }
-
-//    public void onClick(View v) {
-//        FragmentManager fm = getFragmentManager();
-//        FragmentBoxOffice f = (FragmentBoxOffice) fm.findFragmentByTag(FragmentBoxOffice.TAG);
-//        if (f == null) {
-//            f = new FragmentBoxOffice();
-//            fm.beginTransaction()
-//                    .replace(R.id.fragment_container, f, FragmentBoxOffice.TAG)
-//                    //.addToBackStack(null);  // uncomment this line if you want to be able to return to the prev. fragment with "back" button
-//                    .commit();
-//        }
-//    }
-
-    //----
-
-//    down vote
-//    accepted
-//    you can replace fragment by FragmentTransaction.
-//
-//    Here you go.
-//
-//    Make an interface.
-//
-//    public interface FragmentChangeListener
-//    {
-//        public void replaceFragment(Fragment fragment);
-//    }
-//implements your Fragment holding activity with this interface.
-//
-//    public class HomeScreen extends FragmentActivity implements
-//            FragmentChangeListener {
-//
-//
-//        @Override
-//        public void replaceFragment(Fragment fragment) {
-//            FragmentManager fragmentManager = getSupportFragmentManager();;
-//            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            fragmentTransaction.replace(mContainerId, fragment, fragment.toString());
-//            fragmentTransaction.addToBackStack(fragment.toString());
-//            fragmentTransaction.commit();
-//        }
-//
-//    }
-//    Call this method from Fragments like this.
-//
-////In your fragment.
-//
-//    public void showOtherFragment()
-//    {
-//        Fragment fr=new NewDisplayingFragment();
-//        FragmentChangeListener fc=(FragmentChangeListener)getActivity();
-//        fc.replaceFragment(fr);
-//    }
 
 }

@@ -28,13 +28,13 @@ import java.util.List;
 import vn.edu.greenacademy.Adapter.QuanNearAdapter;
 import vn.edu.greenacademy.gogotravel.R;
 import vn.edu.greenacademy.Model.QuanAn;
+import vn.edu.greenacademy.utils.Constant;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class DanhsachQuan_LoaiFragment extends Fragment {
     ListView listloai;
-    static int id;
 
     private static DanhsachQuan_LoaiFragment instance;
     public static DanhsachQuan_LoaiFragment getInstance(){
@@ -45,9 +45,6 @@ public class DanhsachQuan_LoaiFragment extends Fragment {
         return instance;
     }
 
-    public static void setId(int ids) {
-        DanhsachQuan_LoaiFragment.id = ids;
-    }
 
     public DanhsachQuan_LoaiFragment() {
         // Required empty public constructor
@@ -57,8 +54,6 @@ public class DanhsachQuan_LoaiFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Bundle bundle = getArguments();
-        id = bundle.getInt("id");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_danhsach_quan__loai, container, false);
         listloai = (ListView)view.findViewById(R.id.list_loai);
@@ -75,7 +70,7 @@ public class DanhsachQuan_LoaiFragment extends Fragment {
         protected String doInBackground(String... strings) {
             try {
 //
-                URL url = new URL("http://103.237.147.137:9045/QuanAn/QuanAnByType?idLoaiQuan="+id);
+                URL url = new URL("http://103.237.147.137:9045/QuanAn/QuanAnByType?idLoaiQuan="+ Constant.SET_ID);
                 HttpURLConnection connection = (HttpURLConnection)url.openConnection();
                 connection.addRequestProperty("Accept","text/json");
                 connection.addRequestProperty("Content_type","application/json");
