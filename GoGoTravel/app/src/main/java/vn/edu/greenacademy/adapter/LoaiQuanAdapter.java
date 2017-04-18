@@ -87,10 +87,15 @@ public class LoaiQuanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         if(holder instanceof ViewHolderHeader){
+<<<<<<< HEAD
 //            ((ViewHolderHeader) holder).header.setVisibility(View.VISIBLE);
 //            ((ViewHolderHeader) holder).header.setText("Loại quán ăn");
 //            ((ViewHolderHeader) holder).header.setTypeface(null, Typeface.BOLD_ITALIC);
 //            ((ViewHolderHeader) holder).header.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+=======
+            ((ViewHolderHeader) holder).header.setVisibility(View.VISIBLE);
+            ((ViewHolderHeader) holder).header.setText("Loại quán ăn");
+>>>>>>> db0f9e3a9876a82ce16386079249f69d7838286f
             ((ViewHolderHeader) holder).setData(
                     list.get(position).getLink(),
                     list.get(position).getTen(),

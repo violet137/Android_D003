@@ -49,7 +49,11 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     compile 'com.android.support:design:25.3.0'
+<<<<<<< HEAD
     compile 'jp.wasabeef:glide-transformations:2.0.2'
+=======
+
+>>>>>>> db0f9e3a9876a82ce16386079249f69d7838286f
 }
 
 //thêm mới

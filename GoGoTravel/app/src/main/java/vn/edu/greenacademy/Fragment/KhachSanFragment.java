@@ -31,6 +31,7 @@ import java.util.List;
 import vn.edu.greenacademy.Adapter.KhachSanAdapter;
 import vn.edu.greenacademy.Model.KhachSans;
 import vn.edu.greenacademy.gogotravel.R;
+import vn.edu.greenacademy.utils.Constant;
 
 
 /**
@@ -44,7 +45,6 @@ public class KhachSanFragment extends Fragment {
     List<KhachSans> listHotel = new LinkedList<>();
     ArrayList arrChoice;
     int luaChon=0;
-    static int id;
 
     public static KhachSanFragment instance;
     public static KhachSanFragment getInstance(){
@@ -52,10 +52,6 @@ public class KhachSanFragment extends Fragment {
             instance = new KhachSanFragment();
         }
         return instance;
-    }
-
-    public static void setId(int ids) {
-        KhachSanFragment.id = ids;
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -225,7 +221,7 @@ public class KhachSanFragment extends Fragment {
         @Override
         protected String doInBackground(String... params) {
             try {
-                URL url = new URL("http://103.237.147.137:9045/KhachSan/KhachSanByKhuVuc?idKhuVuc=" + id);
+                URL url = new URL("http://103.237.147.137:9045/KhachSan/KhachSanByKhuVuc?idKhuVuc=" + Constant.SET_ID);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.addRequestProperty("Accept", "text/json");
                 connection.addRequestProperty("Content-Type", "application/json");

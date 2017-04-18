@@ -37,10 +37,13 @@
                 app:tabMode="fixed"
                 app:tabSelectedTextColor="@android:color/holo_red_dark"></android.support.design.widget.TabLayout>
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/view_pager"
+            <FrameLayout
+                android:id="@+id/flChiTietKhuVuc"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent">
+
+            </FrameLayout>
+
         </LinearLayout>
 
     </FrameLayout>

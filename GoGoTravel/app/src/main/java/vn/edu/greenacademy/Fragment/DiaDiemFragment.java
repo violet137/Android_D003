@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import vn.edu.greenacademy.Adapter.DiaDiemAdapter;
 import vn.edu.greenacademy.Model.DiaDiem;
 import vn.edu.greenacademy.gogotravel.R;
+import vn.edu.greenacademy.utils.Constant;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,7 +37,6 @@ public class DiaDiemFragment extends Fragment {
     ArrayList<DiaDiem> arrDiaDiem;
     DiaDiemAdapter diaDiemAdapter;
     ListView lvDiaDiem;
-    static int id;
     View v;
 
     getDiaDiem dataDiaDiem;
@@ -62,11 +62,6 @@ public class DiaDiemFragment extends Fragment {
 
     //truyền dứ liệu giữa 2 fragment dùng Arguments
 
-
-    public static void setId(int ids) {
-        DiaDiemFragment.id = ids;
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -80,15 +75,6 @@ public class DiaDiemFragment extends Fragment {
         dataDiaDiem.execute();
         return v;
     }
-//
-//    public void callFragment(Fragment fragment, Fragment fragment2){
-//        FragmentManager manager = getActivity().getSupportFragmentManager();
-//        FragmentTransaction transaction = manager.beginTransaction();
-//        transaction.replace(R.id.flKhuVuc, fragment2);
-//        transaction.addToBackStack(null);
-//        transaction.remove(fragment);
-//        transaction.commit();
-//    }
 
 
     public class getDiaDiem extends AsyncTask<String, String, String> {
@@ -102,7 +88,7 @@ public class DiaDiemFragment extends Fragment {
         @Override
         protected String doInBackground(String... params) {
             try {
-                URL url = new URL("http://103.237.147.137:9045/DiaDiem/DiaDiemById?idKhuVuc="+id);
+                URL url = new URL("http://103.237.147.137:9045/DiaDiem/DiaDiemById?idKhuVuc="+ Constant.SET_ID);
                 con = (HttpURLConnection) url.openConnection();
                 con.addRequestProperty("Accept", "text/json");
                 con.addRequestProperty("Content-Type", "application/json");

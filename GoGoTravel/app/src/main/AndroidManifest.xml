@@ -22,12 +22,20 @@
 
         </activity>
         <activity android:name=".QuanAnActivity">
+<<<<<<< HEAD
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+=======
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+>>>>>>> db0f9e3a9876a82ce16386079249f69d7838286f
         </activity>
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".LoginActivity"></activity>

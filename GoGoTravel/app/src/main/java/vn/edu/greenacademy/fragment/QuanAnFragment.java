@@ -415,8 +415,11 @@ public class QuanAnFragment extends Fragment {
                 //set adapter
                 TextView header = new TextView(getContext());
                 header.setText("Quán gần đây");
+<<<<<<< HEAD
                 header.setTypeface(null, Typeface.BOLD_ITALIC);
                 header.setTextColor(getResources().getColor(R.color.colorAccent));
+=======
+>>>>>>> db0f9e3a9876a82ce16386079249f69d7838286f
                 list3.addHeaderView(header);
                 QuanNearAdapter quanNearAdapter = new QuanNearAdapter(getActivity(),R.layout.item_quanan,listqn);
                 list3.setAdapter(quanNearAdapter);

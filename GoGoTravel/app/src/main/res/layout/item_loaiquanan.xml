@@ -9,7 +9,11 @@
         android:id="@+id/tvHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:visibility="gone" />
+=======
+        android:visibility="invisible" />
+>>>>>>> db0f9e3a9876a82ce16386079249f69d7838286f
 
     <ImageView
         android:id="@+id/ivLoaiquanan" android:focusable="false"
