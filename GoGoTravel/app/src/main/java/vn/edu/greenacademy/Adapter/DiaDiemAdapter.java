@@ -56,11 +56,11 @@ public class DiaDiemAdapter extends ArrayAdapter {
             holderDiaDiem = new ViewHolderDiaDiem();
             holderDiaDiem.tvTenDiaDiem = (TextView) convertView.findViewById(R.id.tvTenDiaDiem);
             holderDiaDiem.tvMotaDiaDiem = (TextView) convertView.findViewById(R.id.tvMoTaDiaDiem);
-            holderDiaDiem.tvDanhgiaDiaDiem = (TextView) convertView.findViewById(R.id.tvDanhGiaDiaDiem);
-            holderDiaDiem.tvSoLuotXemDiaDiem = (TextView) convertView.findViewById(R.id.tvSoLuotXemDiaDiem);
-            holderDiaDiem.tvYeuThichDiaDiem = (TextView) convertView.findViewById(R.id.tvYeuThichDiaDiem);
+//            holderDiaDiem.tvDanhgiaDiaDiem = (TextView) convertView.findViewById(R.id.tvDanhGiaDiaDiem);
+//            holderDiaDiem.tvSoLuotXemDiaDiem = (TextView) convertView.findViewById(R.id.tvSoLuotXemDiaDiem);
+//            holderDiaDiem.tvYeuThichDiaDiem = (TextView) convertView.findViewById(R.id.tvYeuThichDiaDiem);
             holderDiaDiem.ivLinkAnhDiaDiem = (ImageView) convertView.findViewById(R.id.ivLinkAnhDiaDiem);
-            holderDiaDiem.tvCheckInDiaDiem = (TextView) convertView.findViewById(R.id.tvCheckInDiaDiem);
+//            holderDiaDiem.tvCheckInDiaDiem = (TextView) convertView.findViewById(R.id.tvCheckInDiaDiem);
             holderDiaDiem.tvDiaChiDiaDiem = (TextView) convertView.findViewById(R.id.tvDiaChiDiaDiem);
             holderDiaDiem.mPosition = position;
 
@@ -72,10 +72,10 @@ public class DiaDiemAdapter extends ArrayAdapter {
         new DownloadImageTask(position,holderDiaDiem).execute(diaDiem.LinkAnh);
         holderDiaDiem.tvTenDiaDiem.setText(diaDiem.TenDiadiem);
         holderDiaDiem.tvMotaDiaDiem.setText(diaDiem.Mota);
-        holderDiaDiem.tvDanhgiaDiaDiem.setText(String.valueOf(diaDiem.DanhGia));
-        holderDiaDiem.tvSoLuotXemDiaDiem.setText(String.valueOf(diaDiem.SoLuotXem));
-        holderDiaDiem.tvYeuThichDiaDiem.setText(String.valueOf(diaDiem.YeuThich));
-        holderDiaDiem.tvCheckInDiaDiem.setText(String.valueOf(diaDiem.checkIn));
+//        holderDiaDiem.tvDanhgiaDiaDiem.setText(String.valueOf(diaDiem.DanhGia));
+//        holderDiaDiem.tvSoLuotXemDiaDiem.setText(String.valueOf(diaDiem.SoLuotXem));
+//        holderDiaDiem.tvYeuThichDiaDiem.setText(String.valueOf(diaDiem.YeuThich));
+//        holderDiaDiem.tvCheckInDiaDiem.setText(String.valueOf(diaDiem.checkIn));
         holderDiaDiem.tvDiaChiDiaDiem.setText(diaDiem.Diachi);
 
         Picasso.with(getContext()).load(diaDiem.LinkAnh).resize(120,120).into(holderDiaDiem.ivLinkAnhDiaDiem);
@@ -87,10 +87,10 @@ public class DiaDiemAdapter extends ArrayAdapter {
     private static class ViewHolderDiaDiem{
         public TextView tvTenDiaDiem;
         public TextView tvMotaDiaDiem;
-        public TextView tvDanhgiaDiaDiem;
-        public TextView tvSoLuotXemDiaDiem;
-        public TextView tvYeuThichDiaDiem;
-        public TextView tvCheckInDiaDiem;
+//        public TextView tvDanhgiaDiaDiem;
+//        public TextView tvSoLuotXemDiaDiem;
+//        public TextView tvYeuThichDiaDiem;
+//        public TextView tvCheckInDiaDiem;
         public TextView tvDiaChiDiaDiem;
         public int mPosition;
         public ImageView ivLinkAnhDiaDiem;

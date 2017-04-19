@@ -4,9 +4,11 @@ package vn.edu.greenacademy.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -73,6 +75,21 @@ public class DiaDiemFragment extends Fragment {
         lvDiaDiem = (ListView) v.findViewById(R.id.lvDiaDiem);
         dataDiaDiem = new getDiaDiem(v);
         dataDiaDiem.execute();
+
+        lvDiaDiem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                DiaDiem tempDiaDiem = arrDiaDiem.get(position);
+                Fragment fragment = new DetailDiaDiemFragment();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("DiaDiem",tempDiaDiem);
+                fragment.setArguments(bundle);
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.flChiTietKhuVuc, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
         return v;
     }
 

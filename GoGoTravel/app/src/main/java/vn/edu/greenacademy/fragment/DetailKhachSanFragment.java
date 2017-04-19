@@ -62,7 +62,7 @@ public class DetailKhachSanFragment extends Fragment {
         imageId = new int[]{R.drawable.ks1,R.drawable.ks2,R.drawable.ks3,R.drawable.ks4,R.drawable.ks5,R.drawable.ks6};
 
         final Bundle bundle = this.getArguments();
-        if(bundle != null){
+            if(bundle != null){
             KhachSans ks = (KhachSans) bundle.getSerializable("KhachSan");
             new Image(ks.getLinkAnh(),imageKhachSan).execute();
             tvSoLuotCheckIn.setText(String.valueOf(ks.getCheckIn()));
