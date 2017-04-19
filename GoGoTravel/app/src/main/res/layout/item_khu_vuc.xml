@@ -96,14 +96,19 @@
 
         </LinearLayout>
 
-        <TextView
-            android:text="TenKhuVuc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvTen_KhuVuc"
-            android:gravity="center" />
-
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvTen_KhuVuc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="TenKhuVuc"
+        android:textAllCaps="?android:attr/textAllCaps"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="30sp"
+        android:textStyle="italic"
+        android:typeface="monospace" />
 
     <TextView
         android:layout_width="match_parent"
@@ -117,12 +122,13 @@
         android:lines="2"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="MoTa" />
+        android:text="MoTa"
+        android:textStyle="bold|italic" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:layout_marginTop="10dp"
-        android:background="@android:color/darker_gray" />
+        android:background="@android:color/background_light" />
 </LinearLayout>

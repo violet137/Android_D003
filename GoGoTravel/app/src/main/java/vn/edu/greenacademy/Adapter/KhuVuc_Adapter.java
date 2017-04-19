@@ -66,8 +66,9 @@ public class KhuVuc_Adapter extends ArrayAdapter {
         }else {
             holder = (ViewHolderKhuVuc) convertView.getTag();
         }
+
         holder.tvTen_KhuVuc.setText(khuvuc.TenKhuVuc);
-        holder.tvMota_KhuVuc.setText(khuvuc.MoTa);
+        holder.tvMota_KhuVuc.setText("Mô tả : " + khuvuc.MoTa);
         holder.tvDanhgia_KhuVuc.setText(String.valueOf(khuvuc.DanhGia));
         holder.tvSoLuotXem_KhuVuc.setText(String.valueOf(khuvuc.SoLuotXem));
         holder.tvYeuThich_KhuVuc.setText(String.valueOf(khuvuc.YeuThich));

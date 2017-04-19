@@ -103,12 +103,6 @@ public class KhuVucFragment extends Fragment  {
         return v;
     }
 
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        dataKhuVuc = new getKhuVuc(v);
-//        dataKhuVuc.execute();
-//    }
 
     public void callFragment(Fragment fragment){
         FragmentManager manager = getActivity().getSupportFragmentManager();
@@ -178,8 +172,6 @@ public class KhuVucFragment extends Fragment  {
                     arrKhuVuc.add(khuVuc);
                     if (isCancelled())break;
                 }
-//                int status = jsonObject.getInt("Status");
-//                String description = jsonObject.getString("Description");
                 khuVuc_adapter = new KhuVuc_Adapter(getActivity(), R.layout.item_khu_vuc, arrKhuVuc);
                 lvKhuVuc.setAdapter(khuVuc_adapter);
             } catch (JSONException e) {
