@@ -124,7 +124,6 @@ public class KhachSanFragment extends Fragment {
                 fragment.setArguments(bundle);
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.flChiTietKhuVuc, fragment);
-                transaction.addToBackStack(null);
                 transaction.commit();
             }
         });

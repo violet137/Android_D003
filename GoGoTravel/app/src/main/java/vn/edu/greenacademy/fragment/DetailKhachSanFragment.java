@@ -89,7 +89,6 @@ public class DetailKhachSanFragment extends Fragment {
                 fragment.setArguments(bund);
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.flChiTietKhuVuc, fragment);
-                transaction.addToBackStack(null);
                 transaction.commit();
             }
         });

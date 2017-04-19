@@ -104,7 +104,6 @@ public class ChitietQuanFragment extends Fragment {
                     Fragment fragment = new DanhsachQuan_AllFragment();
                     android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.layout,fragment);
-                    transaction.addToBackStack(null);
                     transaction.commit();
                 }
             }

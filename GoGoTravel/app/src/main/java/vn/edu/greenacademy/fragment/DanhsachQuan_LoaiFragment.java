@@ -160,8 +160,6 @@ public class DanhsachQuan_LoaiFragment extends Fragment {
                         fragment.setArguments(bundle);
                         android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                         transaction.replace(R.id.flChiTietKhuVuc,fragment);
-                        transaction.addToBackStack(null);
-
                         transaction.commit();
                     }
                 });
