@@ -31,10 +31,12 @@
                 <TextView
                     android:text="TextView"
                     android:textSize="15dp"
-                    android:textColor="#ff669900"
+                    android:textColor="#ffffff"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|right"
+                    android:paddingEnd="8dp"
+                    android:background="#ff669900"
                     android:id="@+id/tvDanhGia" />
             </FrameLayout>
 
@@ -149,7 +151,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:numColumns="3" />
+            android:numColumns="3"
+            android:horizontalSpacing="1dp"
+            android:verticalSpacing="1dp"/>
 
     </LinearLayout>
 </ScrollView>
