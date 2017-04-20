@@ -16,8 +16,8 @@
 
     <ImageView
         android:id="@+id/ivQuan"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         app:srcCompat="@drawable/fb"
         android:focusable="false"
         />
@@ -27,10 +27,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:focusable="false"
+        android:gravity="center"
         android:text="TextView" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:focusable="false"
         android:orientation="horizontal">
@@ -50,12 +51,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:focusable="false"
+            android:drawableLeft="@drawable/like"
             android:text="TextView" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
 
@@ -63,17 +65,19 @@
 
         <TextView
             android:id="@+id/tvCheckin"
-            android:layout_width="40dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-
+            android:drawableLeft="@drawable/checkin"
             android:focusable="false"
             android:text="TextView" />
 
         <TextView
             android:id="@+id/tvGio"
-            android:layout_width="60dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:focusable="false"
+            android:drawableLeft="@drawable/open"
+
             android:text="TextView" />
 
     </LinearLayout>
