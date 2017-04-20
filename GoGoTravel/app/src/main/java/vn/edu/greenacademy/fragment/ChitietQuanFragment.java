@@ -51,8 +51,8 @@ public class ChitietQuanFragment extends Fragment {
         if(instance == null){
             instance = new ChitietQuanFragment();
         }
-
         return instance;
+
     }
 
     public ChitietQuanFragment() {

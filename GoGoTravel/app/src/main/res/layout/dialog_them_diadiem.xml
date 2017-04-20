@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1">
-
     <TextView
         android:id="@+id/tvTenDiaDiemAdd"
         android:layout_width="match_parent"
@@ -26,7 +28,8 @@
     <GridView
         android:id="@+id/gvCheckIn"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/dialog_add_checkin_height" />
+        android:layout_height="@dimen/dialog_add_checkin_height"
+        android:numColumns="3" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -47,6 +50,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Chụp Ảnh" />
+
+        <Button
+            android:id="@+id/btnChonAnh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Chọn Ảnh" />
     </LinearLayout>
 
 
@@ -74,6 +84,6 @@
     <!--android:layout_toEndOf="@+id/btnDialogAdd"-->
     <!--android:text="Button" />-->
     <!--</LinearLayout>-->
-
-
 </LinearLayout>
+
+</ScrollView>

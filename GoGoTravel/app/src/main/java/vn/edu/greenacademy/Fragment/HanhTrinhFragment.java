@@ -3,8 +3,12 @@ package vn.edu.greenacademy.Fragment;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -37,12 +41,16 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import vn.edu.greenacademy.Adapter.ListView_TimDiaDiem;
+import vn.edu.greenacademy.Adapter.ReviewImageAdapter;
 import vn.edu.greenacademy.Model.DiaDiemChuyenDiTranfers;
 import vn.edu.greenacademy.Model.NgayChuyenDiTranfers;
 import vn.edu.greenacademy.Model.TimDiemTranfers;
 import vn.edu.greenacademy.Adapter.ExpandableListView_HanhTrinh;
+//import vn.edu.greenacademy.gogotravel.CameraActivity;
 import vn.edu.greenacademy.gogotravel.ChiTietCheckInActivity;
+import vn.edu.greenacademy.gogotravel.MainActivity;
 import vn.edu.greenacademy.gogotravel.R;
+import vn.edu.greenacademy.gogotravel.SDCardActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,6 +68,7 @@ public class HanhTrinhFragment extends Fragment {
     DiaDiemChuyenDiTranfers Diadiem;
     FloatingActionButton btnAdd;
     Dialog dialogSearch, dialogAdd;
+    ReviewImageAdapter reviewImageAdapter;
 
     public static HanhTrinhFragment instance;
 
@@ -105,6 +114,7 @@ public class HanhTrinhFragment extends Fragment {
                 String thoigian = arrlstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getNgayCheckIn();
                 String linkanh = arrlstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getLinkAnh();
                 String noidung = arrlstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getNoiDungCheckIn();
+                int iddiadiem = arrlstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getIdDiaDiem();
 
 
                 Intent intent = new Intent(getContext(), ChiTietCheckInActivity.class);
@@ -112,6 +122,9 @@ public class HanhTrinhFragment extends Fragment {
                 intent.putExtra("thoigian",thoigian);
                 intent.putExtra("linkanh",linkanh);
                 intent.putExtra("noidung",noidung);
+                intent.putExtra("id",iddiadiem);
+
+
                 startActivity(intent);
 
                 return false;
@@ -137,11 +150,17 @@ public class HanhTrinhFragment extends Fragment {
                         dialogAdd = new Dialog(getContext());
                         dialogAdd.setContentView(R.layout.dialog_them_diadiem);
 
+                        reviewImageAdapter = new ReviewImageAdapter(getContext());
+
                         TextView tvTenDiaDiemAdd = (TextView) dialogAdd.findViewById(R.id.tvTenDiaDiemAdd);
                         final EditText etNoiDungCheckin = (EditText) dialogAdd.findViewById(R.id.etNoiDungCheckin);
                         Button btnThem = (Button) dialogAdd.findViewById(R.id.btnDialogAdd);
                         Button btnChupAnh = (Button) dialogAdd.findViewById(R.id.btnCapture);
                         GridView gvCheckIn = (GridView) dialogAdd.findViewById(R.id.gvCheckIn);
+                        Button btnChonAnh = (Button)  dialogAdd.findViewById(R.id.btnChonAnh);
+
+                        gvCheckIn.setAdapter(reviewImageAdapter);
+
 
                         tvTenDiaDiemAdd.setText(arrlstTimDiem.get(position).getTen());
 
@@ -159,7 +178,15 @@ public class HanhTrinhFragment extends Fragment {
                         btnChupAnh.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-//                                man hinh chup anh
+
+                                capturePicture();
+                            }
+                        });
+                        btnChonAnh.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(getContext(), SDCardActivity.class);
+                                startActivityForResult(intent,50);
                             }
                         });
 
@@ -382,6 +409,36 @@ public class HanhTrinhFragment extends Fragment {
             }
 
             return null;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100){
+            if (data!= null){
+                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                reviewImageAdapter.AddBitmap(bitmap);
+            }
+        }else if (requestCode == 50){
+            //từ màn hình SDCard
+            ArrayList<String> list = data.getStringArrayListExtra("Image");
+            for (int i=0;i<list.size();i++){
+                Bitmap bit = BitmapFactory.decodeFile(list.get(i));
+                reviewImageAdapter.AddBitmap(bit);
+            }
+        }
+    }
+
+    private void capturePicture() {
+        if (getContext().getPackageManager().
+                hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
+
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent,100);
+        }else{
+            Toast.makeText(getActivity(),"Camera không được hỗ trợ",
+                    Toast.LENGTH_LONG).show();
         }
     }
 }

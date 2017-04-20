@@ -1,6 +1,9 @@
 package vn.edu.greenacademy.gogotravel;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +27,7 @@ public class ChiTietCheckInActivity extends AppCompatActivity {
         String thoigian = getIntent().getStringExtra("thoigian");
         String linkanh = getIntent().getStringExtra("linkanh");
         String noidung = getIntent().getStringExtra("noidung");
+        int id = getIntent().getIntExtra("id",0);
 
         tvTenDiaDiem = (TextView) findViewById(R.id.tvTenDiaDiemCheckIn);
         tvNoiDung = (TextView) findViewById(R.id.tvNoiDungCheckIn);
@@ -39,9 +43,16 @@ public class ChiTietCheckInActivity extends AppCompatActivity {
         btnGioiThieu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                chuyen man hinh
+
             }
         });
 
+    }
+    public void callFragment(Fragment fragment){
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.rlChiTietCheckIn, fragment);
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        transaction.commit();
     }
 }

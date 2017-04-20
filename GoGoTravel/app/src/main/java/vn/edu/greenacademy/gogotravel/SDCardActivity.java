@@ -33,7 +33,7 @@ public class SDCardActivity extends AppCompatActivity {
             String ExternalStorageDirectorPath = Environment
                     .getExternalStorageDirectory().getAbsolutePath();
 
-            String targetPath = ExternalStorageDirectorPath + "/Download/";
+            String targetPath = ExternalStorageDirectorPath + "/DCIM/100ANDRO";
             targetDirector = new File(targetPath);
             sdCardApdapter.clear();
 
