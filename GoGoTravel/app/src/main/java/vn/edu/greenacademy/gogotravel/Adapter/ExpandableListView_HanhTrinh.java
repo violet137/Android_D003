@@ -113,6 +113,7 @@ public class ExpandableListView_HanhTrinh extends BaseExpandableListAdapter {
             holder.tvPhotoItem = (TextView) convertView.findViewById(R.id.tvPhotoItem);
             holder.tvDescription = (TextView) convertView.findViewById(R.id.tvDescription);
             holder.imvItem = (ImageView) convertView.findViewById(R.id.imvItem);
+            holder.tvTimeItem = (TextView) convertView.findViewById(R.id.tvTimeItem);
 
             convertView.setTag(holder);
 
@@ -123,7 +124,7 @@ public class ExpandableListView_HanhTrinh extends BaseExpandableListAdapter {
             holder.tvLikeItem.setText(String.valueOf(lstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getSoLuotLike()));
             holder.tvDescription.setText(lstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getNoiDungCheckIn());
             holder.tvPhotoItem.setText(String.valueOf(lstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getSoLuongAnh()));
-
+            holder.tvTimeItem.setText(lstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getNgayCheckIn());
 
             Picasso.with(context).load(lstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getLinkAnh()).resize(130,100).into(holder.imvItem);
 

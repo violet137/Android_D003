@@ -8,4 +8,6 @@
     <dimen name="dialog_add_checkin_height">200dp</dimen>
     <dimen name="dialog_add_checkin_margin_top">25dp</dimen>
     <dimen name="dialog_add_gridview_checkin">200dp</dimen>
+    <dimen name="activity_chitietcheckin_text">24dp</dimen>
+    <dimen name="activity_chitietcheckin_noidung_height">200dp</dimen>
 </resources>

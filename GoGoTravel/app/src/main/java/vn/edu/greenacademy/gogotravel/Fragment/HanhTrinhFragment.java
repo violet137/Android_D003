@@ -2,6 +2,7 @@ package vn.edu.greenacademy.gogotravel.Fragment;
 
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -37,6 +38,8 @@ import java.util.ArrayList;
 
 import vn.edu.greenacademy.gogotravel.Adapter.ExpandableListView_HanhTrinh;
 import vn.edu.greenacademy.gogotravel.Adapter.ListView_TimDiaDiem;
+import vn.edu.greenacademy.gogotravel.ChiTietCheckInActivity;
+import vn.edu.greenacademy.gogotravel.HanhTrinhActivity;
 import vn.edu.greenacademy.gogotravel.Model.DiaDiemChuyenDiTranfers;
 import vn.edu.greenacademy.gogotravel.Model.NgayChuyenDiTranfers;
 import vn.edu.greenacademy.gogotravel.Model.TimDiemTranfers;
@@ -90,7 +93,18 @@ public class HanhTrinhFragment extends Fragment {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 
+                String tendiadiem = arrlstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getTenDiaDiem();
+                String thoigian = arrlstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getNgayCheckIn();
+                String linkanh = arrlstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getLinkAnh();
+                String noidung = arrlstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getNoiDungCheckIn();
 
+
+                Intent intent = new Intent(getContext(), ChiTietCheckInActivity.class);
+                intent.putExtra("tendiadiem",tendiadiem);
+                intent.putExtra("thoigian",thoigian);
+                intent.putExtra("linkanh",linkanh);
+                intent.putExtra("noidung",noidung);
+                startActivity(intent);
 
                 return false;
             }
