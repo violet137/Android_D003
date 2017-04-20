@@ -20,6 +20,7 @@
         android:layout_height="150dp"
         app:srcCompat="@drawable/fb"
         android:focusable="false"
+        android:background="@drawable/border_quan"
         />
 
     <TextView
