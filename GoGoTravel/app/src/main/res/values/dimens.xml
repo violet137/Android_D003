@@ -3,4 +3,9 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="listview_header_size">24dp</dimen>
+    <dimen name="listview_diadiem_item_size">24dp</dimen>
+    <dimen name="dialog_add_title">36dp</dimen>
+    <dimen name="dialog_add_checkin_height">200dp</dimen>
+    <dimen name="dialog_add_checkin_margin_top">25dp</dimen>
+    <dimen name="dialog_add_gridview_checkin">200dp</dimen>
 </resources>

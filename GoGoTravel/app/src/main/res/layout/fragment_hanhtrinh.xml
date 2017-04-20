@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="vn.edu.greenacademy.gogotravel.Fragment.HanhTrinhFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -10,4 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/elvHanhTrinh" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right|end"
+        android:layout_margin="10dp"
+        android:clickable="true"
+        android:src="@drawable/icon_add"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabSize="normal"
+        />
 </FrameLayout>

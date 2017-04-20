@@ -9,6 +9,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="vn.edu.greenacademy.gogotravel.HanhTrinhActivity">
+
+
                     <RelativeLayout
                         android:id="@+id/fragment_hanhtrinh"
                         android:layout_width="match_parent"

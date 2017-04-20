@@ -1,6 +1,7 @@
 package vn.edu.greenacademy.gogotravel.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -101,7 +104,7 @@ public class ExpandableListView_HanhTrinh extends BaseExpandableListAdapter {
         ChildrenViewHolder holder;
         if (convertView==null){
             LayoutInflater inflater = LayoutInflater.from(context);
-            convertView = inflater.inflate(R.layout.listview_hanhtrinh_header,null);
+            convertView = inflater.inflate(R.layout.listview_hanhtrinh_item,null);
 
             holder = new ChildrenViewHolder();
 
@@ -109,18 +112,20 @@ public class ExpandableListView_HanhTrinh extends BaseExpandableListAdapter {
             holder.tvTenDiaDiem = (TextView) convertView.findViewById(R.id.tvTenDiaDiem);
             holder.tvPhotoItem = (TextView) convertView.findViewById(R.id.tvPhotoItem);
             holder.tvDescription = (TextView) convertView.findViewById(R.id.tvDescription);
+            holder.imvItem = (ImageView) convertView.findViewById(R.id.imvItem);
 
             convertView.setTag(holder);
 
         }else{
             holder = (ChildrenViewHolder) convertView.getTag();
         }
+            holder.tvTenDiaDiem.setText(lstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getTenDiaDiem());
+            holder.tvLikeItem.setText(String.valueOf(lstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getSoLuotLike()));
+            holder.tvDescription.setText(lstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getNoiDungCheckIn());
+            holder.tvPhotoItem.setText(String.valueOf(lstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getSoLuongAnh()));
 
-        holder.tvTenDiaDiem.setText(lstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getTenDiaDiem());
-        holder.tvLikeItem.setText(String.valueOf(lstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getSoLuotLike()));
-        holder.tvDescription.setText(lstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getNoiDungCheckIn());
-        holder.tvPhotoItem.setText(String.valueOf(lstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getSoLuongAnh()));
-//        holder.tvTenDiaDiem.setText(lstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getTenDiaDiem());
+
+            Picasso.with(context).load(lstNgayDi.get(groupPosition).arrDiaDiem.get(childPosition).getLinkAnh()).resize(130,100).into(holder.imvItem);
 
         return convertView;
     }
