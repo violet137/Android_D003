@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="array_Id">
+
+    </string-array>
+
+    <string-array name="array_LuotXem">
+
+    </string-array>
+
+    <string-array name="array_YeuThich">
+
+    </string-array>
+
+    <string-array name="array_CheckIn">
+
+    </string-array>
+
+    <string-array name="array_Ten">
+
+    </string-array>
+
+    <string-array name="array_MoTa">
+
+    </string-array>
+
+    <!--<string-array name="array_IdTen">-->
+
+    <!--</string-array>-->
+
+    <!--<string-array name="array_IdTen">-->
+
+    <!--</string-array>-->
+
+    <!--<string-array name="array_IdTen">-->
+
+    <!--</string-array>-->
+
+    <string-array name="array_Lat">
+
+    </string-array>
+
+    <string-array name="array_Lng">
+
+    </string-array>
+</resources>

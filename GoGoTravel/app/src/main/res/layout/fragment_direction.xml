@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="vn.edu.greenacademy.gogotravel.Fragment.DirectionFragment">
+    tools:context="vn.edu.greenacademy.Fragment.DirectionFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <fragment
