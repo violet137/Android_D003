@@ -20,5 +20,13 @@
     <dimen name="height_image_icon">20dp</dimen>
     <dimen name="width_image_icon">20dp</dimen>
     <dimen name="padding_left_textview_detal_ks">13dp</dimen>
+    <dimen name="listview_header_size">24dp</dimen>
+    <dimen name="listview_diadiem_item_size">24dp</dimen>
+    <dimen name="dialog_add_title">36dp</dimen>
+    <dimen name="dialog_add_checkin_height">200dp</dimen>
+    <dimen name="dialog_add_checkin_margin_top">25dp</dimen>
+    <dimen name="dialog_add_gridview_checkin">200dp</dimen>
+    <dimen name="activity_chitietcheckin_text">24dp</dimen>
+    <dimen name="activity_chitietcheckin_noidung_height">200dp</dimen>
 
 </resources>

@@ -62,58 +62,8 @@ public class KhachSanFragment extends Fragment {
         btnBoLoc = (Button) view.findViewById(R.id.btnBoLoc);
         listViewKhachSan = (ListView) view.findViewById(R.id.listViewKhachSan);
 
-//        new AllKhachSan().execute();
         new KhachSanByKhuVuc().execute();
-//        btnBoLoc.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                arrChoice = new ArrayList();
-//                final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//                builder.setTitle(R.string.title_dialog)
-//                        .setSingleChoiceItems(R.array.danh_sach_bo_loc, 0, new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                luaChon = which;
-//                                switch (which) {
-//                                    case 0:
-//                                        break;
-//                                    case 1:
-//                                        Comparator comp = new Comparator<KhachSans>(){
-//                                            @Override
-//                                            public int compare(KhachSans s1, KhachSans s2)
-//                                            {
-//                                                if(s1.getDanhGia()>s2.getDanhGia()){
-//                                                    return 1;
-//                                                }else{
-//                                                    return -1;
-//                                                }
-//                                            }
-//                                        };
-//                                        Collections.sort(listHotel, comp);
-//                                        adapter.ReloadData(listHotel);
-//                                        dialog.dismiss();
-//                                        break;
-//                                    case 2:
-//                                        dialog.dismiss();
-//                                        break;
-//                                    case 3:
-//                                        dialog.dismiss();
-//                                        break;
-//                                    case 4:
-//                                        dialog.dismiss();
-//                                        break;
-//                                    case 5:
-//                                        new KhachSanByNear().execute();
-//                                        dialog.dismiss();
-//                                        break;
-//                                }
-//
-//                            }
-//                        });
-//                AlertDialog dialog = builder.create();
-//                dialog.show();
-//            }
-//        });
+
         listViewKhachSan.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

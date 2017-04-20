@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:text="dd/mm/yyyy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvNgayDi"
+            android:textSize="@dimen/listview_header_size" />
+
+        <TextView
+            android:text="N/a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvTongLike"
+            android:layout_weight="1"
+            android:gravity="right"/>
+
+        <ImageView
+            android:id="@+id/imvLikeSum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/icon_like" />
+
+        <TextView
+            android:text="N/a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvTongAnh"
+            android:layout_weight="1"
+            android:gravity="right"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/icon_image"
+            android:id="@+id/imvPhotoSum" />
+    </TableRow>
+
+</TableLayout>
