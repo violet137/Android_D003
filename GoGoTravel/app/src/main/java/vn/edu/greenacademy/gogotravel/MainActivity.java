@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import vn.edu.greenacademy.Fragment.BanDoFragment;
 import vn.edu.greenacademy.Fragment.HanhTrinhFragment;
 import vn.edu.greenacademy.Fragment.KhuVucFragment;
+import vn.edu.greenacademy.Fragment.MapFragment;
 import vn.edu.greenacademy.Fragment.TaiKhoanFragment;
 
 
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     FrameLayout flMain;
 
     KhuVucFragment khuVucFragment;
-    BanDoFragment banDoFragment;
+    MapFragment mapFragment;
     TaiKhoanFragment taiKhoanFragment;
     HanhTrinhFragment hanhTrinhFragment;
     ImageButton ibHome, ibBanDo, ibhanhTrinh, ibTaiKhoan;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ibTaiKhoan = (ImageButton) findViewById(R.id.ibTaiKhoan);
 
         khuVucFragment = KhuVucFragment.getInstance();
-        banDoFragment = BanDoFragment.getInstance();
+        mapFragment = MapFragment.getInstance();
         taiKhoanFragment = TaiKhoanFragment.getInstance();
         hanhTrinhFragment = HanhTrinhFragment.getInstance();
         callFragment(khuVucFragment);
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 callFragment(khuVucFragment);
                 break;
             case R.id.ibBanDo:
-                callFragment(banDoFragment);
+                callFragment(mapFragment);
                 break;
             case R.id.ibhanhTrinh:
                 callFragment(hanhTrinhFragment);

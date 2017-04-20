@@ -37,5 +37,13 @@
     <string name="detail_xem">Số lượt xem</string>
     <string name="detail_hinhanh">Hình ảnh</string>
 
+    <string name="Button_TatCa">Tất Cả</string>
+    <string name="Button_DiaDiem">Địa Điểm</string>
+    <string name="Button_QuanAn">Quán Ăn</string>
+    <string name="Button_KhachSan">Khách Sạn</string>
+    <string name="Button_Dialog_Huy">Hủy</string>
+    <string name="Button_Dialog_ChiDuong">Chỉ Đường</string>
+
+    <string name="google_map_key">AIzaSyAppVR5GGoF4TJphENULTiwyQ2_0Xcl_rs</string>
 
 </resources>

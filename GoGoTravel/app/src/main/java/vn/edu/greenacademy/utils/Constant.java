@@ -12,5 +12,5 @@ public class Constant {
 
     public static int SET_ID = 1;
 
-
+    public static final int MAP_ZOOM = 13;
 }

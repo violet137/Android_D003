@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:text="Ten"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvTen"
+                android:layout_alignParentLeft="true"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                app:srcCompat="@android:color/background_dark"
+                android:id="@+id/ivHinhAnh"
+                android:layout_below="@+id/tvTen"
+                android:layout_height="200dp" />
+
+            <TextView
+                android:text="MoTa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvMoTa"
+                android:layout_below="@+id/ivHinhAnh"
+                android:lines="4"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/tvMoTa"
+                android:id="@+id/linear">
+
+                <TextView
+                    android:text="LuotXem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvLuotXem"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:text="YeuThich"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvYeuThich"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:text="CheckIn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvCheckIn"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnChiDuong"
+                android:text="@string/Button_Dialog_ChiDuong"
+                android:layout_alignBaseline="@+id/btnHuy"
+                android:layout_toLeftOf="@+id/btnHuy"
+                android:background="@drawable/custom_button"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnHuy"
+                android:text="@string/Button_Dialog_Huy"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/ratingBar"
+                android:background="@drawable/custom_button"/>
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratingBar"
+                android:isIndicator="true"
+                android:numStars="5" android:layout_centerHorizontal="true"
+                android:layout_below="@+id/linear" />
+</RelativeLayout>
