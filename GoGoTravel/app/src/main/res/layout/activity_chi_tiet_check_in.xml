@@ -40,5 +40,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/imvHinhAnhChiTiet"
         android:layout_centerHorizontal="true"
-        android:text="Giới thiệu địa điểm" />
+        android:text="Giới thiệu địa điểm"
+        android:background="@color/button"
+        android:padding="@dimen/button_padding"
+        />
 </RelativeLayout>

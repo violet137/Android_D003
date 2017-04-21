@@ -28,5 +28,6 @@
     <dimen name="dialog_add_gridview_checkin">200dp</dimen>
     <dimen name="activity_chitietcheckin_text">24dp</dimen>
     <dimen name="activity_chitietcheckin_noidung_height">200dp</dimen>
+    <dimen name="button_padding">10dp</dimen>
 
 </resources>

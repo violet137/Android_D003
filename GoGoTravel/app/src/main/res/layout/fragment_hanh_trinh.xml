@@ -12,15 +12,16 @@
         android:layout_height="match_parent"
         android:id="@+id/elvHanhTrinh" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btnAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right|end"
-        android:layout_margin="10dp"
-        android:clickable="true"
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:layout_gravity="bottom|right|end"
+            app:backgroundTint="@color/colorPrimary"
+            app:fabSize="normal"
 
-        app:backgroundTint="@color/colorPrimary"
-        app:fabSize="normal"
-        />
+            />
+
 </FrameLayout>

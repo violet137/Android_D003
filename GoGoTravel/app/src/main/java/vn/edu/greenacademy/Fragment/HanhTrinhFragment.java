@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -105,6 +106,7 @@ public class HanhTrinhFragment extends Fragment {
 
         elvHanhTrinh = (ExpandableListView) view.findViewById(R.id.elvHanhTrinh);
         btnAdd = (FloatingActionButton) view.findViewById(R.id.btnAdd);
+        btnAdd.setImageResource(R.drawable.icon_add);
 
         elvHanhTrinh.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override

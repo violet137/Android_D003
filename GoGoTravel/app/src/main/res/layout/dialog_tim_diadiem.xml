@@ -19,7 +19,8 @@
             android:text="Tìm"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignBaseline="@+id/etSearchDiadiem"/>
+            android:layout_alignBaseline="@+id/etSearchDiadiem"
+            style="@style/button_style"/>
 
     </LinearLayout>
     <ListView

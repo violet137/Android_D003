@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
             android:id="@+id/btnNext"
-            android:background="@android:color/holo_blue_bright" />
+            android:background="@color/button"
+            android:textColor="@color/text"/>
 
         <android.support.v4.view.ViewPager
             android:layout_width="match_parent"
